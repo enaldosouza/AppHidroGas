@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -18,35 +19,35 @@ public class JFCadastroCidade extends javax.swing.JFrame {
 
         initComponents();
         
-        jCBestados.addItem("ESCOLHA");
-        jCBestados.addItem("ACRE (RIO BRANCO)");
-        jCBestados.addItem("ALAGOAS (MACEIÓ)");
-        jCBestados.addItem("AMAPÁ (MACAPÁ)");
-        jCBestados.addItem("AMAZONAS (MANAUS)");
-        jCBestados.addItem("BAHIA (SALVADOR)");
-        jCBestados.addItem("CEARÁ (FORTALEZA)");
-        jCBestados.addItem("DISTRITO FEDERAL (BRASÍLIA)");
-        jCBestados.addItem("ESPÍRITO SANTO (VITÓRIA)");
-        jCBestados.addItem("GOIÁS (GOIÂNIA)");
-        jCBestados.addItem("MARANHÃO (SÃO LUÍS)");
-        jCBestados.addItem("MATO GROSSO (CUIABÁ)");
-        jCBestados.addItem("MATO GROSSO DO SUL (CAMPO GRANDE)");
-        jCBestados.addItem("MINAS GERAIS (BELO HORIZONTE)");
-        jCBestados.addItem("PARÁ (BELÉM)");
-        jCBestados.addItem("PARAÍBA (JOÃO PESSOA)");
-        jCBestados.addItem("PARANÁ (CURITIBA)");
-        jCBestados.addItem("PERNAMBUCO (RECIFE)");
-        jCBestados.addItem("PIAUÍ (TERESINA)");
-        jCBestados.addItem("RIO DE JANEIRO (RIO DE JANEIRO)");
-        jCBestados.addItem("RIO GRANDE DO NORTE (NATAL)");
-        jCBestados.addItem("RIO GRANDE DO SUL (PORTO ALEGRE)");
-        jCBestados.addItem("RONDÔNIA (PORTO VELHO)");
-        jCBestados.addItem("RORAIMA (BOA VISTA)");
-        jCBestados.addItem("SANTA CATARINA (FLORIANÓPOLIS)");
-        jCBestados.addItem("SÃO PAULO (SÃO PAULO)");
-        jCBestados.addItem("SERGIPE (ARACAJU)");
-        jCBestados.addItem("TOCANTIS (PALMAS)");
-        
+//        jCBestados.addItem("ESCOLHA");
+//        jCBestados.addItem("ACRE (RIO BRANCO)");
+//        jCBestados.addItem("ALAGOAS (MACEIÓ)");
+//        jCBestados.addItem("AMAPÁ (MACAPÁ)");
+//        jCBestados.addItem("AMAZONAS (MANAUS)");
+//        jCBestados.addItem("BAHIA (SALVADOR)");
+//        jCBestados.addItem("CEARÁ (FORTALEZA)");
+//        jCBestados.addItem("DISTRITO FEDERAL (BRASÍLIA)");
+//        jCBestados.addItem("ESPÍRITO SANTO (VITÓRIA)");
+//        jCBestados.addItem("GOIÁS (GOIÂNIA)");
+//        jCBestados.addItem("MARANHÃO (SÃO LUÍS)");
+//        jCBestados.addItem("MATO GROSSO (CUIABÁ)");
+//        jCBestados.addItem("MATO GROSSO DO SUL (CAMPO GRANDE)");
+//        jCBestados.addItem("MINAS GERAIS (BELO HORIZONTE)");
+//        jCBestados.addItem("PARÁ (BELÉM)");
+//        jCBestados.addItem("PARAÍBA (JOÃO PESSOA)");
+//        jCBestados.addItem("PARANÁ (CURITIBA)");
+//        jCBestados.addItem("PERNAMBUCO (RECIFE)");
+//        jCBestados.addItem("PIAUÍ (TERESINA)");
+//        jCBestados.addItem("RIO DE JANEIRO (RIO DE JANEIRO)");
+//        jCBestados.addItem("RIO GRANDE DO NORTE (NATAL)");
+//        jCBestados.addItem("RIO GRANDE DO SUL (PORTO ALEGRE)");
+//        jCBestados.addItem("RONDÔNIA (PORTO VELHO)");
+//        jCBestados.addItem("RORAIMA (BOA VISTA)");
+//        jCBestados.addItem("SANTA CATARINA (FLORIANÓPOLIS)");
+//        jCBestados.addItem("SÃO PAULO (SÃO PAULO)");
+//        jCBestados.addItem("SERGIPE (ARACAJU)");
+//        jCBestados.addItem("TOCANTIS (PALMAS)");
+//        
         populajTableCidade();
         
         //ordenando jtable
@@ -159,9 +160,14 @@ public class JFCadastroCidade extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTFnomeCidadeKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFnomeCidadeKeyTyped(evt);
+            }
         });
 
         jLBestado.setText("Estado: *");
+
+        jCBestados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         javax.swing.GroupLayout jPdadosCidadeLayout = new javax.swing.GroupLayout(jPdadosCidade);
         jPdadosCidade.setLayout(jPdadosCidadeLayout);
@@ -253,15 +259,14 @@ public class JFCadastroCidade extends javax.swing.JFrame {
                 .addComponent(jPdadosCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPtabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(691, 416));
+        setSize(new java.awt.Dimension(691, 398));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void populajTableCidade(){
-    
         DefaultTableModel modelo = (DefaultTableModel)jTableCidade.getModel();
         modelo.setNumRows(0);
         CidadeDao cidadeDao = new CidadeDao();
@@ -316,9 +321,7 @@ public class JFCadastroCidade extends javax.swing.JFrame {
         if(jTableCidade.getSelectedRow() != -1)
             jTFnomeCidade.setText(jTableCidade.getValueAt(jTableCidade.getSelectedRow(),1).toString());
             jCBestados.setSelectedItem(jTableCidade.getValueAt(jTableCidade.getSelectedRow(),2).toString());
-//            
-//        String p = (jTableCidade.getValueAt(jTableCidade.getSelectedRow(),2).toString());
-//        System.out.println(p);
+                    
     }//GEN-LAST:event_jTableCidadeMouseClicked
 
     private void jTFnomeCidadeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnomeCidadeKeyPressed
@@ -388,7 +391,7 @@ public class JFCadastroCidade extends javax.swing.JFrame {
                 jCBestados.setSelectedItem("ESCOLHA");
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Escolha Cidade para remoção!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Escolha Cidade e Estado para remoção!", "Aviso", JOptionPane.WARNING_MESSAGE);
         }        
         
     }//GEN-LAST:event_jBremoverCidadeActionPerformed
@@ -399,6 +402,13 @@ public class JFCadastroCidade extends javax.swing.JFrame {
         jCBestados.setSelectedItem("ESCOLHA");
         
     }//GEN-LAST:event_jBlimparCidadeActionPerformed
+
+    private void jTFnomeCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnomeCidadeKeyTyped
+        char c=evt.getKeyChar();
+        if((Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)){
+            evt.consume();
+        }        
+    }//GEN-LAST:event_jTFnomeCidadeKeyTyped
 
     /**
      * @param args the command line arguments

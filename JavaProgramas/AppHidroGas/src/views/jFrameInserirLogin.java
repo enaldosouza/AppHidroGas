@@ -210,6 +210,9 @@ public class jFrameInserirLogin extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldNomeKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyTyped(evt);
+            }
         });
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ADM\t", "USR", " " }));
@@ -469,6 +472,11 @@ public class jFrameInserirLogin extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jTextFieldNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+    }//GEN-LAST:event_jTextFieldNomeKeyTyped
 
     /**
      * @param args the command line arguments

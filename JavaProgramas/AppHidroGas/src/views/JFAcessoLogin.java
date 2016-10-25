@@ -1,9 +1,11 @@
 
 package views;
 
+import java.awt.event.KeyEvent;
 import model.bean.UsuarioLogin;
 import model.dao.LoginDao;
 import java.sql.Connection;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -55,6 +57,9 @@ public class JFAcessoLogin extends javax.swing.JFrame {
         jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFieldNomeKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyTyped(evt);
             }
         });
         getContentPane().add(jTextFieldNome);
@@ -138,6 +143,19 @@ public class JFAcessoLogin extends javax.swing.JFrame {
 
         }        
     }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jTextFieldNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyTyped
+        
+        //Na variável "c" armazenamos o que o usuário digitou    
+        char c=evt.getKeyChar();
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+//        String ca = "eu";
+//        Pattern.compile("[a-zA-Z]").matcher(ca);
+        //Aqui verificamos se o que foi digitado é um número, um backspace ou um delete. Se for, consumimos o evento, ou seja, o jTextField não receberá o valor digitado
+//        if((Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)){
+//                evt.consume();
+//        }                
+    }//GEN-LAST:event_jTextFieldNomeKeyTyped
 
     /**
      * @param args the command line arguments
