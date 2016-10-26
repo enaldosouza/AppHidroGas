@@ -47,7 +47,7 @@ public class CidadeDao {
                 JOptionPane.showMessageDialog(null, "Cidade já cadastrada!", 
                 "Aviso", JOptionPane.WARNING_MESSAGE);
             }else{
-                JOptionPane.showMessageDialog(null, "Falha na Conexãoaaaa:  " + sqle);
+                JOptionPane.showMessageDialog(null, "Falha na Conexão:  " + sqle);
             }
         }finally{
             ConnectionFactory.closeConnection(con, ps);
