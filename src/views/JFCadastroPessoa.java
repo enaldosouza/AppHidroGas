@@ -5,6 +5,8 @@
  */
 package views;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author enaldo.souza
@@ -233,8 +235,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
                                         .addGap(1, 1, 1)
-                                        .addComponent(jLabel5)
-                                        .addGap(96, 96, 96))
+                                        .addComponent(jLabel5))
                                     .addComponent(jTextFieldEstadoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -290,6 +291,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Complementares", jPanelDadosComplementares);
 
         jLabelNomePessoa.setText("Nome: *");
+
+        jTFnomePessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFnomePessoaKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Cpf: *");
 
@@ -507,6 +514,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private void jTFidentidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFidentidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTFidentidadeActionPerformed
+
+    private void jTFnomePessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnomePessoaKeyTyped
+//        char c = evt.getKeyChar();
+//        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
+    }//GEN-LAST:event_jTFnomePessoaKeyTyped
 
     /**
      * @param args the command line arguments

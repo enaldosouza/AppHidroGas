@@ -3,7 +3,10 @@ package model.bean;
 
 public class Pessoa {
     
+    private String cidade_cod_cidade;
     private String nome;
+    private String logradouro;
+    private String num_logradouro;
     private String tipo_logradouro;
     private String bairro;
     private String cep;
@@ -13,8 +16,33 @@ public class Pessoa {
     private String celular;
     private String tipo_pessoa;
     private String dt_cadastro;
+    private String dt_desativacao;
     private String senha;
     
+    public String getCidadeCodCidade(){
+        return cidade_cod_cidade;
+    }
+
+    public void setCidadeCodCidade(String cidade_cod_cidade){
+        this.cidade_cod_cidade = cidade_cod_cidade;
+    }
+    
+    public String getLogradouro(){
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro){
+        this.logradouro = logradouro;
+    }
+    
+    public String getNumLogradouro(){
+        return num_logradouro;
+    }
+
+    public void setNumLogradouro(String num_logradouro){
+        this.num_logradouro = num_logradouro;
+    }
+        
     public String getNome() {
         return nome;
     }
@@ -95,6 +123,14 @@ public class Pessoa {
         this.dt_cadastro = dt_cadastro;
     }
 
+    public String getDt_desativacao() {
+        return dt_desativacao;
+    }
+
+    public void setDt_desativacao(String dt_desativacao) {
+        this.dt_desativacao = dt_desativacao;
+    }    
+    
     public String getSenha() {
         return senha;
     }
