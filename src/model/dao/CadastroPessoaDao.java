@@ -28,7 +28,7 @@ public class CadastroPessoaDao {
     
         sql = "insert into pessoa (cidade_cod_cidade, nome, tipo_logadouro, logradouro,"
                 + "num_logradouro, bairro, cep, uf, telefone_res, telefone_com, celular"
-                + "tipo_pessoa, dt_cadastro, dt_desativacao) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "tipo_pessoa, dt_cadastro, dt_desativacao) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         con = ConnectionFactory.getConnetion();
         try{
             ps = con.prepareStatement(sql);
