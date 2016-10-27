@@ -19,35 +19,35 @@ public class JFCadastroCidade extends javax.swing.JFrame {
 
         initComponents();
         
-//        jCBestados.addItem("ESCOLHA");
-//        jCBestados.addItem("ACRE (RIO BRANCO)");
-//        jCBestados.addItem("ALAGOAS (MACEIÓ)");
-//        jCBestados.addItem("AMAPÁ (MACAPÁ)");
-//        jCBestados.addItem("AMAZONAS (MANAUS)");
-//        jCBestados.addItem("BAHIA (SALVADOR)");
-//        jCBestados.addItem("CEARÁ (FORTALEZA)");
-//        jCBestados.addItem("DISTRITO FEDERAL (BRASÍLIA)");
-//        jCBestados.addItem("ESPÍRITO SANTO (VITÓRIA)");
-//        jCBestados.addItem("GOIÁS (GOIÂNIA)");
-//        jCBestados.addItem("MARANHÃO (SÃO LUÍS)");
-//        jCBestados.addItem("MATO GROSSO (CUIABÁ)");
-//        jCBestados.addItem("MATO GROSSO DO SUL (CAMPO GRANDE)");
-//        jCBestados.addItem("MINAS GERAIS (BELO HORIZONTE)");
-//        jCBestados.addItem("PARÁ (BELÉM)");
-//        jCBestados.addItem("PARAÍBA (JOÃO PESSOA)");
-//        jCBestados.addItem("PARANÁ (CURITIBA)");
-//        jCBestados.addItem("PERNAMBUCO (RECIFE)");
-//        jCBestados.addItem("PIAUÍ (TERESINA)");
-//        jCBestados.addItem("RIO DE JANEIRO (RIO DE JANEIRO)");
-//        jCBestados.addItem("RIO GRANDE DO NORTE (NATAL)");
-//        jCBestados.addItem("RIO GRANDE DO SUL (PORTO ALEGRE)");
-//        jCBestados.addItem("RONDÔNIA (PORTO VELHO)");
-//        jCBestados.addItem("RORAIMA (BOA VISTA)");
-//        jCBestados.addItem("SANTA CATARINA (FLORIANÓPOLIS)");
-//        jCBestados.addItem("SÃO PAULO (SÃO PAULO)");
-//        jCBestados.addItem("SERGIPE (ARACAJU)");
-//        jCBestados.addItem("TOCANTIS (PALMAS)");
-//        
+        jCBestados.addItem("ESCOLHA");
+        jCBestados.addItem("ACRE (RIO BRANCO)");
+        jCBestados.addItem("ALAGOAS (MACEIÓ)");
+        jCBestados.addItem("AMAPÁ (MACAPÁ)");
+        jCBestados.addItem("AMAZONAS (MANAUS)");
+        jCBestados.addItem("BAHIA (SALVADOR)");
+        jCBestados.addItem("CEARÁ (FORTALEZA)");
+        jCBestados.addItem("DISTRITO FEDERAL (BRASÍLIA)");
+        jCBestados.addItem("ESPÍRITO SANTO (VITÓRIA)");
+        jCBestados.addItem("GOIÁS (GOIÂNIA)");
+        jCBestados.addItem("MARANHÃO (SÃO LUÍS)");
+        jCBestados.addItem("MATO GROSSO (CUIABÁ)");
+        jCBestados.addItem("MATO GROSSO DO SUL (CAMPO GRANDE)");
+        jCBestados.addItem("MINAS GERAIS (BELO HORIZONTE)");
+        jCBestados.addItem("PARÁ (BELÉM)");
+        jCBestados.addItem("PARAÍBA (JOÃO PESSOA)");
+        jCBestados.addItem("PARANÁ (CURITIBA)");
+        jCBestados.addItem("PERNAMBUCO (RECIFE)");
+        jCBestados.addItem("PIAUÍ (TERESINA)");
+        jCBestados.addItem("RIO DE JANEIRO (RIO DE JANEIRO)");
+        jCBestados.addItem("RIO GRANDE DO NORTE (NATAL)");
+        jCBestados.addItem("RIO GRANDE DO SUL (PORTO ALEGRE)");
+        jCBestados.addItem("RONDÔNIA (PORTO VELHO)");
+        jCBestados.addItem("RORAIMA (BOA VISTA)");
+        jCBestados.addItem("SANTA CATARINA (FLORIANÓPOLIS)");
+        jCBestados.addItem("SÃO PAULO (SÃO PAULO)");
+        jCBestados.addItem("SERGIPE (ARACAJU)");
+        jCBestados.addItem("TOCANTIS (PALMAS)");
+        
         populajTableCidade();
         
         //ordenando jtable
@@ -167,7 +167,7 @@ public class JFCadastroCidade extends javax.swing.JFrame {
 
         jLBestado.setText("Estado: *");
 
-        jCBestados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jCBestados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ACRE (RIO BRANCO)", "ALAGOAS (MACEIÓ)", "AMAPÁ (MACAPÁ)", "AMAZONAS (MANAUS)", "BAHIA (SALVADOR)", "CEARÁ (FORTALEZA)", "DISTRITO FEDERAL (BRASÍLIA)", "ESPÍRITO SANTO (VITÓRIA)", "GOIÁS (GOIÂNIA)", "MARANHÃO (SÃO LUÍS)", "MATO GROSSO (CUIABÁ)", "MATO GROSSO DO SUL (CAMPO GRANDE)", "MINAS GERAIS (BELO HORIZONTE)", "PARÁ (BELÉM)", "PARAÍBA (JOÃO PESSOA)", "PARANÁ (CURITIBA)", "PERNAMBUCO (RECIFE)", "PIAUÍ (TERESINA)", "RIO DE JANEIRO (RIO DE JANEIRO)", "RIO GRANDE DO NORTE (NATAL)", "RIO GRANDE DO SUL (PORTO ALEGRE)", "RONDÔNIA (PORTO VELHO)", "RORAIMA (BOA VISTA)", "SANTA CATARINA (FLORIANÓPOLIS)", "SÃO PAULO (SÃO PAULO)", "SERGIPE (ARACAJU)", "TOCANTIS (PALMAS)" }));
 
         javax.swing.GroupLayout jPdadosCidadeLayout = new javax.swing.GroupLayout(jPdadosCidade);
         jPdadosCidade.setLayout(jPdadosCidadeLayout);
