@@ -2,6 +2,7 @@
 package views;
 
 import model.bean.UsuarioLogin;
+import model.dao.CadastroPessoaDao;
 import model.dao.LoginDao;
 
 public class JFTelaPrincipal extends javax.swing.JFrame {
@@ -134,6 +135,10 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItemPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaActionPerformed
 
+        JFCadastroPessoa cadPessoa = new JFCadastroPessoa();
+        cadPessoa.setVisible(true);
+//        dispose();
+        
     }//GEN-LAST:event_jMenuItemPessoaActionPerformed
 
     private void jMenuItemMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMaterialActionPerformed

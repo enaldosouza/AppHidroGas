@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package views;
 
-import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 
 /**
- *
  * @author enaldo.souza
  */
 public class JFCadastroPessoa extends javax.swing.JFrame {
@@ -29,6 +30,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupSexo = new javax.swing.ButtonGroup();
         jPCadastroPessoa = new javax.swing.JPanel();
         jBinserirPessoa = new javax.swing.JButton();
         jBalterarPessoa = new javax.swing.JButton();
@@ -204,7 +206,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         jLabel4.setText("Data Nascimento: *");
 
-        jFormattedTextFdataNascPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        try {
+            jFormattedTextFdataNascPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jFormattedTextFdataNascPessoa.setToolTipText("");
 
         jLidentidade.setText("Identidae: *");
@@ -225,9 +231,14 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         jLabelSexo.setText("Sexo: *");
 
-        jRadioButtonFeminino.setText("Feminino");
+        buttonGroupSexo.add(jRadioButtonFeminino);
+        jRadioButtonFeminino.setText("FEMININO");
+        jRadioButtonFeminino.setActionCommand("feminino");
 
-        jRadioButtonMasculino.setText("Masculino");
+        buttonGroupSexo.add(jRadioButtonMasculino);
+        jRadioButtonMasculino.setSelected(true);
+        jRadioButtonMasculino.setText("MASCULINO");
+        jRadioButtonMasculino.setActionCommand("masculino");
 
         jLabelNomeMae.setText("Nome da Mãe: *");
 
@@ -255,7 +266,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 .addComponent(jRadioButtonFeminino)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButtonMasculino)))
-                        .addGap(0, 3, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
@@ -418,7 +429,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                             .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
                                         .addGap(1, 1, 1)
@@ -504,7 +515,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(804, 844));
+        setSize(new java.awt.Dimension(907, 844));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -525,8 +536,136 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 //        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
     }//GEN-LAST:event_jTFnomePessoaKeyTyped
 
+//  public void FormatadoDatas {
+//  	Date data = null;
+//    	String DataInicial = "02/12/2008";
+//    	String dataBanco ; 
+//      try {
+//           data = new SimpleDateFormat("dd/MM/yyyy").parse(DataInicial);
+//      } catch (java.text.ParseException e) {
+//          System.out.println("Ocorreu um erro\n "+e);
+//	}
+//      dataBanco = new SimpleDateFormat("yyyy-MM-dd").format(data);
+//      System.out.println("Resultado: "+dataBanco);
+//    }    
+//}
+
+    public static String formataData(String minhaData) {
+
+        // Data recebida: 29/10/2016
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate data = LocalDate.parse(minhaData, formato);
+        String [] dataSplit = (formato.format(data)).split("/");
+        String dia = ""; String mes = ""; String ano = "";
+
+        for(int i=0; i<=3; i++){
+            dia = dataSplit[0];
+            mes = dataSplit[1];
+            ano = dataSplit[2];
+        }
+        String arrayFinal = ano+mes+dia;
+        return arrayFinal;
+    }
+            
+            
+//            String telefone = "92/9898.989";
+//            telefone = telefone.replaceAll("[^0-9]", "");
+
+//            String [] dataSeparada = minhaData.split(minhaData);
+//            String[] strA = minhaData.split("/");
+            
+//            for(String a: strA){
+//                System.out.println(a);
+//            }
+
+//            String novaData = minhaData.replace("/", "");
+//            System.out.println(strA);
+
+/*
+y year
+M Month in year
+D Day in year
+d Day in month
+H Hour in day
+h Hour in am/pm
+m Minute in hour
+s Second in minute
+S Millisecond Number
+*/            
+            
+//Instancie um DateFormat de acordo com o formato vindo na String, se for dd/MM/yyyy basta fazer assim:
+//DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//
+//E gerar seu objeto Date fazendo o parse da String
+//Date minhaData = dateFormat.parse(textField.getText());
+//
+//Aí na hora de setar o parâmetro do seu PreparedStatement você cria um java.sql.Date. Isso pode ser feito assim:
+//java.sql.Date sqlDate = new java.sql.Date(minhaData.getTime());  
+//
+//O método getTime() retorna a representação da data em milissegundos, que é utilizada no construtor do java.sql.Date 
+
+//estou levando em consideração que o métoto cliente.getDataNasc(); retorna um objeto do tipo java.util.Date
+//java.sql.Date dataSQL = new Date(cliente.getDataNasc().getTime());
+//pstmt.setDate(5, dataSQL);            
+            
+            
+//            Como salvar data no banco postgresql
+//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/exemploJdbc", "root", "");
+//            String sql = "insert into contatos" + "(nome,email,endereco,dataNascimento)"+"values(?,?,?,?)";
+//            PreparedStatement stmt = con.prepareStatement(sql);
+//            stmt.setDate(4, Date.valueOf("1984-10-23"));
+
+
+//------------FORMATA DATAS-----------------------------------------------------------------------------------
+
+//            Calendar c = Calendar.getInstance();
+//            c.set(2013, Calendar.FEBRUARY, 28);
+//            java.util.Date data = c.getTime();
+//            System.out.println("Data atual sem formatação: "+data);
+//
+//            //Formata a data
+//            DateFormat formataData = DateFormat.getDateInstance();
+//            System.out.println("Data atual com formatação: "+ formataData.format(novaData));
+//
+//            //Formata Hora
+//            DateFormat hora = DateFormat.getTimeInstance();
+//            System.out.println("Hora formatada: "+hora.format(data));
+//
+//            //Formata Data e Hora
+//            DateFormat dtHora = DateFormat.getDateTimeInstance();
+//            System.out.println(dtHora.format(data));
+
+//-------------------------------------------------------------------------------------------------------------
+
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
 
+        if(jFormattedTextFdataNascPessoa.equals("")){
+            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", 
+            "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+            String minhaData = jFormattedTextFdataNascPessoa.getText();
+            //Data a ser enviada ao banco
+            String dataFormatada = formataData(minhaData);
+
+            String nomePessoa = jTFnomePessoa.getText();
+            String sexo = buttonGroupSexo.getSelection().getActionCommand();
+            sexo = sexo.equals("feminino") ? "FEMININO" : "MASCULINO";
+            String identidade = jTFidentidade.getText();
+            String estado = jComboBoxEstadoIdentidade.getSelectedItem().toString();
+            String orgaoExpeditor = jComboBoxOrgExpeditor.getSelectedItem().toString();
+
+            //tratar campo e-mail
+            String email = jTextFemailPessoa.getText();
+            
+            //            String telefone = "92/9898.989";
+            //            telefone = telefone.replaceAll("[^0-9]", "");
+
+            String cpf = jFormattedTextCpf.getSelectedText();
+
+//            System.out.print(cpf);
+        }
+//        
+        
 //        String nome_cidade = jTFnomeCidade.getText().toUpperCase();
 //        String nome_estado = String.valueOf(jCBestados.getSelectedItem());
 //
@@ -591,6 +730,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JButton jBalterarPessoa;
     private javax.swing.JButton jBcancelarPessoa;
     private javax.swing.JButton jBinserirPessoa;
