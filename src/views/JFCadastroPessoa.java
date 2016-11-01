@@ -205,6 +205,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 jTextFemailPessoaActionPerformed(evt);
             }
         });
+        jTextFemailPessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFemailPessoaKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Data Nascimento: *");
 
@@ -702,6 +707,10 @@ S Millisecond Number
 //        }        
         
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
+
+    private void jTextFemailPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFemailPessoaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFemailPessoaKeyTyped
 
     /**
      * @param args the command line arguments
