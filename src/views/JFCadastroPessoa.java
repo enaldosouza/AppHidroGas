@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 
@@ -536,20 +538,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 //        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
     }//GEN-LAST:event_jTFnomePessoaKeyTyped
 
-//  public void FormatadoDatas {
-//  	Date data = null;
-//    	String DataInicial = "02/12/2008";
-//    	String dataBanco ; 
-//      try {
-//           data = new SimpleDateFormat("dd/MM/yyyy").parse(DataInicial);
-//      } catch (java.text.ParseException e) {
-//          System.out.println("Ocorreu um erro\n "+e);
-//	}
-//      dataBanco = new SimpleDateFormat("yyyy-MM-dd").format(data);
-//      System.out.println("Resultado: "+dataBanco);
-//    }    
-//}
-
     public static String formataData(String minhaData) {
 
         // Data recebida: 29/10/2016
@@ -639,31 +627,52 @@ S Millisecond Number
 
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
 
-        if(jFormattedTextFdataNascPessoa.equals("")){
-            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", 
-            "Aviso", JOptionPane.WARNING_MESSAGE);
-        } else {
-            String minhaData = jFormattedTextFdataNascPessoa.getText();
-            //Data a ser enviada ao banco
-            String dataFormatada = formataData(minhaData);
-
-            String nomePessoa = jTFnomePessoa.getText();
-            String sexo = buttonGroupSexo.getSelection().getActionCommand();
-            sexo = sexo.equals("feminino") ? "FEMININO" : "MASCULINO";
-            String identidade = jTFidentidade.getText();
-            String estado = jComboBoxEstadoIdentidade.getSelectedItem().toString();
-            String orgaoExpeditor = jComboBoxOrgExpeditor.getSelectedItem().toString();
-
-            //tratar campo e-mail
-            String email = jTextFemailPessoa.getText();
-            
-            //            String telefone = "92/9898.989";
-            //            telefone = telefone.replaceAll("[^0-9]", "");
-
-            String cpf = jFormattedTextCpf.getSelectedText();
-
-//            System.out.print(cpf);
-        }
+        // Esse padrão busca de a até z e A até Z.
+	Matcher matcher = Pattern.compile("[\\w]+\\.[\\w]+@[\\w]+\\.[\\w]{2,3}\\.[\\w]{1,2}" , Pattern.CASE_INSENSITIVE).matcher("enaldo.souza@unitri.edu.br");
+        
+        
+        //  [//\\w-_.&]+@[\\w-_&]+[.]{1}[\\w]{2,3}[.]{1}[\\w]{2,3} funcionou bem
+        //  [//\\w-_.&]+@[\\w-_&]+[.]{1}[\\w-_]+[.]?[\\w-_]+”
+        //  ("\w{1,}@\w{1,}\\.\w{2,3}\\.w{2,3}")
+        //  [-\\.]+@\\w+\\.\\w+
+        while (matcher.find()) {
+            System.out.println(matcher.start() + " - " + matcher.group());
+        }        
+        
+//emailCorrecto=email.matches("[-\\w\\.]+@\\w+\\.\\w+");
+        
+//        if(jFormattedTextFdataNascPessoa.equals("")){
+//            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", 
+//            "Aviso", JOptionPane.WARNING_MESSAGE);
+//        } else {
+//            String minhaData = jFormattedTextFdataNascPessoa.getText();
+//            //Data a ser enviada ao banco
+//            String dataFormatada = formataData(minhaData);
+//
+//            String nomePessoa = jTFnomePessoa.getText();
+//            
+//            String sexo = buttonGroupSexo.getSelection().getActionCommand();
+//            sexo = sexo.equals("feminino") ? "FEMININO" : "MASCULINO";
+//            String identidade = jTFidentidade.getText();
+//            
+//            String estado = jComboBoxEstadoIdentidade.getSelectedItem().toString();
+//            String orgaoExpeditor = jComboBoxOrgExpeditor.getSelectedItem().toString();
+//
+//            //tratar campo e-mail
+//            String email = jTextFemailPessoa.getText();
+//            
+//            
+////        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+////        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+////
+////private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE            
+//            //            String telefone = "92/9898.989";
+//            //            telefone = telefone.replaceAll("[^0-9]", "");
+//
+//            String cpf = jFormattedTextCpf.getSelectedText();
+//
+////            System.out.print(cpf);
+//        }
 //        
         
 //        String nome_cidade = jTFnomeCidade.getText().toUpperCase();
