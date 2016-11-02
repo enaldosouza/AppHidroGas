@@ -9,16 +9,16 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-
+import util.Util;
 
 /**
  * @author enaldo.souza
  */
 public class JFCadastroPessoa extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFCadastroPessoa
-     */
+    Util formData = new Util();
+    Util formEmail = new Util();
+    
     public JFCadastroPessoa() {
         initComponents();
     }
@@ -52,7 +52,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jFormattedTextFcnpj = new javax.swing.JFormattedTextField();
         jLBemailPessoa = new javax.swing.JLabel();
-        jTextFemailPessoa = new javax.swing.JTextField();
+        jTextfEmailPessoa = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jFormattedTextFdataNascPessoa = new javax.swing.JFormattedTextField();
         jLidentidade = new javax.swing.JLabel();
@@ -104,6 +104,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jBremoverPessoa.setText("Remover");
 
         jBlimparPessoa.setText("Limpar");
+        jBlimparPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBlimparPessoaActionPerformed(evt);
+            }
+        });
 
         jBcancelarPessoa.setText("Cancelar");
 
@@ -198,16 +203,16 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             }
         });
 
-        jLBemailPessoa.setText("E-mail: *");
+        jLBemailPessoa.setText("E-mail: *  (exemplo: email@teste.com.br)");
 
-        jTextFemailPessoa.addActionListener(new java.awt.event.ActionListener() {
+        jTextfEmailPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFemailPessoaActionPerformed(evt);
+                jTextfEmailPessoaActionPerformed(evt);
             }
         });
-        jTextFemailPessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextfEmailPessoa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFemailPessoaKeyTyped(evt);
+                jTextfEmailPessoaKeyTyped(evt);
             }
         });
 
@@ -273,7 +278,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 .addComponent(jRadioButtonFeminino)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButtonMasculino)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 84, Short.MAX_VALUE))
                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
@@ -305,10 +310,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                     .addComponent(jLorgaoExpeditor))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextfEmailPessoa)
                                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLBemailPessoa)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jTextFemailPessoa)))
+                                        .addComponent(jLBemailPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addComponent(jTextFieldNomePai))))
                 .addContainerGap())
         );
@@ -343,7 +348,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         .addComponent(jTFidentidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBoxEstadoIdentidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxOrgExpeditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFemailPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextfEmailPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -360,7 +365,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNomeMae, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNomePai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Pessoais", jPanelDadosPessoais);
@@ -490,7 +495,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldTelefonePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Complementares", jPanelDadosComplementares);
@@ -517,12 +522,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPaneCadastroDadosPessoais)
+                .addComponent(jTabbedPaneCadastroDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(907, 844));
+        setSize(new java.awt.Dimension(907, 496));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -530,9 +535,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextFcnpjActionPerformed
 
-    private void jTextFemailPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFemailPessoaActionPerformed
+    private void jTextfEmailPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextfEmailPessoaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFemailPessoaActionPerformed
+    }//GEN-LAST:event_jTextfEmailPessoaActionPerformed
 
     private void jTFidentidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFidentidadeActionPerformed
         // TODO add your handling code here:
@@ -543,130 +548,42 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 //        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
     }//GEN-LAST:event_jTFnomePessoaKeyTyped
 
-    public static String formataData(String minhaData) {
-
-        // Data recebida: 29/10/2016
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(minhaData, formato);
-        String [] dataSplit = (formato.format(data)).split("/");
-        String dia = ""; String mes = ""; String ano = "";
-
-        for(int i=0; i<=3; i++){
-            dia = dataSplit[0];
-            mes = dataSplit[1];
-            ano = dataSplit[2];
-        }
-        String arrayFinal = ano+mes+dia;
-        return arrayFinal;
-    }
-            
-            
-//            String telefone = "92/9898.989";
-//            telefone = telefone.replaceAll("[^0-9]", "");
-
-//            String [] dataSeparada = minhaData.split(minhaData);
-//            String[] strA = minhaData.split("/");
-            
-//            for(String a: strA){
-//                System.out.println(a);
-//            }
-
-//            String novaData = minhaData.replace("/", "");
-//            System.out.println(strA);
-
-/*
-y year
-M Month in year
-D Day in year
-d Day in month
-H Hour in day
-h Hour in am/pm
-m Minute in hour
-s Second in minute
-S Millisecond Number
-*/            
-            
-//Instancie um DateFormat de acordo com o formato vindo na String, se for dd/MM/yyyy basta fazer assim:
-//DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//
-//E gerar seu objeto Date fazendo o parse da String
-//Date minhaData = dateFormat.parse(textField.getText());
-//
-//Aí na hora de setar o parâmetro do seu PreparedStatement você cria um java.sql.Date. Isso pode ser feito assim:
-//java.sql.Date sqlDate = new java.sql.Date(minhaData.getTime());  
-//
-//O método getTime() retorna a representação da data em milissegundos, que é utilizada no construtor do java.sql.Date 
-
-//estou levando em consideração que o métoto cliente.getDataNasc(); retorna um objeto do tipo java.util.Date
-//java.sql.Date dataSQL = new Date(cliente.getDataNasc().getTime());
-//pstmt.setDate(5, dataSQL);            
-            
-            
-//            Como salvar data no banco postgresql
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/exemploJdbc", "root", "");
-//            String sql = "insert into contatos" + "(nome,email,endereco,dataNascimento)"+"values(?,?,?,?)";
-//            PreparedStatement stmt = con.prepareStatement(sql);
-//            stmt.setDate(4, Date.valueOf("1984-10-23"));
-
-
-//------------FORMATA DATAS-----------------------------------------------------------------------------------
-
-//            Calendar c = Calendar.getInstance();
-//            c.set(2013, Calendar.FEBRUARY, 28);
-//            java.util.Date data = c.getTime();
-//            System.out.println("Data atual sem formatação: "+data);
-//
-//            //Formata a data
-//            DateFormat formataData = DateFormat.getDateInstance();
-//            System.out.println("Data atual com formatação: "+ formataData.format(novaData));
-//
-//            //Formata Hora
-//            DateFormat hora = DateFormat.getTimeInstance();
-//            System.out.println("Hora formatada: "+hora.format(data));
-//
-//            //Formata Data e Hora
-//            DateFormat dtHora = DateFormat.getDateTimeInstance();
-//            System.out.println(dtHora.format(data));
-
-//-------------------------------------------------------------------------------------------------------------
-
-    public boolean validaEmail(){
-    
-        if(jTextFemailPessoa.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
-                    "Aviso", JOptionPane.WARNING_MESSAGE);
-        } else{
-            String email = jTextFemailPessoa.getText();
-            Matcher matcher = Pattern.compile("[-\\w\\.]+@\\w+\\.\\w*\\.*\\w*"
-                    ,Pattern.CASE_INSENSITIVE).matcher(email);
-            while (matcher.find()) {
-                return true;
-//                System.out.println(matcher.start() + " - " + matcher.group());
-            }
-        } 
-        return false;
-    }
-    
-    
+ 
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
 
-        boolean retornoEmail = validaEmail();
-        if(retornoEmail){
-            System.out.println("Email encontrado!");
-            jTFnomePessoa.setText(jTextFemailPessoa.getText());
-        }else{
-            System.out.println("Email não encontrado!");
-        } 
-        
-        
-//        if(jFormattedTextFdataNascPessoa.equals("")){
-//            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", 
-//            "Aviso", JOptionPane.WARNING_MESSAGE);
-//        } else {
-//            String minhaData = jFormattedTextFdataNascPessoa.getText();
-//            //Data a ser enviada ao banco
-//            String dataFormatada = formataData(minhaData);
-//
+        boolean retornoEmail = false;
+        String dataFormatada = "";
+        String email  = jTextfEmailPessoa.getText();
+        String dtNasc = jFormattedTextFdataNascPessoa.getText();
+        dtNasc = dtNasc.trim();
+
+        if(dtNasc.length()< 10 || email.equals("")){
+            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
+            "Aviso", JOptionPane.WARNING_MESSAGE);
+            
+        }else if(!retornoEmail) {
+
+            dataFormatada = formData.transformaData(dtNasc);
+            System.out.println(dataFormatada);
+            retornoEmail = formEmail.validaEmail(email);
+
+            if(retornoEmail){
+
+                //chama dao para gravar no banco
+                System.out.println("Email encontrado!");  
+                //formata data e chama dao para gravar no banco
+                System.out.println(dataFormatada);
+                
+            }else{  
+                JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
+                "Aviso", JOptionPane.WARNING_MESSAGE);                
+            }
+        }
+
+            //Data a ser enviada ao banco
+//            String dataFormatada = formData.transformaData(dtNasc);
+            
+//            System.out.println(dataFormatada);
 //            String nomePessoa = jTFnomePessoa.getText();
 //            
 //            String sexo = buttonGroupSexo.getSelection().getActionCommand();
@@ -678,52 +595,19 @@ S Millisecond Number
 //
 //            //tratar campo e-mail
 //            String email = jTextFemailPessoa.getText();
-//            
-//            
-////        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-////        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-////
-////private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE            
-//            //            String telefone = "92/9898.989";
-//            //            telefone = telefone.replaceAll("[^0-9]", "");
-//
-//            String cpf = jFormattedTextCpf.getSelectedText();
-//
-////            System.out.print(cpf);
-//        }
-//        
-        
-//        String nome_cidade = jTFnomeCidade.getText().toUpperCase();
-//        String nome_estado = String.valueOf(jCBestados.getSelectedItem());
-//
-//        if(nome_estado != "ESCOLHA" && !nome_cidade.isEmpty()){
-//            try{
-//                Cidade cidades = new Cidade();
-//                cidades.setDesc_cidade(nome_cidade);
-//                cidades.setEstado_cidade(nome_estado);
-//
-//                CidadeDao createDao = new CidadeDao();
-//                createDao.create(cidades);
-//                
-//                jTFnomeCidade.setText("");
-//                jCBestados.setSelectedItem("ESCOLHA");
-//                
-//                populajTableCidade();
-//                
-//            }catch(Exception e){
-//                JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", 
-//                "Aviso", JOptionPane.WARNING_MESSAGE);            
-//            }
-//        }else{
-//            JOptionPane.showMessageDialog(null, "Todos os campos são obrigatórios!", 
-//            "Aviso", JOptionPane.WARNING_MESSAGE);        
-//        }        
-        
+            
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
 
-    private void jTextFemailPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFemailPessoaKeyTyped
+    private void jTextfEmailPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextfEmailPessoaKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFemailPessoaKeyTyped
+    }//GEN-LAST:event_jTextfEmailPessoaKeyTyped
+
+    private void jBlimparPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlimparPessoaActionPerformed
+
+        jFormattedTextFdataNascPessoa.setText("");
+        jTextfEmailPessoa.setText("");
+
+    }//GEN-LAST:event_jBlimparPessoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -807,7 +691,6 @@ S Millisecond Number
     private javax.swing.JTextField jTFnomePessoa;
     private javax.swing.JTabbedPane jTabbedPaneCadastroDadosPessoais;
     private javax.swing.JTable jTcadastroPessoa;
-    private javax.swing.JTextField jTextFemailPessoa;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldCidadeEndereco;
     private javax.swing.JTextField jTextFieldComplemento;
@@ -816,5 +699,6 @@ S Millisecond Number
     private javax.swing.JTextField jTextFieldNomeMae;
     private javax.swing.JTextField jTextFieldNomePai;
     private javax.swing.JTextField jTextFieldNumero;
+    private javax.swing.JTextField jTextfEmailPessoa;
     // End of variables declaration//GEN-END:variables
 }
