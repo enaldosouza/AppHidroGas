@@ -630,21 +630,34 @@ S Millisecond Number
 
 //-------------------------------------------------------------------------------------------------------------
 
+    public boolean validaEmail(){
+    
+        if(jTextFemailPessoa.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else{
+            String email = jTextFemailPessoa.getText();
+            Matcher matcher = Pattern.compile("[-\\w\\.]+@\\w+\\.\\w*\\.*\\w*"
+                    ,Pattern.CASE_INSENSITIVE).matcher(email);
+            while (matcher.find()) {
+                return true;
+//                System.out.println(matcher.start() + " - " + matcher.group());
+            }
+        } 
+        return false;
+    }
+    
+    
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
 
-        // Esse padrão busca de a até z e A até Z.
-	Matcher matcher = Pattern.compile("[\\w]+\\.[\\w]+@[\\w]+\\.[\\w]{2,3}\\.[\\w]{1,2}" , Pattern.CASE_INSENSITIVE).matcher("enaldo.souza@unitri.edu.br");
+        boolean retornoEmail = validaEmail();
+        if(retornoEmail){
+            System.out.println("Email encontrado!");
+            jTFnomePessoa.setText(jTextFemailPessoa.getText());
+        }else{
+            System.out.println("Email não encontrado!");
+        } 
         
-        
-        //  [//\\w-_.&]+@[\\w-_&]+[.]{1}[\\w]{2,3}[.]{1}[\\w]{2,3} funcionou bem
-        //  [//\\w-_.&]+@[\\w-_&]+[.]{1}[\\w-_]+[.]?[\\w-_]+”
-        //  ("\w{1,}@\w{1,}\\.\w{2,3}\\.w{2,3}")
-        //  [-\\.]+@\\w+\\.\\w+
-        while (matcher.find()) {
-            System.out.println(matcher.start() + " - " + matcher.group());
-        }        
-        
-//emailCorrecto=email.matches("[-\\w\\.]+@\\w+\\.\\w+");
         
 //        if(jFormattedTextFdataNascPessoa.equals("")){
 //            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!", 
