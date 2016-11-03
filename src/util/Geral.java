@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package util;
 
 /**
@@ -24,35 +20,6 @@ public class Geral {
 * @author unitri
 * @version 1.0.0
 *
-*/
-class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Helper_Abstract {
-	
-	/**
-	 * Verifica a existência do ano com o semestre e define 
-     * por padrão o 'ano atual'-'semestre atual' ou
-     * verifica se o ano é menor do que 'ano atual' + 1 e 
-     * se o semestre é 1 ou 2.
-     * Entrada de dados: string 'xxxx-x'.
-	 * @param $year
-	 */
-	public function validaPeriodo ( $year = NULL ) 
-	{
-		$time = getdate();
-    	
-    	if ( isset ( $year ) )  
-    	{
-    		if ( !preg_match ( '/^\d{4}\-\d{1}/i', $year ) )
-    			throw new Zend_Application_Exception ( "Formato inválido, use este formato: 0000-0!" );
-    		$artime = explode ( '-', $year );
-    		
-    		if ( $artime[0] > $time['year'] + 1 )
-    			throw new Zend_Application_Exception ( "O ano deve ser menor que " . $time['year'] + 1 );
-    		if ( $artime[1] < 1 || $artime[1] > 2 )
-    			throw new Zend_Application_Exception ( "O semestre deve estar entre 1 e 2!" );
-    	}
-    	else throw new Zend_Application_Exception ( "Formato inválido, year não pode ser NULL!" );
-	}
-	
 	public function validaEmail(&$email)
 	{
         $email = @ereg_replace("[áàâãª]", "a", $email);
@@ -67,54 +34,13 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
         $email = str_replace("Ç", "C", $email);
         $email = @ereg_replace(" ", "", $email);
 	}
-}
-
 ?>
-
-
-<?php
-/**
-* Criado em 31/05/2010
-*
-* Essa classe helper auxilia de forma a validar a entrada de dados no sistema
-* 
-* @author unitri
-* @version 1.0.0
-*
-*/
-class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Helper_Abstract {
 	
 	/**
-	 * Verifica a existência do ano com o semestre e define 
-     * por padrão o 'ano atual'-'semestre atual' ou
-     * verifica se o ano é menor do que 'ano atual' + 1 e 
-     * se o semestre é 1 ou 2.
-     * Entrada de dados: string 'xxxx-x'.
-	 * @param $year
-	 */
-	public function validaPeriodo ( $year = NULL ) 
-	{
-		$time = getdate();
-    	
-    	if ( isset ( $year ) )  
-    	{
-    		if ( !preg_match ( '/^\d{4}\-\d{1}/i', $year ) )
-    			throw new Zend_Application_Exception ( "Formato inválido, use este formato: 0000-0!" );
-    		$artime = explode ( '-', $year );
-    		
-    		if ( $artime[0] > $time['year'] + 1 )
-    			throw new Zend_Application_Exception ( "O ano deve ser menor que " . $time['year'] + 1 );
-    		if ( $artime[1] < 1 || $artime[1] > 2 )
-    			throw new Zend_Application_Exception ( "O semestre deve estar entre 1 e 2!" );
-    	}
-    	else throw new Zend_Application_Exception ( "Formato inválido, year não pode ser NULL!" );
-	}
-	
-	/**
-	 * 	Função que valida se um email é valido 
+	 * Função que valida se um email é valido 
 	 * @param string
 	 * @return bool
-	 * */
+	 * *//*
 		function validarEmail($email){ 
 		   $mail_correcto = 0; 
 		   if ((strlen($email) >= 6) && (substr_count($email,"@") == 1) && (substr($email,0,1) != "@") && (substr($email,strlen($email)-1,1) != "@")){ 
@@ -133,14 +59,13 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
 		}
 		return $mail_correcto;
 		}
+	*/
 		
-		
-		/**
-    	 * 	Função que valida se um cpf é valido 
+         /**
+    	 * Função que valida se um cpf é valido 
     	 * @param string
     	 * @return bool
     	 * 
-    	 * */
         function validarCPF($cpf)
 		{	
 		    // Verifiva se o número digitado contém todos os digitos
@@ -169,13 +94,10 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
 		    }
 		}
 		
-		
-		/**
     	 * Função que valida se um cnpj é valido 
     	 * @param string
     	 * @return bool
     	 * 
-    	 * */
 		function validaCNPJ($cnpj) { 
 		   	
 			    if (strlen($cnpj) <> 18) return 0; 
@@ -213,14 +135,13 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
 			    return (($cnpj[16] == $digito1) && ($cnpj[17] == $digito2)); 
 			}
 
-		/**
+	/**
     	 * Função que valida se existem valores vazios em um array  
     	 * @param array
     	 * @param array
     	 * @return bool
     	 * @author Jose Guilherme Honorato
     	 * 
-    	 * */
         function validarCamposVazio($arrPost=array(), $arrKeysVazios=array())
 		{
 		    
@@ -230,18 +151,16 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
                     return false;
                 }
             }
-            
             return true;
-		}
+            }
 		
-		/**
+         /**
     	 * Função que valida se uma data é valida
     	 * @param string
     	 * @return bool
     	 * 
-    	 * */
-		function validarData($date) 
-		{
+        function validarData($date) 
+        {
 		    
             $char = strpos($date, "/")!==false?"/":"-";
             $date_array = explode($char,$date);
@@ -257,7 +176,6 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
     	 * @param array
     	 * @return string
     	 * 
-    	 * */
         public function retornarErro($arr = array()) 
         {
             foreach($arr as $k => $reg) 
@@ -268,62 +186,6 @@ class Zend_Controller_Action_Helper_Validacao extends Zend_Controller_Action_Hel
             }
             return implode('<br>',$arr);
         }
-}
-
-?>
-
-
-<?php
-/**
- * UtilValidacao.php - Helper contendo funções que são muito utilizadas no sistema.
- * PHP version 5.3
- * 
- * @category  PHP
- * @package   controllers/helpers
- * @author    Erik Urbanski Santos <erikurbanski@gmail.com>
- * @copyright ASOEC
- * @since     03 de Julho, 2013
- * @version   2.0
- * @link      http://unitri.edu.br
- * @uses      Zend_Controller_Action_Helper_Abstract
- * @example   $this->_helper->utilValidacao->validarCampos();
- */
-class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action_Helper_Abstract
-{
-	
-	/**
-	 * Método responsável em retorar uma string contendo o valor do período 
-	 * anterior ao corrente. Não serve para EAD.
-	 * 
-	 * @author Erik Urbanski Santos <erikurbanski@gmail.com>
-	 * @since 09 de Outubro, 2013
-	 * 
-	 * @param String $periodoCorrente
-	 * @return String $periodoAnterior
-	 */
-	public function getPeriodoAnterior($periodoCorrente)
-	{
-		$periodoAnterior = '';
-		if ($periodoCorrente) {
-			$arrInfo = explode('-', $periodoCorrente);
-			
-			$ano = (int) $arrInfo[0];
-			$digitoSemestral = (int) $arrInfo[1];
-			if ($digitoSemestral === 1) {
-				$anoAnterior = (string) $ano - 1;
-				$digitoSemestralAnterior = (string) $digitoSemestral + 1;
-				$periodoAnterior = $anoAnterior.'-'.$digitoSemestralAnterior;
-				
-			} else {
-				$anoAnterior = (string) $ano;
-				$digitoSemestralAnterior = (string) $digitoSemestral - 1;
-				$periodoAnterior = $anoAnterior.'-'.$digitoSemestralAnterior;
-			}
-		}
-		return $periodoAnterior;
-	}
-	
-	
 	/**
 	 * Método responsável em comparar duas datas e demonstrar se uma destas é maior
 	 * do que a outra.
@@ -334,7 +196,6 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param String $dtInicio
 	 * @param String $dtFim
 	 * @return Boolean $resultado || FALSE
-	 */
 	public function compararDatas($dtInicio, $dtFim)
 	{
 		if ($dtInicio AND $dtFim) {
@@ -351,10 +212,8 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 			if ($dtInicio >= $dtFim) {
 				return TRUE;
 			}
-			
 			return FALSE;
 		}
-		
 		return TRUE;
 	}
 	
@@ -367,7 +226,6 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * 
 	 * @param  String $email
 	 * @return Boolean || FALSE
-	 */
 	public function validaEmail($email)
 	{
 		if ($email) {
@@ -377,7 +235,6 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 		return FALSE;
 	}
 	
-	
 	/**
 	 * Método responsável em efetuar a validação de uma determinada data.
 	 *
@@ -386,7 +243,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 *
 	 * @param String $data
 	 * @return Boolean $isValida || FALSE
-	 */
+         * 
 	public function validarData($data)
 	{
 		if ($data) {
@@ -409,7 +266,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * 
 	 * @param Array $arrCampos
 	 * @return String || Boolean
-	 */
+	 *
 	public function validarCampos($arrCampos = array ())
 	{
 		if (! empty($arrCampos)) {
@@ -430,7 +287,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * 
 	 * @param Array $array
 	 * @param String $string
-	 */
+	 *
 	public function converterArrayToString(array $array)
 	{
 		$string = '';
@@ -441,7 +298,6 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 		}
 		return $string;
 	}
-	
 	
 	/**
 	 * Método responsável em remover a incidência de algum caracter especial
@@ -456,8 +312,10 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param Array $arrDados
 	 * @param String $caracterSubstituto
 	 * @return Array $arrResultado
-	 */
-	public function removerEspecialCharInArray (
+	 *
+         * 
+	
+        public function removerEspecialCharInArray (
 		$caracter, 
 		array $arrDados, 
 		array $arrIndices, 
@@ -477,15 +335,16 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	
 	
 	/**
-	 * Método responsável em verificar se um determinado é válido.
+	 * Método responsável em verificar se um determinado cpf válido.
 	 * 
 	 * @author Erik Urbanski Santos <erikurbanski@gmail.com>
 	 * @since 04 de Julho, 2013
 	 * 
 	 * @param String $cpf
 	 * @return Boolean
-	 */
-	public function validarCpf($cpf)
+	 *
+	
+        public function validarCpf($cpf)
 	{
 		if (! empty($cpf)) {
 			$arrCaracteres = array ('.', '-');
@@ -532,8 +391,9 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 *
 	 * @param String $string
 	 * @return String $string
-	 */
-	public function escapeString($string = '')
+	 *
+	
+        public function escapeString($string = '')
 	{
 		if (is_string($string)) {
 			$string = (get_magic_quotes_gpc() ? stripslashes($string) : $string);
@@ -555,8 +415,10 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param Array $arrDados
 	 * @param String $indice
 	 * @return String $valor || ''
-	 */
-	public function getValorMonetario(array $arrDados, $indice)
+	 *
+         * 
+	
+        public function getValorMonetario(array $arrDados, $indice)
 	{
 		if (isset($arrDados[$indice])) {
 			$valor = (string) $arrDados[$indice];
@@ -581,7 +443,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param String $valorSubstituto
 	 * @param String $valor
 	 * @return String $strResultado
-	 */
+	 *
 	public function parserValor($string, $valorSubstituto = '', $valor = 's')
 	{
 		if (isset($string) AND isset($valor)) {
@@ -604,7 +466,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 *
 	 * @param String $data
 	 * @return String $data
-	 */
+	 *
 	public function formatarData($data)
 	{
 		if (substr_count($data, '/')) {
@@ -628,7 +490,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param String $strFiliais
 	 * @param String $delimitador
 	 * @return Array $arrFiliais || NULL
-	 */
+	 *
 	public function delFips (
 		$arrFiliais, 
 		$strFiliais, 
@@ -660,7 +522,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param String $string
 	 * @param Integer $del
 	 * @return String
-	 */
+	 *
 	public function truncate($string, $limite)
 	{
 		$tamanho = strlen($string);
@@ -677,7 +539,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * 
 	 * @param Unknown $atributo
 	 * @return Unknown $atributo || NULL
-	 */
+	 *
 	public function isEmpty($atributo)
 	{
 		return (empty($atributo) OR is_null($atributo)) ? NULL : $atributo;
@@ -693,7 +555,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * 
 	 * @param String $string
 	 * @return String $string
-	 */
+	 *
 	function removerCaracteresEspeciais($string = '', $substituicao = '')
 	{		
 		$array = array('-', '"', '‘', '\'', '!', '@', '#', '$', '%', '¨', '&', '*', '(', ')', '=', '+', '´', '`', '[', ']', '{', '}', '~', '^', ',', '<', '.', '>', ';', ':', '/', '?', '\\', '|', '¹', '²', '³', '£', '¢', '¬', '§', 'ª', 'º', '°');
@@ -710,7 +572,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param String $string
 	 * @param String $encode
 	 * @return String $string || NULL
-	 */
+	 *
 	public function removeAcentos($string, $encode = "UTF-8")
 	{
 		if (! empty($string)) {
@@ -755,7 +617,7 @@ class Zend_Controller_Action_Helper_UtilValidacao extends Zend_Controller_Action
 	 * @param String $strLabel
 	 * @param String $htmlSelect
 	 * @return String $optgroup
-	 */
+	 *
 	public function getOptgroup($strLabel, $htmlSelect)
 	{
 		$optgroup = '';
@@ -787,7 +649,7 @@ OPTGROUP;
 	 * @param String $caracterEspecialValores
 	 * @param String $caracterEspecialDescricoes
 	 * @return String $strCombo
-	 */
+	 *
 	public function construirSelect (
 		array $arrDados = NULL, 
 		array $arrIndiceValores, 
@@ -798,7 +660,6 @@ OPTGROUP;
 		$caracterEspecialDescricoes = ' - '
 	)
 	{
-		
 		if (empty($arrIndiceValores) OR empty($arrIndiceDescricoes)) {
 			
 			return new Exception('Esperado vetor de índice, descrições e dados!');
@@ -840,11 +701,8 @@ OPTION;
 				}
 				
 				return $strCombo;
-				
 			}
-			
 		}
-		
 	}
 	
 	
@@ -863,7 +721,7 @@ OPTION;
 	 * @param String $caracterEspecialValores
 	 * @param String $caracterEspecialDescricoes
 	 * @return String $htmlRadio
-	 */
+	 * 
 	public function construirRadio (
 		array $arrDados = NULL, 
 		array $arrIndiceValores, 
@@ -951,7 +809,7 @@ LABEL;
 	 * @param String  $caracterEspecialValores
 	 * @param String  $caracterEspecialDescricoes
 	 * @return String $htmlCheck
-	 */
+	 *
 	public function construirCheck (
 		array $arrDados = NULL, 
 		array $arrIndiceValores, 
@@ -1040,12 +898,12 @@ LABEL;
 	 * retornar o que existe de diferente entre as duas. Utilizado PLUGIN CHOSEN.
 	 * 
 	 * @author Erik Urbanski Santos <erik.urbanski@unitri.edu.br>
-     * @since 17 de Novembro, 2014
+        * @since 17 de Novembro, 2014
 	 * 
 	 * @param String $selecoesVelhas
 	 * @param String $selecoesNovas
 	 * @return Array $arrRetorno
-	 */
+	 *
 	function compararSequencial($itensVelhos = '', $itensNovos = '')
 	{
 	    $arrItensVelhos = empty($itensVelhos) ? array () : explode('#', $itensVelhos);
@@ -1099,7 +957,7 @@ LABEL;
 	 * @since 04 de Junho, 2014
 	 * @param string $data
 	 * @return string
-	 */
+	 *
 	public function formataDataOracle($data = NULL)
 	{
 		if ($data) {
@@ -1118,7 +976,7 @@ LABEL;
 	 * @since 10 de Junho, 2014
 	 * @param string $hora
 	 * @return string
-	 */
+	 *
 	public function converteHora($hora = NULL)
 	{
 		if ($hora) {
@@ -1129,6 +987,4 @@ LABEL;
 		return NULL;
 	}
 }
-
-
 */

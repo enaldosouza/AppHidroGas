@@ -16,8 +16,10 @@ import util.Util;
  */
 public class JFCadastroPessoa extends javax.swing.JFrame {
 
-    Util formData = new Util();
+    Util formData  = new Util();
     Util formEmail = new Util();
+    Util formCpf   = new Util();
+    Util formCnpj  = new Util();
     
     public JFCadastroPessoa() {
         initComponents();
@@ -551,34 +553,76 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
  
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
 
+        
+        String cnpj = jFormattedTextFcnpj.getText();
+        cnpj = cnpj.trim();
+        
+        String cpf = jFormattedTextCpf.getText();
+        cpf = cpf.trim();
+        
         boolean retornoEmail = false;
         String dataFormatada = "";
         String email  = jTextfEmailPessoa.getText();
         String dtNasc = jFormattedTextFdataNascPessoa.getText();
         dtNasc = dtNasc.trim();
 
-        if(dtNasc.length()< 10 || email.equals("")){
+        if(dtNasc.length()< 10 || email.equals("") || cpf.length()< 11 || cnpj.length()< 18){
             JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
             "Aviso", JOptionPane.WARNING_MESSAGE);
             
-        }else if(!retornoEmail) {
+        }else if(!retornoEmail){
 
             dataFormatada = formData.transformaData(dtNasc);
-            System.out.println(dataFormatada);
             retornoEmail = formEmail.validaEmail(email);
 
             if(retornoEmail){
 
-                //chama dao para gravar no banco
-                System.out.println("Email encontrado!");  
-                //formata data e chama dao para gravar no banco
-                System.out.println(dataFormatada);
+                //chama dao e grava e-mail no banco
+                System.out.println("Email: " + email);  
+                //chama dao para e grava dtNasc no banco
+                System.out.println("Data Nasc.: " + dataFormatada);
+                
+                //verifica Cnpj
+                boolean ehCnpj = formCnpj.isCNPJ(cnpj);
+                if(ehCnpj){
+                    
+                    //retira . e - da string cpf
+                    cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
+                    cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
+                    cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
+        
+                    //envia cnpj para o banco via dao
+                    System.out.println("Cnpj: " + cnpj);
+        
+                }else{
+                    JOptionPane.showMessageDialog(this, "Cnpj inválido. Redigite!",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);        
+                }
+        
+              //verifica cpf
+                boolean ehCpf = formCpf.isCPF(cpf);
+                if(ehCpf){
+
+                    //retira . e - da string cpf
+                    cpf = Pattern.compile("\\.+").matcher(cpf).replaceAll("");
+                    cpf = Pattern.compile("\\-+").matcher(cpf).replaceAll("");
+                    //envia cpf para o banco via Dao
+                    System.out.println("Cpf: " + cpf);
+                    
+                }else{
+                    JOptionPane.showMessageDialog(this, "Cpf inválido. Redigite!",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);                    
+                }
+//                System.out.println( ehCpf ? "Válido: " + cpf  : "Inválido: " + cpf);
                 
             }else{  
                 JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
                 "Aviso", JOptionPane.WARNING_MESSAGE);                
             }
         }
+        
+  
+//--------------------------------------------------------------------------------------
 
             //Data a ser enviada ao banco
 //            String dataFormatada = formData.transformaData(dtNasc);
