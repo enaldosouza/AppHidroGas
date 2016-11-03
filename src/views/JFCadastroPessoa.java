@@ -458,6 +458,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         jLabelNumero.setText("Número: *");
 
+        jTextFieldNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNumeroKeyTyped(evt);
+            }
+        });
+
         jLabelComplemento.setText("Complemento: *");
 
         jTextFieldComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -651,13 +657,15 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         if (Character.isLowerCase(c)) {
           evt.setKeyChar(Character.toUpperCase(c));
         }
+  
+//        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();         
         
         if((Character.isDigit(c))    || c==KeyEvent.VK_BACK_SPACE    || c==KeyEvent.VK_DELETE           || c==KeyEvent.VK_COMMA 
-            || c==KeyEvent.VK_AT     || c==KeyEvent.VK_CIRCUMFLEX    || c==KeyEvent.VK_BACK_SLASH       || c==KeyEvent.VK_COMMA 
+            || c==KeyEvent.VK_AT     || c==KeyEvent.VK_CIRCUMFLEX    || c==KeyEvent.VK_BACK_SLASH       || c==KeyEvent.VK_UNDERSCORE 
             || c==KeyEvent.VK_AT     || c==KeyEvent.VK_CLOSE_BRACKET || c==KeyEvent.VK_COLON            || c==KeyEvent.VK_SLASH 
             || c==KeyEvent.VK_DOLLAR || c==KeyEvent.VK_EQUALS        || c==KeyEvent.VK_EXCLAMATION_MARK || c==KeyEvent.VK_LEFT_PARENTHESIS
             || c==KeyEvent.VK_MINUS  || c==KeyEvent.VK_NUMBER_SIGN   || c==KeyEvent.VK_OPEN_BRACKET     || c==KeyEvent.VK_RIGHT_PARENTHESIS
-            || c==KeyEvent.VK_PERIOD || c==KeyEvent.VK_PLUS          || c==KeyEvent.VK_SEMICOLON        || c==KeyEvent.VK_UNDERSCORE){
+            || c==KeyEvent.VK_PERIOD || c==KeyEvent.VK_PLUS          || c==KeyEvent.VK_SEMICOLON){
             
                 evt.consume();
         }        
@@ -872,6 +880,18 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextFieldCidadeEnderecoKeyTyped
+
+    private void jTextFieldNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroKeyTyped
+
+//        char c = evt.getKeyChar();
+//        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
+    }//GEN-LAST:event_jTextFieldNumeroKeyTyped
 
     /**
      * @param args the command line arguments
