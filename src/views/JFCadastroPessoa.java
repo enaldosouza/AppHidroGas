@@ -1,6 +1,7 @@
 
 package views;
 
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -23,6 +24,59 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     
     public JFCadastroPessoa() {
         initComponents();
+        
+        //estados
+        jCBestadoIden.addItem("ESCOLHA");
+        jCBestadoIden.addItem("ACRE (RIO BRANCO)");
+        jCBestadoIden.addItem("ALAGOAS (MACEIÓ)");
+        jCBestadoIden.addItem("AMAPÁ (MACAPÁ)");
+        jCBestadoIden.addItem("AMAZONAS (MANAUS)");
+        jCBestadoIden.addItem("BAHIA (SALVADOR)");
+        jCBestadoIden.addItem("CEARÁ (FORTALEZA)");
+        jCBestadoIden.addItem("DISTRITO FEDERAL (BRASÍLIA)");
+        jCBestadoIden.addItem("ESPÍRITO SANTO (VITÓRIA)");
+        jCBestadoIden.addItem("GOIÁS (GOIÂNIA)");
+        jCBestadoIden.addItem("MARANHÃO (SÃO LUÍS)");
+        jCBestadoIden.addItem("MATO GROSSO (CUIABÁ)");
+        jCBestadoIden.addItem("MATO GROSSO DO SUL (CAMPO GRANDE)");
+        jCBestadoIden.addItem("MINAS GERAIS (BELO HORIZONTE)");
+        jCBestadoIden.addItem("PARÁ (BELÉM)");
+        jCBestadoIden.addItem("PARAÍBA (JOÃO PESSOA)");
+        jCBestadoIden.addItem("PARANÁ (CURITIBA)");
+        jCBestadoIden.addItem("PERNAMBUCO (RECIFE)");
+        jCBestadoIden.addItem("PIAUÍ (TERESINA)");
+        jCBestadoIden.addItem("RIO DE JANEIRO (RIO DE JANEIRO)");
+        jCBestadoIden.addItem("RIO GRANDE DO NORTE (NATAL)");
+        jCBestadoIden.addItem("RIO GRANDE DO SUL (PORTO ALEGRE)");
+        jCBestadoIden.addItem("RONDÔNIA (PORTO VELHO)");
+        jCBestadoIden.addItem("RORAIMA (BOA VISTA)");
+        jCBestadoIden.addItem("SANTA CATARINA (FLORIANÓPOLIS)");
+        jCBestadoIden.addItem("SÃO PAULO (SÃO PAULO)");
+        jCBestadoIden.addItem("SERGIPE (ARACAJU)");
+        jCBestadoIden.addItem("TOCANTIS (PALMAS)");
+        
+        //orgãos expeditores
+        jComboBoxOrgExpeditor.addItem("ESCOLHA");
+        jComboBoxOrgExpeditor.addItem("SSP - Secretaria de Segurança Pública");
+        jComboBoxOrgExpeditor.addItem("PM - Polícia Militar");
+        jComboBoxOrgExpeditor.addItem("PC - Policia Civil");
+        jComboBoxOrgExpeditor.addItem("CNT - Carteira Nacional de Habilitação");
+        jComboBoxOrgExpeditor.addItem("IC - Diretoria de Identificação Civil");
+        jComboBoxOrgExpeditor.addItem("CTPS - Carteira de Trabaho e Previdência Social");
+        jComboBoxOrgExpeditor.addItem("FGTS - Fundo de Garantia do Tempo de Serviço");
+        jComboBoxOrgExpeditor.addItem("IFP - Instituto Félix Pacheco");
+        jComboBoxOrgExpeditor.addItem("IPF - Instituto Pereira Faustino");
+        jComboBoxOrgExpeditor.addItem("IML - Instituto Médico-Legal");
+        jComboBoxOrgExpeditor.addItem("MTE - Ministério do Trabalho e Emprego");
+        jComboBoxOrgExpeditor.addItem("MMA - Ministério da Marinha");
+        jComboBoxOrgExpeditor.addItem("MAE - Ministério da Aeronáutica");
+        jComboBoxOrgExpeditor.addItem("MEX - Ministério do Exército");
+        jComboBoxOrgExpeditor.addItem("POF - Polícia Federal");
+        jComboBoxOrgExpeditor.addItem("POM - Polícia Militar");
+        jComboBoxOrgExpeditor.addItem("SES - Carteira de Estrangeiro");
+        jComboBoxOrgExpeditor.addItem("SJS - Secretaria da Justiça e Segurança");
+        jComboBoxOrgExpeditor.addItem("SJTS - Secretaria da Justiça do Trabalho e Segurança");
+        jComboBoxOrgExpeditor.addItem("ZZZ - Outros (inclusive exterior) ");
     }
 
     /**
@@ -61,7 +115,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jTFidentidade = new javax.swing.JTextField();
         jLorgaoExpeditor = new javax.swing.JLabel();
         jLestadoIdentidade = new javax.swing.JLabel();
-        jComboBoxEstadoIdentidade = new javax.swing.JComboBox<>();
+        jCBestadoIden = new javax.swing.JComboBox<>();
         jComboBoxOrgExpeditor = new javax.swing.JComboBox<>();
         jLabelSexo = new javax.swing.JLabel();
         jRadioButtonFeminino = new javax.swing.JRadioButton();
@@ -80,7 +134,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jLabelBairro = new javax.swing.JLabel();
         jTextFieldBairro = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldEstadoEndereco = new javax.swing.JTextField();
         jLabelCidade = new javax.swing.JLabel();
         jTextFieldCidadeEndereco = new javax.swing.JTextField();
         jLabelCep = new javax.swing.JLabel();
@@ -89,6 +142,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jFormattedTextFieldTelefonePessoa = new javax.swing.JFormattedTextField();
         jLabelCelularPessoa = new javax.swing.JLabel();
         jFormattedTextFieldCelularPessoa = new javax.swing.JFormattedTextField();
+        jComboBoxEstadoEnd = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,6 +167,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         });
 
         jBcancelarPessoa.setText("Cancelar");
+        jBcancelarPessoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBcancelarPessoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPCadastroPessoaLayout = new javax.swing.GroupLayout(jPCadastroPessoa);
         jPCadastroPessoa.setLayout(jPCadastroPessoaLayout);
@@ -234,14 +293,19 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 jTFidentidadeActionPerformed(evt);
             }
         });
+        jTFidentidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFidentidadeKeyTyped(evt);
+            }
+        });
 
         jLorgaoExpeditor.setText("Orgão Expeditor: *");
 
         jLestadoIdentidade.setText("Estado: *");
 
-        jComboBoxEstadoIdentidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBestadoIden.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ACRE (RIO BRANCO)", "ALAGOAS (MACEIÓ)", "AMAPÁ (MACAPÁ)", "AMAZONAS (MANAUS)", "BAHIA (SALVADOR)", "CEARÁ (FORTALEZA)", "DISTRITO FEDERAL (BRASÍLIA)", "ESPÍRITO SANTO (VITÓRIA)", "GOIÁS (GOIÂNIA)", "MARANHÃO (SÃO LUÍS)", "MATO GROSSO (CUIABÁ)", "MATO GROSSO DO SUL (CAMPO GRANDE)", "MINAS GERAIS (BELO HORIZONTE)", "PARÁ (BELÉM)", "PARAÍBA (JOÃO PESSOA)", "PARANÁ (CURITIBA)", "PERNAMBUCO (RECIFE)", "PIAUÍ (TERESINA)", "RIO DE JANEIRO (RIO DE JANEIRO)", "RIO GRANDE DO NORTE (NATAL)", "RIO GRANDE DO SUL (PORTO ALEGRE)", "RONDÔNIA (PORTO VELHO)", "RORAIMA (BOA VISTA)", "SANTA CATARINA (FLORIANÓPOLIS)", "SÃO PAULO (SÃO PAULO)", "SERGIPE (ARACAJU)", "TOCANTIS (PALMAS)" }));
 
-        jComboBoxOrgExpeditor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxOrgExpeditor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "SSP - Secretaria de Segurança Pública", "PM - Polícia Militar", "PC - Policia Civil", "CNT - Carteira Nacional de Habilitação", "IC - Diretoria de Identificação Civil", "CTPS - Carteira de Trabaho e Previdência Social", "FGTS - Fundo de Garantia do Tempo de Serviço", "IFP - Instituto Félix Pacheco", "IPF - Instituto Pereira Faustino", "IML - Instituto Médico-Legal", "MTE - Ministério do Trabalho e Emprego", "MMA - Ministério da Marinha", "MAE - Ministério da Aeronáutica", "MEX - Ministério do Exército", "POF - Polícia Federal", "POM - Polícia Militar", "SES - Carteira de Estrangeiro", "SJS - Secretaria da Justiça e Segurança", "SJTS - Secretaria da Justiça do Trabalho e Segurança", "ZZZ - Outros (inclusive exterior)" }));
 
         jLabelSexo.setText("Sexo: *");
 
@@ -256,7 +320,19 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         jLabelNomeMae.setText("Nome da Mãe: *");
 
+        jTextFieldNomeMae.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeMaeKeyTyped(evt);
+            }
+        });
+
         jLabelNomePai.setText("Nome do Pai: *");
+
+        jTextFieldNomePai.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNomePaiKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelDadosPessoaisLayout = new javax.swing.GroupLayout(jPanelDadosPessoais);
         jPanelDadosPessoais.setLayout(jPanelDadosPessoaisLayout);
@@ -290,7 +366,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLestadoIdentidade)
-                                    .addComponent(jComboBoxEstadoIdentidade, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jCBestadoIden, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -348,7 +424,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                             .addComponent(jLBemailPessoa))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTFidentidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBoxEstadoIdentidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCBestadoIden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxOrgExpeditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextfEmailPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -374,15 +450,39 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         jLabelEnderecoPessoa.setText("Endereço: *");
 
+        jTextFieldEnderecoPessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldEnderecoPessoaKeyTyped(evt);
+            }
+        });
+
         jLabelNumero.setText("Número: *");
 
         jLabelComplemento.setText("Complemento: *");
 
+        jTextFieldComplemento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldComplementoKeyTyped(evt);
+            }
+        });
+
         jLabelBairro.setText("Bairro: *");
+
+        jTextFieldBairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldBairroKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Estado: *");
 
         jLabelCidade.setText("Cidade: *");
+
+        jTextFieldCidadeEndereco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldCidadeEnderecoKeyTyped(evt);
+            }
+        });
 
         jLabelCep.setText("Cep: *");
 
@@ -395,7 +495,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jLabelTelefone.setText("Telefone: *");
 
         try {
-            jFormattedTextFieldTelefonePessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###)####-####")));
+            jFormattedTextFieldTelefonePessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -403,10 +503,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jLabelCelularPessoa.setText("Celular: *");
 
         try {
-            jFormattedTextFieldCelularPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###)####-####")));
+            jFormattedTextFieldCelularPessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jComboBoxEstadoEnd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ACRE (RIO BRANCO)", "ALAGOAS (MACEIÓ)", "AMAPÁ (MACAPÁ)", "AMAZONAS (MANAUS)", "BAHIA (SALVADOR)", "CEARÁ (FORTALEZA)", "DISTRITO FEDERAL (BRASÍLIA)", "ESPÍRITO SANTO (VITÓRIA)", "GOIÁS (GOIÂNIA)", "MARANHÃO (SÃO LUÍS)", "MATO GROSSO (CUIABÁ)", "MATO GROSSO DO SUL (CAMPO GRANDE)", "MINAS GERAIS (BELO HORIZONTE)", "PARÁ (BELÉM)", "PARAÍBA (JOÃO PESSOA)", "PARANÁ (CURITIBA)", "PERNAMBUCO (RECIFE)", "PIAUÍ (TERESINA)", "RIO DE JANEIRO (RIO DE JANEIRO)", "RIO GRANDE DO NORTE (NATAL)", "RIO GRANDE DO SUL (PORTO ALEGRE)", "RONDÔNIA (PORTO VELHO)", "RORAIMA (BOA VISTA)", "SANTA CATARINA (FLORIANÓPOLIS)", "SÃO PAULO (SÃO PAULO)", "SERGIPE (ARACAJU)", "TOCANTIS (PALMAS)" }));
 
         javax.swing.GroupLayout jPanelDadosComplementaresLayout = new javax.swing.GroupLayout(jPanelDadosComplementares);
         jPanelDadosComplementares.setLayout(jPanelDadosComplementaresLayout);
@@ -443,12 +545,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                             .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
-                                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jTextFieldEstadoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
@@ -485,8 +585,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldEstadoEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCep)
@@ -524,7 +624,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPaneCadastroDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneCadastroDadosPessoais)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -546,34 +646,72 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jTFidentidadeActionPerformed
 
     private void jTFnomePessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnomePessoaKeyTyped
-//        char c = evt.getKeyChar();
-//        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
+
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        
+        if((Character.isDigit(c))    || c==KeyEvent.VK_BACK_SPACE    || c==KeyEvent.VK_DELETE           || c==KeyEvent.VK_COMMA 
+            || c==KeyEvent.VK_AT     || c==KeyEvent.VK_CIRCUMFLEX    || c==KeyEvent.VK_BACK_SLASH       || c==KeyEvent.VK_COMMA 
+            || c==KeyEvent.VK_AT     || c==KeyEvent.VK_CLOSE_BRACKET || c==KeyEvent.VK_COLON            || c==KeyEvent.VK_SLASH 
+            || c==KeyEvent.VK_DOLLAR || c==KeyEvent.VK_EQUALS        || c==KeyEvent.VK_EXCLAMATION_MARK || c==KeyEvent.VK_LEFT_PARENTHESIS
+            || c==KeyEvent.VK_MINUS  || c==KeyEvent.VK_NUMBER_SIGN   || c==KeyEvent.VK_OPEN_BRACKET     || c==KeyEvent.VK_RIGHT_PARENTHESIS
+            || c==KeyEvent.VK_PERIOD || c==KeyEvent.VK_PLUS          || c==KeyEvent.VK_SEMICOLON        || c==KeyEvent.VK_UNDERSCORE){
+            
+                evt.consume();
+        }        
     }//GEN-LAST:event_jTFnomePessoaKeyTyped
 
  
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
 
         
-        String cnpj = jFormattedTextFcnpj.getText();
-        cnpj = cnpj.trim();
-        
+        String nomePessoa = jTFnomePessoa.getText().toLowerCase();
+        String sexo = buttonGroupSexo.getSelection().getActionCommand();
+        sexo = sexo.equals("feminino") ? "FEMININO" : "MASCULINO";
+        String identidade = jTFidentidade.getText();
+        String estadoId = jCBestadoIden.getSelectedItem().toString();
+        String orgExped = jCBestadoIden.getSelectedItem().toString();
+        String email  = jTextfEmailPessoa.getText();
         String cpf = jFormattedTextCpf.getText();
         cpf = cpf.trim();
-        
-        boolean retornoEmail = false;
+        String cnpj = jFormattedTextFcnpj.getText();
+        cnpj = cnpj.trim();
         String dataFormatada = "";
-        String email  = jTextfEmailPessoa.getText();
         String dtNasc = jFormattedTextFdataNascPessoa.getText();
         dtNasc = dtNasc.trim();
+        String nomeMae = jTextFieldNomeMae.getText().toUpperCase();
+        String nomePai = jTextFieldNomePai.getText().toUpperCase();
+        
+        String endereco = jTextFieldEnderecoPessoa.getText().toLowerCase();
+        String numero = jTextFieldNumero.getText();
+        String complemen = jTextFieldComplemento.getText().toLowerCase();
+        String bairro = jTextFieldBairro.getText().toLowerCase();
+        String estadoEnd = jComboBoxEstadoEnd.getSelectedItem().toString();
+        String cidade = jTextFieldCidadeEndereco.getText().toLowerCase();
+        String cep = jFormattedTextFieldCep.getText();
+        String foneFixo = jFormattedTextFieldTelefonePessoa.getText();
+        String celular  = jFormattedTextFieldCelularPessoa.getText();
+        
+        
+        boolean retornoEmail = false;
 
-        if(dtNasc.length()< 10 || email.equals("") || cpf.length()< 11 || cnpj.length()< 18){
+        if(nomePessoa.isEmpty()            || sexo.isEmpty()             || identidade.isEmpty()
+            || estadoId.equals("ESCOLHA")  || orgExped.equals("ESCOLHA") || email.isEmpty()
+            || cpf.length()< 11            || cnpj.length()< 18          || dtNasc.length()< 10
+            || nomeMae.isEmpty()           || nomePai.isEmpty()          || endereco.isEmpty()
+            || numero.isEmpty()            || complemen.isEmpty()        || bairro.isEmpty()
+            || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()           || cep.isEmpty()
+            || foneFixo.isEmpty()          || celular.isEmpty()){
+        
             JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
             "Aviso", JOptionPane.WARNING_MESSAGE);
             
         }else if(!retornoEmail){
 
             dataFormatada = formData.transformaData(dtNasc);
-            retornoEmail = formEmail.validaEmail(email);
+            retornoEmail  = formEmail.validaEmail(email);
 
             if(retornoEmail){
 
@@ -586,7 +724,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 boolean ehCnpj = formCnpj.isCNPJ(cnpj);
                 if(ehCnpj){
                     
-                    //retira . e - da string cpf
+                    //retira ponto(.) , traço(-) e barra(/) da string cpf
                     cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
                     cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
                     cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
@@ -630,9 +768,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 //            System.out.println(dataFormatada);
 //            String nomePessoa = jTFnomePessoa.getText();
 //            
-//            String sexo = buttonGroupSexo.getSelection().getActionCommand();
-//            sexo = sexo.equals("feminino") ? "FEMININO" : "MASCULINO";
-//            String identidade = jTFidentidade.getText();
+
 //            
 //            String estado = jComboBoxEstadoIdentidade.getSelectedItem().toString();
 //            String orgaoExpeditor = jComboBoxOrgExpeditor.getSelectedItem().toString();
@@ -643,15 +779,99 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
 
     private void jTextfEmailPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextfEmailPessoaKeyTyped
-        // TODO add your handling code here:
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
     }//GEN-LAST:event_jTextfEmailPessoaKeyTyped
 
     private void jBlimparPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlimparPessoaActionPerformed
 
+        jTFnomePessoa.setText("");
         jFormattedTextFdataNascPessoa.setText("");
+        jTFidentidade.setText("");  
+        jCBestadoIden.setSelectedItem("ESCOLHA");
+        jComboBoxOrgExpeditor.setSelectedItem("ESCOLHA");
         jTextfEmailPessoa.setText("");
-
+        jFormattedTextCpf.setText("");
+        jFormattedTextFcnpj.setText("");
+        jTextFieldNomeMae.setText("");
+        jTextFieldNomePai.setText("");  
+        jTextFieldEnderecoPessoa.setText("");
+        jTextFieldNumero.setText("");
+        jTextFieldComplemento.setText("");
+        jTextFieldBairro.setText("");
+        jTextFieldCidadeEndereco.setText("");
+        jComboBoxEstadoEnd.setSelectedItem("ESCOLHA");
+        jFormattedTextFieldCep.setText("");        
+        jFormattedTextFieldTelefonePessoa.setText("");
+        jFormattedTextFieldCelularPessoa.setText("");
     }//GEN-LAST:event_jBlimparPessoaActionPerformed
+
+    private void jBcancelarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarPessoaActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBcancelarPessoaActionPerformed
+
+    private void jTFidentidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFidentidadeKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTFidentidadeKeyTyped
+
+    private void jTextFieldNomeMaeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeMaeKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTextFieldNomeMaeKeyTyped
+
+    private void jTextFieldNomePaiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomePaiKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTextFieldNomePaiKeyTyped
+
+    private void jTextFieldEnderecoPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldEnderecoPessoaKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTextFieldEnderecoPessoaKeyTyped
+
+    private void jTextFieldBairroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBairroKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTextFieldBairroKeyTyped
+
+    private void jTextFieldComplementoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldComplementoKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTextFieldComplementoKeyTyped
+
+    private void jTextFieldCidadeEnderecoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCidadeEnderecoKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        
+        if((Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldCidadeEnderecoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -695,7 +915,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JButton jBinserirPessoa;
     private javax.swing.JButton jBlimparPessoa;
     private javax.swing.JButton jBremoverPessoa;
-    private javax.swing.JComboBox<String> jComboBoxEstadoIdentidade;
+    private javax.swing.JComboBox<String> jCBestadoIden;
+    private javax.swing.JComboBox<String> jComboBoxEstadoEnd;
     private javax.swing.JComboBox<String> jComboBoxOrgExpeditor;
     private javax.swing.JFormattedTextField jFormattedTextCpf;
     private javax.swing.JFormattedTextField jFormattedTextFcnpj;
@@ -739,7 +960,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCidadeEndereco;
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldEnderecoPessoa;
-    private javax.swing.JTextField jTextFieldEstadoEndereco;
     private javax.swing.JTextField jTextFieldNomeMae;
     private javax.swing.JTextField jTextFieldNomePai;
     private javax.swing.JTextField jTextFieldNumero;

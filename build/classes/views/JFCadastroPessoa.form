@@ -133,6 +133,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcancelarPessoaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -388,7 +391,7 @@
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLestadoIdentidade" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jComboBoxEstadoIdentidade" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                          <Component id="jCBestadoIden" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -469,7 +472,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jTFidentidade" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jComboBoxEstadoIdentidade" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBestadoIden" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxOrgExpeditor" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextfEmailPessoa" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -568,6 +571,7 @@
             <Component class="javax.swing.JTextField" name="jTFidentidade">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTFidentidadeActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFidentidadeKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLorgaoExpeditor">
@@ -580,14 +584,38 @@
                 <Property name="text" type="java.lang.String" value="Estado: *"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxEstadoIdentidade">
+            <Component class="javax.swing.JComboBox" name="jCBestadoIden">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="28">
+                    <StringItem index="0" value="ESCOLHA"/>
+                    <StringItem index="1" value="ACRE (RIO BRANCO)"/>
+                    <StringItem index="2" value="ALAGOAS (MACEI&#xd3;)"/>
+                    <StringItem index="3" value="AMAP&#xc1; (MACAP&#xc1;)"/>
+                    <StringItem index="4" value="AMAZONAS (MANAUS)"/>
+                    <StringItem index="5" value="BAHIA (SALVADOR)"/>
+                    <StringItem index="6" value="CEAR&#xc1; (FORTALEZA)"/>
+                    <StringItem index="7" value="DISTRITO FEDERAL (BRAS&#xcd;LIA)"/>
+                    <StringItem index="8" value="ESP&#xcd;RITO SANTO (VIT&#xd3;RIA)"/>
+                    <StringItem index="9" value="GOI&#xc1;S (GOI&#xc2;NIA)"/>
+                    <StringItem index="10" value="MARANH&#xc3;O (S&#xc3;O LU&#xcd;S)"/>
+                    <StringItem index="11" value="MATO GROSSO (CUIAB&#xc1;)"/>
+                    <StringItem index="12" value="MATO GROSSO DO SUL (CAMPO GRANDE)"/>
+                    <StringItem index="13" value="MINAS GERAIS (BELO HORIZONTE)"/>
+                    <StringItem index="14" value="PAR&#xc1; (BEL&#xc9;M)"/>
+                    <StringItem index="15" value="PARA&#xcd;BA (JO&#xc3;O PESSOA)"/>
+                    <StringItem index="16" value="PARAN&#xc1; (CURITIBA)"/>
+                    <StringItem index="17" value="PERNAMBUCO (RECIFE)"/>
+                    <StringItem index="18" value="PIAU&#xcd; (TERESINA)"/>
+                    <StringItem index="19" value="RIO DE JANEIRO (RIO DE JANEIRO)"/>
+                    <StringItem index="20" value="RIO GRANDE DO NORTE (NATAL)"/>
+                    <StringItem index="21" value="RIO GRANDE DO SUL (PORTO ALEGRE)"/>
+                    <StringItem index="22" value="ROND&#xd4;NIA (PORTO VELHO)"/>
+                    <StringItem index="23" value="RORAIMA (BOA VISTA)"/>
+                    <StringItem index="24" value="SANTA CATARINA (FLORIAN&#xd3;POLIS)"/>
+                    <StringItem index="25" value="S&#xc3;O PAULO (S&#xc3;O PAULO)"/>
+                    <StringItem index="26" value="SERGIPE (ARACAJU)"/>
+                    <StringItem index="27" value="TOCANTIS (PALMAS)"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -598,11 +626,28 @@
             <Component class="javax.swing.JComboBox" name="jComboBoxOrgExpeditor">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="21">
+                    <StringItem index="0" value="ESCOLHA"/>
+                    <StringItem index="1" value="SSP - Secretaria de Seguran&#xe7;a P&#xfa;blica"/>
+                    <StringItem index="2" value="PM - Pol&#xed;cia Militar"/>
+                    <StringItem index="3" value="PC - Policia Civil"/>
+                    <StringItem index="4" value="CNT - Carteira Nacional de Habilita&#xe7;&#xe3;o"/>
+                    <StringItem index="5" value="IC - Diretoria de Identifica&#xe7;&#xe3;o Civil"/>
+                    <StringItem index="6" value="CTPS - Carteira de Trabaho e Previd&#xea;ncia Social"/>
+                    <StringItem index="7" value="FGTS - Fundo de Garantia do Tempo de Servi&#xe7;o"/>
+                    <StringItem index="8" value="IFP - Instituto F&#xe9;lix Pacheco"/>
+                    <StringItem index="9" value="IPF - Instituto Pereira Faustino"/>
+                    <StringItem index="10" value="IML - Instituto M&#xe9;dico-Legal"/>
+                    <StringItem index="11" value="MTE - Minist&#xe9;rio do Trabalho e Emprego"/>
+                    <StringItem index="12" value="MMA - Minist&#xe9;rio da Marinha"/>
+                    <StringItem index="13" value="MAE - Minist&#xe9;rio da Aeron&#xe1;utica"/>
+                    <StringItem index="14" value="MEX - Minist&#xe9;rio do Ex&#xe9;rcito"/>
+                    <StringItem index="15" value="POF - Pol&#xed;cia Federal"/>
+                    <StringItem index="16" value="POM - Pol&#xed;cia Militar"/>
+                    <StringItem index="17" value="SES - Carteira de Estrangeiro"/>
+                    <StringItem index="18" value="SJS - Secretaria da Justi&#xe7;a e Seguran&#xe7;a"/>
+                    <StringItem index="19" value="SJTS - Secretaria da Justi&#xe7;a do Trabalho e Seguran&#xe7;a"/>
+                    <StringItem index="20" value="ZZZ - Outros (inclusive exterior)"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -640,6 +685,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNomeMae">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNomeMaeKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelNomePai">
               <Properties>
@@ -647,6 +695,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldNomePai">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldNomePaiKeyTyped"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -701,13 +752,10 @@
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace pref="121" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jTextFieldEstadoEndereco" alignment="0" min="-2" pref="143" max="-2" attributes="0"/>
+                                      <EmptySpace pref="122" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxEstadoEnd" min="-2" pref="142" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jTextFieldCidadeEndereco" min="-2" pref="292" max="-2" attributes="0"/>
@@ -757,8 +805,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextFieldBairro" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldEstadoEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldCidadeEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxEstadoEnd" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -784,6 +832,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldEnderecoPessoa">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldEnderecoPessoaKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelNumero">
               <Properties>
@@ -798,6 +849,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldComplemento">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldComplementoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelBairro">
               <Properties>
@@ -805,13 +859,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldBairro">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldBairroKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Estado: *"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldEstadoEndereco">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCidade">
               <Properties>
@@ -819,6 +874,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldCidadeEndereco">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldCidadeEnderecoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCep">
               <Properties>
@@ -840,7 +898,7 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldTelefonePessoa">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="(###)####-####" subtype="-1" type="5"/>
+                  <Format format="(##)####-####" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
@@ -852,9 +910,48 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextFieldCelularPessoa">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="(###)####-####" subtype="-1" type="5"/>
+                  <Format format="(##)####-####" subtype="-1" type="5"/>
                 </Property>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxEstadoEnd">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="28">
+                    <StringItem index="0" value="ESCOLHA"/>
+                    <StringItem index="1" value="ACRE (RIO BRANCO)"/>
+                    <StringItem index="2" value="ALAGOAS (MACEI&#xd3;)"/>
+                    <StringItem index="3" value="AMAP&#xc1; (MACAP&#xc1;)"/>
+                    <StringItem index="4" value="AMAZONAS (MANAUS)"/>
+                    <StringItem index="5" value="BAHIA (SALVADOR)"/>
+                    <StringItem index="6" value="CEAR&#xc1; (FORTALEZA)"/>
+                    <StringItem index="7" value="DISTRITO FEDERAL (BRAS&#xcd;LIA)"/>
+                    <StringItem index="8" value="ESP&#xcd;RITO SANTO (VIT&#xd3;RIA)"/>
+                    <StringItem index="9" value="GOI&#xc1;S (GOI&#xc2;NIA)"/>
+                    <StringItem index="10" value="MARANH&#xc3;O (S&#xc3;O LU&#xcd;S)"/>
+                    <StringItem index="11" value="MATO GROSSO (CUIAB&#xc1;)"/>
+                    <StringItem index="12" value="MATO GROSSO DO SUL (CAMPO GRANDE)"/>
+                    <StringItem index="13" value="MINAS GERAIS (BELO HORIZONTE)"/>
+                    <StringItem index="14" value="PAR&#xc1; (BEL&#xc9;M)"/>
+                    <StringItem index="15" value="PARA&#xcd;BA (JO&#xc3;O PESSOA)"/>
+                    <StringItem index="16" value="PARAN&#xc1; (CURITIBA)"/>
+                    <StringItem index="17" value="PERNAMBUCO (RECIFE)"/>
+                    <StringItem index="18" value="PIAU&#xcd; (TERESINA)"/>
+                    <StringItem index="19" value="RIO DE JANEIRO (RIO DE JANEIRO)"/>
+                    <StringItem index="20" value="RIO GRANDE DO NORTE (NATAL)"/>
+                    <StringItem index="21" value="RIO GRANDE DO SUL (PORTO ALEGRE)"/>
+                    <StringItem index="22" value="ROND&#xd4;NIA (PORTO VELHO)"/>
+                    <StringItem index="23" value="RORAIMA (BOA VISTA)"/>
+                    <StringItem index="24" value="SANTA CATARINA (FLORIAN&#xd3;POLIS)"/>
+                    <StringItem index="25" value="S&#xc3;O PAULO (S&#xc3;O PAULO)"/>
+                    <StringItem index="26" value="SERGIPE (ARACAJU)"/>
+                    <StringItem index="27" value="TOCANTIS (PALMAS)"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
