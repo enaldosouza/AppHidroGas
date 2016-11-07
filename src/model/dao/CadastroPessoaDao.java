@@ -14,7 +14,7 @@ import model.bean.Pessoa;
  */
 public class CadastroPessoaDao {
     
-    Pessoa pessoa = new Pessoa();
+    Pessoa  pessoa = new Pessoa();
     private String sql = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;

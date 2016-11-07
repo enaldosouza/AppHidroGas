@@ -10,6 +10,8 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import model.bean.Pessoa;
+import model.bean.PessoaFisica;
 import util.Util;
 
 /**
@@ -250,6 +252,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextCpf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextCpfKeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Cnpj: *");
 
@@ -261,6 +268,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jFormattedTextFcnpj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFormattedTextFcnpjActionPerformed(evt);
+            }
+        });
+        jFormattedTextFcnpj.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFcnpjKeyTyped(evt);
             }
         });
 
@@ -285,6 +297,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         jFormattedTextFdataNascPessoa.setToolTipText("");
+        jFormattedTextFdataNascPessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFdataNascPessoaKeyTyped(evt);
+            }
+        });
 
         jLidentidade.setText("Identidae: *");
 
@@ -497,6 +514,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldCepKeyTyped(evt);
+            }
+        });
 
         jLabelTelefone.setText("Telefone: *");
 
@@ -505,6 +527,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldTelefonePessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldTelefonePessoaKeyTyped(evt);
+            }
+        });
 
         jLabelCelularPessoa.setText("Celular: *");
 
@@ -513,6 +540,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jFormattedTextFieldCelularPessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldCelularPessoaKeyTyped(evt);
+            }
+        });
 
         jComboBoxEstadoEnd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ACRE (RIO BRANCO)", "ALAGOAS (MACEIÓ)", "AMAPÁ (MACAPÁ)", "AMAZONAS (MANAUS)", "BAHIA (SALVADOR)", "CEARÁ (FORTALEZA)", "DISTRITO FEDERAL (BRASÍLIA)", "ESPÍRITO SANTO (VITÓRIA)", "GOIÁS (GOIÂNIA)", "MARANHÃO (SÃO LUÍS)", "MATO GROSSO (CUIABÁ)", "MATO GROSSO DO SUL (CAMPO GRANDE)", "MINAS GERAIS (BELO HORIZONTE)", "PARÁ (BELÉM)", "PARAÍBA (JOÃO PESSOA)", "PARANÁ (CURITIBA)", "PERNAMBUCO (RECIFE)", "PIAUÍ (TERESINA)", "RIO DE JANEIRO (RIO DE JANEIRO)", "RIO GRANDE DO NORTE (NATAL)", "RIO GRANDE DO SUL (PORTO ALEGRE)", "RONDÔNIA (PORTO VELHO)", "RORAIMA (BOA VISTA)", "SANTA CATARINA (FLORIANÓPOLIS)", "SÃO PAULO (SÃO PAULO)", "SERGIPE (ARACAJU)", "TOCANTIS (PALMAS)" }));
 
@@ -520,9 +552,23 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jPanelDadosComplementares.setLayout(jPanelDadosComplementaresLayout);
         jPanelDadosComplementaresLayout.setHorizontalGroup(
             jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosComplementaresLayout.createSequentialGroup()
+            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                                .addComponent(jLabelBairro)
+                                .addGap(231, 231, 231))
+                            .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCidade))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
@@ -531,42 +577,24 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                             .addComponent(jTextFieldEnderecoPessoa))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCidade)
-                            .addComponent(jLabelNumero))
-                        .addGap(25, 25, 25)
+                            .addComponent(jLabelNumero)
+                            .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelComplemento)))
+                            .addComponent(jLabelComplemento)
+                            .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addComponent(jLabelCep)
-                                .addGap(131, 131, 131)
-                                .addComponent(jLabelTelefone)
-                                .addGap(54, 54, 54))
-                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addComponent(jLabelBairro)
-                                .addGap(231, 231, 231))
-                            .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelCelularPessoa)
-                                    .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                        .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jFormattedTextFieldTelefonePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCep))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTelefone)
+                            .addComponent(jFormattedTextFieldTelefonePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelCelularPessoa))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -593,17 +621,17 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCep)
                     .addComponent(jLabelTelefone)
+                    .addComponent(jLabelCep)
                     .addComponent(jLabelCelularPessoa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldTelefonePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Complementares", jPanelDadosComplementares);
@@ -657,8 +685,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         if (Character.isLowerCase(c)) {
           evt.setKeyChar(Character.toUpperCase(c));
         }
-  
-//        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();         
         
         if((Character.isDigit(c))    || c==KeyEvent.VK_BACK_SPACE    || c==KeyEvent.VK_DELETE           || c==KeyEvent.VK_COMMA 
             || c==KeyEvent.VK_AT     || c==KeyEvent.VK_CIRCUMFLEX    || c==KeyEvent.VK_BACK_SLASH       || c==KeyEvent.VK_UNDERSCORE 
@@ -673,39 +699,46 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
  
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
-
         
         String nomePessoa = jTFnomePessoa.getText().toLowerCase();
+        
+        //formata data
+        String dataFormatada = "";
+        String dtNasc        = jFormattedTextFdataNascPessoa.getText();
+        dtNasc = dtNasc.trim();
+        
+        //captura botão
         String sexo = buttonGroupSexo.getSelection().getActionCommand();
         sexo = sexo.equals("feminino") ? "FEMININO" : "MASCULINO";
+        
         String identidade = jTFidentidade.getText();
-        String estadoId = jCBestadoIden.getSelectedItem().toString();
-        String orgExped = jCBestadoIden.getSelectedItem().toString();
-        String email  = jTextfEmailPessoa.getText();
+        String estadoId   = jCBestadoIden.getSelectedItem().toString();
+        String orgExped   = jCBestadoIden.getSelectedItem().toString();
+        String email      = jTextfEmailPessoa.getText();
+
+        //prepara cpf
         String cpf = jFormattedTextCpf.getText();
         cpf = cpf.trim();
+
+        //prepara cnpj
         String cnpj = jFormattedTextFcnpj.getText();
         cnpj = cnpj.trim();
-        String dataFormatada = "";
-        String dtNasc = jFormattedTextFdataNascPessoa.getText();
-        dtNasc = dtNasc.trim();
-        String nomeMae = jTextFieldNomeMae.getText().toUpperCase();
-        String nomePai = jTextFieldNomePai.getText().toUpperCase();
         
-        String endereco = jTextFieldEnderecoPessoa.getText().toLowerCase();
-        String numero = jTextFieldNumero.getText();
+        String nomeMae   = jTextFieldNomeMae.getText().toUpperCase();
+        String nomePai   = jTextFieldNomePai.getText().toUpperCase();
+        String endereco  = jTextFieldEnderecoPessoa.getText().toLowerCase();
+        String numero    = jTextFieldNumero.getText();
         String complemen = jTextFieldComplemento.getText().toLowerCase();
-        String bairro = jTextFieldBairro.getText().toLowerCase();
+        String bairro    = jTextFieldBairro.getText().toLowerCase();
         String estadoEnd = jComboBoxEstadoEnd.getSelectedItem().toString();
-        String cidade = jTextFieldCidadeEndereco.getText().toLowerCase();
-        String cep = jFormattedTextFieldCep.getText();
-        String foneFixo = jFormattedTextFieldTelefonePessoa.getText();
-        String celular  = jFormattedTextFieldCelularPessoa.getText();
-        
+        String cidade    = jTextFieldCidadeEndereco.getText().toLowerCase();
+        String cep       = jFormattedTextFieldCep.getText();
+        String foneFixo  = jFormattedTextFieldTelefonePessoa.getText();
+        String celular   = jFormattedTextFieldCelularPessoa.getText();
         
         boolean retornoEmail = false;
 
-        if(nomePessoa.isEmpty()            || sexo.isEmpty()             || identidade.isEmpty()
+        if( nomePessoa.isEmpty()           || sexo.isEmpty()             || identidade.isEmpty()
             || estadoId.equals("ESCOLHA")  || orgExped.equals("ESCOLHA") || email.isEmpty()
             || cpf.length()< 11            || cnpj.length()< 18          || dtNasc.length()< 10
             || nomeMae.isEmpty()           || nomePai.isEmpty()          || endereco.isEmpty()
@@ -722,8 +755,21 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             retornoEmail  = formEmail.validaEmail(email);
 
             if(retornoEmail){
-
-                //chama dao e grava e-mail no banco
+                
+                Pessoa pessoa = new Pessoa();
+                PessoaFisica pFisica = new PessoaFisica();
+                
+                
+                pessoa.setUf(estadoId);
+                pessoa.setNome(nomePessoa);
+                
+                pFisica.setSexo(sexo);
+                pFisica.setRg(identidade);
+                pessoa.
+                
+                
+                
+                
                 System.out.println("Email: " + email);  
                 //chama dao para e grava dtNasc no banco
                 System.out.println("Data Nasc.: " + dataFormatada);
@@ -732,7 +778,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 boolean ehCnpj = formCnpj.isCNPJ(cnpj);
                 if(ehCnpj){
                     
-                    //retira ponto(.) , traço(-) e barra(/) da string cpf
+                    //retira ponto(.) , traço(-) e barra(/) da string cnpj
                     cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
                     cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
                     cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
@@ -766,24 +812,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 "Aviso", JOptionPane.WARNING_MESSAGE);                
             }
         }
-        
-  
-//--------------------------------------------------------------------------------------
-
-            //Data a ser enviada ao banco
-//            String dataFormatada = formData.transformaData(dtNasc);
-            
-//            System.out.println(dataFormatada);
-//            String nomePessoa = jTFnomePessoa.getText();
-//            
-
-//            
-//            String estado = jComboBoxEstadoIdentidade.getSelectedItem().toString();
-//            String orgaoExpeditor = jComboBoxOrgExpeditor.getSelectedItem().toString();
-//
-//            //tratar campo e-mail
-//            String email = jTextFemailPessoa.getText();
-            
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
 
     private void jTextfEmailPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextfEmailPessoaKeyTyped
@@ -883,15 +911,66 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
     private void jTextFieldNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroKeyTyped
 
-//        char c = evt.getKeyChar();
-//        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if(!Character.isDigit(c)) evt.consume(); 
+    }//GEN-LAST:event_jTextFieldNumeroKeyTyped
+
+    private void jFormattedTextFieldTelefonePessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefonePessoaKeyTyped
         
         char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
           evt.setKeyChar(Character.toUpperCase(c));
         }
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume(); 
-    }//GEN-LAST:event_jTextFieldNumeroKeyTyped
+        if(!Character.isDigit(c)) evt.consume();         
+    }//GEN-LAST:event_jFormattedTextFieldTelefonePessoaKeyTyped
+
+    private void jFormattedTextFieldCelularPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCelularPessoaKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if(!Character.isDigit(c)) evt.consume(); 
+    }//GEN-LAST:event_jFormattedTextFieldCelularPessoaKeyTyped
+
+    private void jFormattedTextFieldCepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCepKeyTyped
+
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if(!Character.isDigit(c)) evt.consume();         
+    }//GEN-LAST:event_jFormattedTextFieldCepKeyTyped
+
+    private void jFormattedTextFdataNascPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFdataNascPessoaKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if(!Character.isDigit(c)) evt.consume(); 
+    }//GEN-LAST:event_jFormattedTextFdataNascPessoaKeyTyped
+
+    private void jFormattedTextFcnpjKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFcnpjKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if(!Character.isDigit(c)) evt.consume(); 
+    }//GEN-LAST:event_jFormattedTextFcnpjKeyTyped
+
+    private void jFormattedTextCpfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextCpfKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        if(!Character.isDigit(c)) evt.consume(); 
+    }//GEN-LAST:event_jFormattedTextCpfKeyTyped
 
     /**
      * @param args the command line arguments

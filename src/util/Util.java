@@ -202,6 +202,7 @@ public class Util {
                 + CNPJ.substring(5, 8) + "." + CNPJ.substring(8, 12) + "-"
                 + CNPJ.substring(12, 14));
     }
+    
 
 }
 
