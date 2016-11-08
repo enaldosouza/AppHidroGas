@@ -37,15 +37,15 @@ public class CadastroPessoaDao {
         con = ConnectionFactory.getConnetion();
         try{
             ps = con.prepareStatement(sql);
-            ps.setString(1, pessoa.getNome());
-            ps.setString(2, pessoa.getTipo_logradouro());
-            ps.setString(3, pessoa.getLogradouro());
-            ps.setString(4, pessoa.getNumLogradouro());
-            ps.setString(5, pessoa.getBairro());
-            ps.setString(6, pessoa.getCep());
-            ps.setString(7, pessoa.getUf());
-            ps.setString(8, pessoa.getTelefone_res());
-            ps.setString(9, pessoa.getTelefone_com());
+            ps.setString(1,  pessoa.getNome());
+            ps.setString(2,  pessoa.getTipo_logradouro());
+            ps.setString(3,  pessoa.getLogradouro());
+            ps.setString(4,  pessoa.getNumLogradouro());
+            ps.setString(5,  pessoa.getBairro());
+            ps.setString(6,  pessoa.getCep());
+            ps.setString(7,  pessoa.getUf());
+            ps.setString(8,  pessoa.getTelefone_res());
+            ps.setString(9,  pessoa.getTelefone_com());
             ps.setString(10, pessoa.getCelular());
             ps.setString(11, pessoa.getTipo_pessoa());
             ps.setString(12, pessoa.getDt_cadastro());       

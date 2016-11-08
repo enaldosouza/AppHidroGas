@@ -4,6 +4,21 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroupSexo">
     </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="5"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -390,11 +405,11 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jFormattedTFinscricaoMunicipal" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLInscricaoMunicipal" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="jFormattedTFinscricaoMunicipal" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -510,9 +525,9 @@
                           <Component id="jCBestadoIden" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabelNomeMae" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelNomePai" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNomeMae" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -541,7 +556,7 @@
                           <Component id="jFormattedTextCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jFormattedTextFcnpj" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -641,33 +656,33 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="28">
                     <StringItem index="0" value="ESCOLHA"/>
-                    <StringItem index="1" value="ACRE (RIO BRANCO)"/>
-                    <StringItem index="2" value="ALAGOAS (MACEI&#xd3;)"/>
-                    <StringItem index="3" value="AMAP&#xc1; (MACAP&#xc1;)"/>
-                    <StringItem index="4" value="AMAZONAS (MANAUS)"/>
-                    <StringItem index="5" value="BAHIA (SALVADOR)"/>
-                    <StringItem index="6" value="CEAR&#xc1; (FORTALEZA)"/>
-                    <StringItem index="7" value="DISTRITO FEDERAL (BRAS&#xcd;LIA)"/>
-                    <StringItem index="8" value="ESP&#xcd;RITO SANTO (VIT&#xd3;RIA)"/>
-                    <StringItem index="9" value="GOI&#xc1;S (GOI&#xc2;NIA)"/>
-                    <StringItem index="10" value="MARANH&#xc3;O (S&#xc3;O LU&#xcd;S)"/>
-                    <StringItem index="11" value="MATO GROSSO (CUIAB&#xc1;)"/>
-                    <StringItem index="12" value="MATO GROSSO DO SUL (CAMPO GRANDE)"/>
-                    <StringItem index="13" value="MINAS GERAIS (BELO HORIZONTE)"/>
-                    <StringItem index="14" value="PAR&#xc1; (BEL&#xc9;M)"/>
-                    <StringItem index="15" value="PARA&#xcd;BA (JO&#xc3;O PESSOA)"/>
-                    <StringItem index="16" value="PARAN&#xc1; (CURITIBA)"/>
-                    <StringItem index="17" value="PERNAMBUCO (RECIFE)"/>
-                    <StringItem index="18" value="PIAU&#xcd; (TERESINA)"/>
-                    <StringItem index="19" value="RIO DE JANEIRO (RIO DE JANEIRO)"/>
-                    <StringItem index="20" value="RIO GRANDE DO NORTE (NATAL)"/>
-                    <StringItem index="21" value="RIO GRANDE DO SUL (PORTO ALEGRE)"/>
-                    <StringItem index="22" value="ROND&#xd4;NIA (PORTO VELHO)"/>
-                    <StringItem index="23" value="RORAIMA (BOA VISTA)"/>
-                    <StringItem index="24" value="SANTA CATARINA (FLORIAN&#xd3;POLIS)"/>
-                    <StringItem index="25" value="S&#xc3;O PAULO (S&#xc3;O PAULO)"/>
-                    <StringItem index="26" value="SERGIPE (ARACAJU)"/>
-                    <StringItem index="27" value="TOCANTIS (PALMAS)"/>
+                    <StringItem index="1" value="AC"/>
+                    <StringItem index="2" value="AL"/>
+                    <StringItem index="3" value="AP"/>
+                    <StringItem index="4" value="AM"/>
+                    <StringItem index="5" value="BA"/>
+                    <StringItem index="6" value="CE"/>
+                    <StringItem index="7" value="DF"/>
+                    <StringItem index="8" value="ES"/>
+                    <StringItem index="9" value="GO"/>
+                    <StringItem index="10" value="MA"/>
+                    <StringItem index="11" value="MT"/>
+                    <StringItem index="12" value="MS"/>
+                    <StringItem index="13" value="MG"/>
+                    <StringItem index="14" value="PA"/>
+                    <StringItem index="15" value="PB"/>
+                    <StringItem index="16" value="PR"/>
+                    <StringItem index="17" value="PE"/>
+                    <StringItem index="18" value="PI"/>
+                    <StringItem index="19" value="RJ"/>
+                    <StringItem index="20" value="RN"/>
+                    <StringItem index="21" value="RS"/>
+                    <StringItem index="22" value="RO"/>
+                    <StringItem index="23" value="RR"/>
+                    <StringItem index="24" value="SC"/>
+                    <StringItem index="25" value="SP"/>
+                    <StringItem index="26" value="SE"/>
+                    <StringItem index="27" value="TO"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -763,14 +778,24 @@
                 <Property name="text" type="java.lang.String" value="Inscri&#xe7;&#xe3;o Estadual: *"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JFormattedTextField" name="jFormattedTFinscricaoEstadual">
-            </Component>
             <Component class="javax.swing.JLabel" name="jLInscricaoMunicipal">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Inscri&#xe7;&#xe3;o Municipal: *"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JFormattedTextField" name="jFormattedTFinscricaoEstadual">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                  <Format format="#############" subtype="-1" type="5"/>
+                </Property>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTFinscricaoMunicipal">
+              <Properties>
+                <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                  <Format format="#############" subtype="-1" type="5"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
