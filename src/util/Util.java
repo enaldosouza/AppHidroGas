@@ -22,7 +22,7 @@ public class Util {
 
     public String transformaData(String minhaData) {
 
-        // Data recebida: 29/10/2016
+        // Recebe data: 29/10/2016 - Devolve data 20161029
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate data = LocalDate.parse(minhaData, formato);
         String[] dataSplit = (formato.format(data)).split("/");
