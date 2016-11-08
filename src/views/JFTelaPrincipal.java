@@ -41,6 +41,11 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro.setText("Cadastro");
 
         jMenuItemPessoa.setText("Pessoa");
+        jMenuItemPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItemPessoaMouseClicked(evt);
+            }
+        });
         jMenuItemPessoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemPessoaActionPerformed(evt);
@@ -162,6 +167,12 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
         JFCadastroCidade telaCidade = new JFCadastroCidade();
         telaCidade.setVisible(true);
     }//GEN-LAST:event_jMenuICidadeActionPerformed
+
+    private void jMenuItemPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemPessoaMouseClicked
+
+        //Perguntar que tipo de pessoa e bloquear campos (não editáveis) não pertinentes ao tipo.
+        
+    }//GEN-LAST:event_jMenuItemPessoaMouseClicked
 
     /**
      * @param args the command line arguments

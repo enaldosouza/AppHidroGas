@@ -1,7 +1,12 @@
 package util;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.InputMismatchException;
@@ -203,6 +208,12 @@ public class Util {
                 + CNPJ.substring(12, 14));
     }
     
+    public String getDataAtual() throws ParseException {
+
+        DateFormat df = new SimpleDateFormat("YYYYMMdd");
+        Calendar c = Calendar.getInstance();
+        return df.format(c.getTime()); //retorno anomêsdia
+    }   
 
 }
 
