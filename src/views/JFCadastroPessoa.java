@@ -31,6 +31,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     Pessoa pessoa        = new Pessoa();    
     PessoaFisica pFisica = new PessoaFisica();  
     PessoaJuridica pJur  = new PessoaJuridica();
+    int habilitaInsercao = 0;
     
     
     public JFCadastroPessoa() {
@@ -89,6 +90,29 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jComboBoxOrgExpeditor.addItem("SJTS - Secretaria da Justiça do Trabalho e Segurança");
         jComboBoxOrgExpeditor.addItem("ZZZ - Outros (inclusive exterior) ");
     }
+    public void visualizaPessoaFisica(){
+        
+        jTFnomeFantasia.setEditable(false);
+        jFormattedTFinscricaoEstadual.setEditable(false);
+        jFormattedTFinscricaoMunicipal.setEditable(false);
+        jFormattedTextFcnpj.setEditable(false);
+        habilitaInsercao = 1;
+    }
+    
+    public void visualizaPessoaJuridica(){
+    
+        jTFnomePessoa.setEditable(false);
+        jFormattedTextFdataNascPessoa.setEditable(false);
+        jRadioButtonFeminino.setEnabled(false);
+        jRadioButtonMasculino.setEnabled(false);
+        jTFidentidade.setEditable(false);
+        jCBestadoIden.setEnabled(false);
+        jComboBoxOrgExpeditor.setEnabled(false);
+        jTextFieldNomeMae.setEditable(false);
+        jTextFieldNomePai.setEditable(false);
+        jFormattedTextCpf.setEditable(false);
+        habilitaInsercao = 2;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -108,8 +132,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jBremoverPessoa = new javax.swing.JButton();
         jBlimparPessoa = new javax.swing.JButton();
         jBcancelarPessoa = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jLabelCadastroPessoa = new javax.swing.JLabel();
+        jPanelInformacoesGerais = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTcadastroPessoa = new javax.swing.JTable();
         jTabbedPaneCadastroDadosPessoais = new javax.swing.JTabbedPane();
@@ -231,10 +255,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jLabel1.setText("Cadastro de Pessoa");
+        jLabelCadastroPessoa.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        jLabelCadastroPessoa.setText("Cadastro de Pessoa");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelInformacoesGerais.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTcadastroPessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -246,18 +270,18 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTcadastroPessoa);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelInformacoesGeraisLayout = new javax.swing.GroupLayout(jPanelInformacoesGerais);
+        jPanelInformacoesGerais.setLayout(jPanelInformacoesGeraisLayout);
+        jPanelInformacoesGeraisLayout.setHorizontalGroup(
+            jPanelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInformacoesGeraisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelInformacoesGeraisLayout.setVerticalGroup(
+            jPanelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInformacoesGeraisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -713,13 +737,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelInformacoesGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jTabbedPaneCadastroDadosPessoais))
                 .addContainerGap())
@@ -727,13 +751,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPaneCadastroDadosPessoais)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelInformacoesGerais, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -774,10 +798,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
  
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
         
-        //Faltam nome fantasia
-        //Inscrição Estadual
-        //Inscrição Municipal
-        
+        String inscEstadual  = jFormattedTFinscricaoEstadual.getText();
+        String inscMunicipal = jFormattedTFinscricaoMunicipal.getText();
+        String nomeFantasia  = jTFnomeFantasia.getText();
         
         String nomePessoa = jTFnomePessoa.getText().toLowerCase();
         
@@ -816,89 +839,104 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         String celular    = jFormattedTextFieldCelularPessoa.getText();
         
         boolean retornoEmail = false;
-
-        if( nomePessoa.isEmpty()           || sexo.isEmpty()             || identidade.isEmpty()
-            || estadoId.equals("ESCOLHA")  || orgExped.equals("ESCOLHA") || email.isEmpty()
-            || cpf.length()< 11            || cnpj.length()< 18          || dtNasc.length()< 10
-            || nomeMae.isEmpty()           || nomePai.isEmpty()          || endereco.isEmpty()
-            || numero.isEmpty()            || complemento.isEmpty()      || bairro.isEmpty()
-            || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()           || cep.isEmpty()
-            || foneFixo.isEmpty()          || celular.isEmpty()){
         
-            JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
-            "Aviso", JOptionPane.WARNING_MESSAGE);
+        if(habilitaInsercao == 1){//verifica campos para cadastro pessoa física
             
-        }else if(!retornoEmail){
+                if( nomePessoa.isEmpty()           || sexo.isEmpty()             || identidade.isEmpty()
+                    || estadoId.equals("ESCOLHA")  || orgExped.equals("ESCOLHA") || email.isEmpty()
+                    || cpf.length()< 11            || dtNasc.length()< 10        || celular.isEmpty()
+                    || nomeMae.isEmpty()           || nomePai.isEmpty()          || endereco.isEmpty()
+                    || numero.isEmpty()            || complemento.isEmpty()      || bairro.isEmpty()
+                    || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()           
+                    || foneFixo.isEmpty()          || cep.isEmpty()){
 
-            dataFormatada = formData.transformaData(dtNasc);
-            retornoEmail  = formEmail.validaEmail(email);
+                    JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);
 
-            if(retornoEmail){
-            
-                String dtCadastro = "";
-                
-                try {
-                    dtCadastro = getDataAtual.getDataAtual().toString();
-                } catch (ParseException ex) {
-                    Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                }else if(!retornoEmail){
+
+                    dataFormatada = formData.transformaData(dtNasc);
+                    retornoEmail  = formEmail.validaEmail(email);
+
+                    if(retornoEmail){
+
+                        String dtCadastro = "";
+
+                        try {
+                            dtCadastro = getDataAtual.getDataAtual().toString();
+                        } catch (ParseException ex) {
+                            Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        pessoa.setDt_cadastro(dtCadastro);
+
+                        pessoa.setNome(nomePessoa);
+                        pessoa.setTipo_logradouro(complemento);
+                        pessoa.setLogradouro(endereco);
+                        pessoa.setNumLogradouro(numero);
+                        pessoa.setBairro(bairro);
+                        pessoa.setCep(cep);
+                        pessoa.setUf(estadoId);
+                        pessoa.setTelefone_res(foneFixo);
+                        pessoa.setCelular(celular);
+                        pessoa.setTipo_pessoa(sexo);
+
+                      //verifica cpf
+                        boolean ehCpf = formCpf.isCPF(cpf);
+                        if(ehCpf){
+
+                            //retira . e - da string cpf
+                            cpf = Pattern.compile("\\.+").matcher(cpf).replaceAll("");
+                            cpf = Pattern.compile("\\-+").matcher(cpf).replaceAll("");
+                            //envia cpf para o banco via Dao
+                            pFisica.setCpf(cpf);    
+                            pFisica.setRg(identidade);
+                            pFisica.setDt_nascimento(dataFormatada);
+                            pFisica.setSexo(sexo);
+                        }else{
+                            JOptionPane.showMessageDialog(this, "Cpf inválido. Redigite!",
+                            "Aviso", JOptionPane.WARNING_MESSAGE);                    
+                        }
+                    }else{  
+                        JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
+                        "Aviso", JOptionPane.WARNING_MESSAGE);                
+                    }
                 }
-                pessoa.setDt_cadastro(dtCadastro);
-                
-                pessoa.setNome(nomePessoa);
-                pessoa.setTipo_logradouro(complemento);
-                pessoa.setLogradouro(endereco);
-                pessoa.setNumLogradouro(numero);
-                pessoa.setBairro(bairro);
-                pessoa.setCep(cep);
-                pessoa.setUf(estadoId);
-                pessoa.setTelefone_res(foneFixo);
-                pessoa.setCelular(celular);
-                pessoa.setTipo_pessoa(sexo);
+        }else if(habilitaInsercao == 2){ //verifica campos para cadastro pessoa jurídica
+                    if( email.isEmpty()                || cnpj.length()< 18     || endereco.isEmpty()
+                        || numero.isEmpty()            || complemento.isEmpty() || bairro.isEmpty()
+                        || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()      || cep.isEmpty()
+                        || foneFixo.isEmpty()          || celular.isEmpty()     || inscEstadual.isEmpty()
+                        || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()) {
 
-                //verifica Cnpj
-                boolean ehCnpj = formCnpj.isCNPJ(cnpj);
-                if(ehCnpj){
-                    //retira ponto(.) , traço(-) e barra(/) da string cnpj
-                    cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
-                    cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
-                    cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
-        
-                    //envia cnpj para o banco via dao
-                    pJur.setCnpj(cnpj);
-//                    pJur.setIe(InscricaoEstadual);
-//                    pJur.setIm(InscricaoMunicipal);
-//                    pJur.setNome_fantasia(NomeFantasia);
-//                    pJur.setPessoa_cod_pessoa(codPessoa);
-                }else{
-                    JOptionPane.showMessageDialog(this, "Cnpj inválido. Redigite!",
-                    "Aviso", JOptionPane.WARNING_MESSAGE);        
-                }
-        
-              //verifica cpf
-                boolean ehCpf = formCpf.isCPF(cpf);
-                if(ehCpf){
+                        JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
+                        "Aviso", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                            retornoEmail  = formEmail.validaEmail(email);
+                            if(retornoEmail){   
+                                //verifica Cnpj
+                                boolean ehCnpj = formCnpj.isCNPJ(cnpj);
+                                if(ehCnpj){
+                                    //retira ponto(.) , traço(-) e barra(/) da string cnpj
+                                    cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
+                                    cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
+                                    cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
 
-                    //retira . e - da string cpf
-                    cpf = Pattern.compile("\\.+").matcher(cpf).replaceAll("");
-                    cpf = Pattern.compile("\\-+").matcher(cpf).replaceAll("");
-                    //envia cpf para o banco via Dao
-                    pFisica.setCpf(cpf);    
-                    pFisica.setRg(identidade);
-                    pFisica.setDt_nascimento(dataFormatada);
-                    pFisica.setSexo(sexo);
-                }else{
-                    JOptionPane.showMessageDialog(this, "Cpf inválido. Redigite!",
-                    "Aviso", JOptionPane.WARNING_MESSAGE);                    
-                }
-            }else{  
-                JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
-                "Aviso", JOptionPane.WARNING_MESSAGE);                
-            }
-        }
+                                    //envia cnpj para o banco via dao
+                                    pJur.setCnpj(cnpj);
+                //                    pJur.setIe(InscricaoEstadual);
+                //                    pJur.setIm(InscricaoMunicipal);
+                //                    pJur.setNome_fantasia(NomeFantasia);
+                //                    pJur.setPessoa_cod_pessoa(codPessoa);
+                                }else{
+                                    JOptionPane.showMessageDialog(this, "Cnpj inválido. Redigite!",
+                                    "Aviso", JOptionPane.WARNING_MESSAGE);        
+                                }
+                            }       
+                    }
         //chama dao Pessoa passa: pessoa
         //chama dao Pessoa Física passa: pFisica
         //chama dao pessoa Jurídica: passa: pJur
-        
+        }
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
 
     private void jTextfEmailPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextfEmailPessoaKeyTyped
@@ -1125,13 +1163,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLBemailPessoa;
     private javax.swing.JLabel jLInscricaoEstadual;
     private javax.swing.JLabel jLInscricaoMunicipal;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelBairro;
+    private javax.swing.JLabel jLabelCadastroPessoa;
     private javax.swing.JLabel jLabelCelularPessoa;
     private javax.swing.JLabel jLabelCep;
     private javax.swing.JLabel jLabelCidade;
@@ -1147,9 +1185,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLidentidade;
     private javax.swing.JLabel jLorgaoExpeditor;
     private javax.swing.JPanel jPCadastroPessoa;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelDadosComplementares;
     private javax.swing.JPanel jPanelDadosPessoais;
+    private javax.swing.JPanel jPanelInformacoesGerais;
     private javax.swing.JRadioButton jRadioButtonFeminino;
     private javax.swing.JRadioButton jRadioButtonMasculino;
     private javax.swing.JScrollPane jScrollPane1;

@@ -209,10 +209,10 @@ public class Util {
     }
 
     public String getDataAtual() throws ParseException {
-
+        //retorno anomêsdia
         DateFormat df = new SimpleDateFormat("YYYYMMdd");
         Calendar c = Calendar.getInstance();
-        return df.format(c.getTime()); //retorno anomêsdia
+        return df.format(c.getTime()); 
     }
 
     

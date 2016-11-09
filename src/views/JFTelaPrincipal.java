@@ -19,7 +19,9 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastro = new javax.swing.JMenu();
-        jMenuItemPessoa = new javax.swing.JMenuItem();
+        jMenuPessoa = new javax.swing.JMenu();
+        jMenuItemPessoaFisica = new javax.swing.JMenuItem();
+        jMenuItemPessoaJuridica = new javax.swing.JMenuItem();
         jMenuItemMaterial = new javax.swing.JMenuItem();
         jMenuItemContasPagar = new javax.swing.JMenuItem();
         jMenuItemContasReceber = new javax.swing.JMenuItem();
@@ -40,18 +42,25 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
 
         jMenuCadastro.setText("Cadastro");
 
-        jMenuItemPessoa.setText("Pessoa");
-        jMenuItemPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItemPessoaMouseClicked(evt);
-            }
-        });
-        jMenuItemPessoa.addActionListener(new java.awt.event.ActionListener() {
+        jMenuPessoa.setText("Pessoa");
+
+        jMenuItemPessoaFisica.setText("Física");
+        jMenuItemPessoaFisica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemPessoaActionPerformed(evt);
+                jMenuItemPessoaFisicaActionPerformed(evt);
             }
         });
-        jMenuCadastro.add(jMenuItemPessoa);
+        jMenuPessoa.add(jMenuItemPessoaFisica);
+
+        jMenuItemPessoaJuridica.setText("Jurídica");
+        jMenuItemPessoaJuridica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPessoaJuridicaActionPerformed(evt);
+            }
+        });
+        jMenuPessoa.add(jMenuItemPessoaJuridica);
+
+        jMenuCadastro.add(jMenuPessoa);
 
         jMenuItemMaterial.setText("Material");
         jMenuItemMaterial.addActionListener(new java.awt.event.ActionListener() {
@@ -138,14 +147,6 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaActionPerformed
-
-        JFCadastroPessoa cadPessoa = new JFCadastroPessoa();
-        cadPessoa.setVisible(true);
-//        dispose();
-        
-    }//GEN-LAST:event_jMenuItemPessoaActionPerformed
-
     private void jMenuItemMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMaterialActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemMaterialActionPerformed
@@ -168,11 +169,20 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
         telaCidade.setVisible(true);
     }//GEN-LAST:event_jMenuICidadeActionPerformed
 
-    private void jMenuItemPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemPessoaMouseClicked
-
-        //Perguntar que tipo de pessoa e bloquear campos (não editáveis) não pertinentes ao tipo.
+    private void jMenuItemPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaFisicaActionPerformed
         
-    }//GEN-LAST:event_jMenuItemPessoaMouseClicked
+        JFCadastroPessoa cadPessoa = new JFCadastroPessoa();
+        cadPessoa.setVisible(true);
+        cadPessoa.visualizaPessoaFisica();
+//        dispose();
+    }//GEN-LAST:event_jMenuItemPessoaFisicaActionPerformed
+
+    private void jMenuItemPessoaJuridicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaJuridicaActionPerformed
+                
+        JFCadastroPessoa cadPessoa = new JFCadastroPessoa();
+        cadPessoa.setVisible(true);
+        cadPessoa.visualizaPessoaJuridica();
+    }//GEN-LAST:event_jMenuItemPessoaJuridicaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,12 +205,14 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemMaterial;
     private javax.swing.JMenuItem jMenuItemMovContasPagar;
     private javax.swing.JMenuItem jMenuItemMovContasReceber;
-    private javax.swing.JMenuItem jMenuItemPessoa;
+    private javax.swing.JMenuItem jMenuItemPessoaFisica;
+    private javax.swing.JMenuItem jMenuItemPessoaJuridica;
     private javax.swing.JMenuItem jMenuItemRelOrcamento;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemUsuario;
     private javax.swing.JMenu jMenuMovimento;
     private javax.swing.JMenu jMenuOrcamento;
+    private javax.swing.JMenu jMenuPessoa;
     private javax.swing.JMenu jMenuRelatorio;
     private javax.swing.JMenu jMenuSair;
     // End of variables declaration//GEN-END:variables
