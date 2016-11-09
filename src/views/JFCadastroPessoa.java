@@ -181,11 +181,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jTextFieldCidadeEndereco = new javax.swing.JTextField();
         jLabelCep = new javax.swing.JLabel();
         jFormattedTextFieldCep = new javax.swing.JFormattedTextField();
-        jLabelTelefone = new javax.swing.JLabel();
-        jFormattedTextFieldTelefonePessoa = new javax.swing.JFormattedTextField();
+        jLabelTelefoneRes = new javax.swing.JLabel();
+        jFormattedTextFieldTelefonePessoaRes = new javax.swing.JFormattedTextField();
         jLabelCelularPessoa = new javax.swing.JLabel();
         jFormattedTextFieldCelularPessoa = new javax.swing.JFormattedTextField();
         jComboBoxEstadoEnd = new javax.swing.JComboBox<>();
+        jLabelFoneComlPessoa = new javax.swing.JLabel();
+        jFormattedTextFieldTelefonePessoaComl = new javax.swing.JFormattedTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -617,16 +619,16 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             }
         });
 
-        jLabelTelefone.setText("Telefone: *");
+        jLabelTelefoneRes.setText("Telefone residencial: *");
 
         try {
-            jFormattedTextFieldTelefonePessoa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            jFormattedTextFieldTelefonePessoaRes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldTelefonePessoa.addKeyListener(new java.awt.event.KeyAdapter() {
+        jFormattedTextFieldTelefonePessoaRes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jFormattedTextFieldTelefonePessoaKeyTyped(evt);
+                jFormattedTextFieldTelefonePessoaResKeyTyped(evt);
             }
         });
 
@@ -645,6 +647,19 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         jComboBoxEstadoEnd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ACRE (RIO BRANCO)", "ALAGOAS (MACEIÓ)", "AMAPÁ (MACAPÁ)", "AMAZONAS (MANAUS)", "BAHIA (SALVADOR)", "CEARÁ (FORTALEZA)", "DISTRITO FEDERAL (BRASÍLIA)", "ESPÍRITO SANTO (VITÓRIA)", "GOIÁS (GOIÂNIA)", "MARANHÃO (SÃO LUÍS)", "MATO GROSSO (CUIABÁ)", "MATO GROSSO DO SUL (CAMPO GRANDE)", "MINAS GERAIS (BELO HORIZONTE)", "PARÁ (BELÉM)", "PARAÍBA (JOÃO PESSOA)", "PARANÁ (CURITIBA)", "PERNAMBUCO (RECIFE)", "PIAUÍ (TERESINA)", "RIO DE JANEIRO (RIO DE JANEIRO)", "RIO GRANDE DO NORTE (NATAL)", "RIO GRANDE DO SUL (PORTO ALEGRE)", "RONDÔNIA (PORTO VELHO)", "RORAIMA (BOA VISTA)", "SANTA CATARINA (FLORIANÓPOLIS)", "SÃO PAULO (SÃO PAULO)", "SERGIPE (ARACAJU)", "TOCANTIS (PALMAS)" }));
 
+        jLabelFoneComlPessoa.setText("Telefone Comercial: *");
+
+        try {
+            jFormattedTextFieldTelefonePessoaComl.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextFieldTelefonePessoaComl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jFormattedTextFieldTelefonePessoaComlKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDadosComplementaresLayout = new javax.swing.GroupLayout(jPanelDadosComplementares);
         jPanelDadosComplementares.setLayout(jPanelDadosComplementaresLayout);
         jPanelDadosComplementaresLayout.setHorizontalGroup(
@@ -652,20 +667,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
-                                .addComponent(jLabelBairro)
-                                .addGap(231, 231, 231))
-                            .addComponent(jTextFieldBairro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCidade))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
@@ -681,18 +682,40 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                             .addComponent(jLabelComplemento)
                             .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                                .addComponent(jLabelBairro)
+                                .addGap(274, 569, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosComplementaresLayout.createSequentialGroup()
+                                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldBairro)
+                                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelCep))
+                                        .addGap(28, 28, 28)
+                                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelTelefoneRes)
+                                            .addComponent(jFormattedTextFieldTelefonePessoaRes, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelFoneComlPessoa)
+                                            .addComponent(jFormattedTextFieldTelefonePessoaComl, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelCelularPessoa)))
+                                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelCidade)
+                                            .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCep))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTelefone)
-                            .addComponent(jFormattedTextFieldTelefonePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCelularPessoa))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel5)
+                            .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanelDadosComplementaresLayout.setVerticalGroup(
@@ -703,32 +726,38 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     .addComponent(jLabelEnderecoPessoa)
                     .addComponent(jLabelNumero)
                     .addComponent(jLabelComplemento))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEnderecoPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelBairro)
+                    .addComponent(jLabelCidade)
                     .addComponent(jLabel5)
-                    .addComponent(jLabelCidade))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabelBairro))
+                .addGap(7, 7, 7)
                 .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldCidadeEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxEstadoEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelTelefone)
-                    .addComponent(jLabelCep)
-                    .addComponent(jLabelCelularPessoa))
-                .addGap(6, 6, 6)
-                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldTelefonePessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCelularPessoa)
+                            .addComponent(jLabelFoneComlPessoa)
+                            .addComponent(jLabelTelefoneRes))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFormattedTextFieldCelularPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldTelefonePessoaComl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelDadosComplementaresLayout.createSequentialGroup()
+                        .addComponent(jLabelCep)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldTelefonePessoaRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Complementares", jPanelDadosComplementares);
@@ -835,7 +864,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         String estadoEnd  = jComboBoxEstadoEnd.getSelectedItem().toString();
         String cidade     = jTextFieldCidadeEndereco.getText().toLowerCase();
         String cep        = jFormattedTextFieldCep.getText();
-        String foneFixo   = jFormattedTextFieldTelefonePessoa.getText();
+        String foneRes    = jFormattedTextFieldTelefonePessoaRes.getText();
+        String foneComl   = jFormattedTextFieldTelefonePessoaComl.getText();
         String celular    = jFormattedTextFieldCelularPessoa.getText();
         
         boolean retornoEmail = false;
@@ -847,8 +877,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     || cpf.length()< 11            || dtNasc.length()< 10        || celular.isEmpty()
                     || nomeMae.isEmpty()           || nomePai.isEmpty()          || endereco.isEmpty()
                     || numero.isEmpty()            || complemento.isEmpty()      || bairro.isEmpty()
-                    || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()           
-                    || foneFixo.isEmpty()          || cep.isEmpty()){
+                    || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()           ||foneComl.isEmpty()
+                    || foneRes.isEmpty()           || cep.isEmpty()){
 
                     JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
                     "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -863,7 +893,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         String dtCadastro = "";
 
                         try {
-                            dtCadastro = getDataAtual.getDataAtual().toString();
+                            dtCadastro = getDataAtual.getDataAtual();
                         } catch (ParseException ex) {
                             Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -876,7 +906,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         pessoa.setBairro(bairro);
                         pessoa.setCep(cep);
                         pessoa.setUf(estadoId);
-                        pessoa.setTelefone_res(foneFixo);
+                        pessoa.setTelefone_res(foneRes);
+                        pessoa.setTelefone_com(foneComl);
                         pessoa.setCelular(celular);
                         pessoa.setTipo_pessoa(sexo);
 
@@ -902,11 +933,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     }
                 }
         }else if(habilitaInsercao == 2){ //verifica campos para cadastro pessoa jurídica
+            
                     if( email.isEmpty()                || cnpj.length()< 18     || endereco.isEmpty()
                         || numero.isEmpty()            || complemento.isEmpty() || bairro.isEmpty()
                         || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()      || cep.isEmpty()
-                        || foneFixo.isEmpty()          || celular.isEmpty()     || inscEstadual.isEmpty()
-                        || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()) {
+                        || foneRes.isEmpty()          || celular.isEmpty()      || inscEstadual.isEmpty()
+                        || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()|| foneComl.isEmpty()) {
 
                         JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
                         "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -966,7 +998,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jTextFieldCidadeEndereco.setText("");
         jComboBoxEstadoEnd.setSelectedItem("ESCOLHA");
         jFormattedTextFieldCep.setText("");        
-        jFormattedTextFieldTelefonePessoa.setText("");
+        jFormattedTextFieldTelefonePessoaRes.setText("");
         jFormattedTextFieldCelularPessoa.setText("");
     }//GEN-LAST:event_jBlimparPessoaActionPerformed
 
@@ -1043,14 +1075,14 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         if(!Character.isDigit(c)) evt.consume(); 
     }//GEN-LAST:event_jTextFieldNumeroKeyTyped
 
-    private void jFormattedTextFieldTelefonePessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefonePessoaKeyTyped
+    private void jFormattedTextFieldTelefonePessoaResKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefonePessoaResKeyTyped
         
         char c = evt.getKeyChar();
         if (Character.isLowerCase(c)) {
           evt.setKeyChar(Character.toUpperCase(c));
         }
         if(!Character.isDigit(c)) evt.consume();         
-    }//GEN-LAST:event_jFormattedTextFieldTelefonePessoaKeyTyped
+    }//GEN-LAST:event_jFormattedTextFieldTelefonePessoaResKeyTyped
 
     private void jFormattedTextFieldCelularPessoaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCelularPessoaKeyTyped
         
@@ -1107,6 +1139,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBalterarPessoaActionPerformed
 
+    private void jFormattedTextFieldTelefonePessoaComlKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextFieldTelefonePessoaComlKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldTelefonePessoaComlKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -1159,7 +1195,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextFdataNascPessoa;
     private javax.swing.JFormattedTextField jFormattedTextFieldCelularPessoa;
     private javax.swing.JFormattedTextField jFormattedTextFieldCep;
-    private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoa;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoaComl;
+    private javax.swing.JFormattedTextField jFormattedTextFieldTelefonePessoaRes;
     private javax.swing.JLabel jLBemailPessoa;
     private javax.swing.JLabel jLInscricaoEstadual;
     private javax.swing.JLabel jLInscricaoMunicipal;
@@ -1175,12 +1212,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelComplemento;
     private javax.swing.JLabel jLabelEnderecoPessoa;
+    private javax.swing.JLabel jLabelFoneComlPessoa;
     private javax.swing.JLabel jLabelNomeMae;
     private javax.swing.JLabel jLabelNomePai;
     private javax.swing.JLabel jLabelNomePessoa;
     private javax.swing.JLabel jLabelNumero;
     private javax.swing.JLabel jLabelSexo;
-    private javax.swing.JLabel jLabelTelefone;
+    private javax.swing.JLabel jLabelTelefoneRes;
     private javax.swing.JLabel jLestadoIdentidade;
     private javax.swing.JLabel jLidentidade;
     private javax.swing.JLabel jLorgaoExpeditor;
