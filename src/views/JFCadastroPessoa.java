@@ -829,13 +829,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         
         String inscEstadual  = jFormattedTFinscricaoEstadual.getText();
         String inscMunicipal = jFormattedTFinscricaoMunicipal.getText();
-        String nomeFantasia  = jTFnomeFantasia.getText();
-        
-        String nomePessoa = jTFnomePessoa.getText().toLowerCase();
+        String nomeFantasia  = jTFnomeFantasia.getText().toLowerCase();
         
         //formata data
         String dataFormatada = "";
-        String dtNasc        = jFormattedTextFdataNascPessoa.getText();
+        String dtNasc = jFormattedTextFdataNascPessoa.getText();
         dtNasc = dtNasc.trim();
         
         //captura botão
@@ -854,19 +852,20 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         //prepara cnpj
         String cnpj = jFormattedTextFcnpj.getText();
         cnpj = cnpj.trim();
-        
-        String nomeMae    = jTextFieldNomeMae.getText().toUpperCase();
-        String nomePai    = jTextFieldNomePai.getText().toUpperCase();
-        String endereco   = jTextFieldEnderecoPessoa.getText().toLowerCase();
-        String numero     = jTextFieldNumero.getText();
+
+        String nomePessoa = jTFnomePessoa.getText().toLowerCase();        
+        String nomeMae     = jTextFieldNomeMae.getText().toUpperCase();
+        String nomePai     = jTextFieldNomePai.getText().toUpperCase();
+        String endereco    = jTextFieldEnderecoPessoa.getText().toLowerCase();
+        String numero      = jTextFieldNumero.getText();
         String complemento = jTextFieldComplemento.getText().toLowerCase();
-        String bairro     = jTextFieldBairro.getText().toLowerCase();
-        String estadoEnd  = jComboBoxEstadoEnd.getSelectedItem().toString();
-        String cidade     = jTextFieldCidadeEndereco.getText().toLowerCase();
-        String cep        = jFormattedTextFieldCep.getText();
-        String foneRes    = jFormattedTextFieldTelefonePessoaRes.getText();
-        String foneComl   = jFormattedTextFieldTelefonePessoaComl.getText();
-        String celular    = jFormattedTextFieldCelularPessoa.getText();
+        String bairro      = jTextFieldBairro.getText().toLowerCase();
+        String estadoEnd   = jComboBoxEstadoEnd.getSelectedItem().toString();
+        String cidade      = jTextFieldCidadeEndereco.getText().toLowerCase();
+        String cep         = jFormattedTextFieldCep.getText();
+        String foneRes     = jFormattedTextFieldTelefonePessoaRes.getText();
+        String foneComl    = jFormattedTextFieldTelefonePessoaComl.getText();
+        String celular     = jFormattedTextFieldCelularPessoa.getText();
         
         boolean retornoEmail = false;
         
@@ -886,50 +885,56 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 }else if(!retornoEmail){
 
                     dataFormatada = formData.transformaData(dtNasc);
-                    retornoEmail  = formEmail.validaEmail(email);
+                    
+                    if(!dataFormatada.equals("invalida")){
+                    
+                        retornoEmail  = formEmail.validaEmail(email);
 
-                    if(retornoEmail){
+                        if(retornoEmail){
 
-                        String dtCadastro = "";
+                            String dtCadastro = "";
 
-                        try {
-                            dtCadastro = getDataAtual.getDataAtual();
-                        } catch (ParseException ex) {
-                            Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                            try {
+                                dtCadastro = getDataAtual.getDataAtual();
+                            } catch (ParseException ex) {
+                                Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            pessoa.setDt_cadastro(dtCadastro);
+                            pessoa.setNome(nomePessoa);
+                            pessoa.setTipo_logradouro(complemento);
+                            pessoa.setLogradouro(endereco);
+                            pessoa.setNumLogradouro(numero);
+                            pessoa.setBairro(bairro);
+                            pessoa.setCep(cep);
+                            pessoa.setUf(estadoId);
+                            pessoa.setTelefone_res(foneRes);
+                            pessoa.setTelefone_com(foneComl);
+                            pessoa.setCelular(celular);
+                            pessoa.setTipo_pessoa(sexo);
+
+                            //verifica cpf
+                            boolean ehCpf = formCpf.isCPF(cpf);
+                            
+                            if(ehCpf){
+                                //retira . e - da string cpf
+                                cpf = Pattern.compile("\\.+").matcher(cpf).replaceAll("");
+                                cpf = Pattern.compile("\\-+").matcher(cpf).replaceAll("");
+                                pFisica.setCpf(cpf);    
+                                pFisica.setRg(identidade);
+                                pFisica.setDt_nascimento(dataFormatada);
+                                pFisica.setSexo(sexo);
+                            }else{
+                                JOptionPane.showMessageDialog(this, "Cpf inválido. Redigite!",
+                                "Aviso", JOptionPane.WARNING_MESSAGE);                    
+                            }
+                        }else{  
+                            JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
+                            "Aviso", JOptionPane.WARNING_MESSAGE);                
                         }
-                        pessoa.setDt_cadastro(dtCadastro);
-
-                        pessoa.setNome(nomePessoa);
-                        pessoa.setTipo_logradouro(complemento);
-                        pessoa.setLogradouro(endereco);
-                        pessoa.setNumLogradouro(numero);
-                        pessoa.setBairro(bairro);
-                        pessoa.setCep(cep);
-                        pessoa.setUf(estadoId);
-                        pessoa.setTelefone_res(foneRes);
-                        pessoa.setTelefone_com(foneComl);
-                        pessoa.setCelular(celular);
-                        pessoa.setTipo_pessoa(sexo);
-
-                      //verifica cpf
-                        boolean ehCpf = formCpf.isCPF(cpf);
-                        if(ehCpf){
-
-                            //retira . e - da string cpf
-                            cpf = Pattern.compile("\\.+").matcher(cpf).replaceAll("");
-                            cpf = Pattern.compile("\\-+").matcher(cpf).replaceAll("");
-                            //envia cpf para o banco via Dao
-                            pFisica.setCpf(cpf);    
-                            pFisica.setRg(identidade);
-                            pFisica.setDt_nascimento(dataFormatada);
-                            pFisica.setSexo(sexo);
-                        }else{
-                            JOptionPane.showMessageDialog(this, "Cpf inválido. Redigite!",
-                            "Aviso", JOptionPane.WARNING_MESSAGE);                    
-                        }
-                    }else{  
-                        JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
-                        "Aviso", JOptionPane.WARNING_MESSAGE);                
+                        
+                        //chama CadastroPessoaDao.createPessoa() 
+                        //chama CadastroPessoaDao.createPessoaFisica() 
+         
                     }
                 }
         }else if(habilitaInsercao == 2){ //verifica campos para cadastro pessoa jurídica
@@ -937,7 +942,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     if( email.isEmpty()                || cnpj.length()< 18     || endereco.isEmpty()
                         || numero.isEmpty()            || complemento.isEmpty() || bairro.isEmpty()
                         || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()      || cep.isEmpty()
-                        || foneRes.isEmpty()          || celular.isEmpty()      || inscEstadual.isEmpty()
+                        || foneRes.isEmpty()           || celular.isEmpty()     || inscEstadual.isEmpty()
                         || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()|| foneComl.isEmpty()) {
 
                         JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
@@ -965,9 +970,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 }
                             }       
                     }
-        //chama dao Pessoa passa: pessoa
-        //chama dao Pessoa Física passa: pFisica
-        //chama dao pessoa Jurídica: passa: pJur
+                    //chama CadastroPessoaDao.createPessoaJuridica() 
         }
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
 

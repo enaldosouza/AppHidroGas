@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
 
 /**
  * @author enaldo.souza <enaldo@unitri.edu.br>
@@ -22,22 +23,29 @@ public class Util {
 
     public String transformaData(String minhaData) {
 
-        // Recebe data: 29/10/2016 - Devolve data 20161029
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate data = LocalDate.parse(minhaData, formato);
-        String[] dataSplit = (formato.format(data)).split("/");
-        String dia = "";
-        String mes = "";
-        String ano = "";
+        // Recebe formato: 29/10/2016 - Devolve: 20161029
+        String dataFinal = "";
+        try{
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate data = LocalDate.parse(minhaData, formato);
+            String[] dataSplit = (formato.format(data)).split("/");
+            String dia = "";
+            String mes = "";
+            String ano = "";
 
-        for (int i = 0; i <= 3; i++) {
-            dia = dataSplit[0];
-            mes = dataSplit[1];
-            ano = dataSplit[2];
+            for (int i = 0; i <= 3; i++) {
+                dia = dataSplit[0];
+                mes = dataSplit[1];
+                ano = dataSplit[2];
+            }
+            dataFinal = ano + mes + dia;
+            return dataFinal;
+            
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Data inválida. Redigite!",
+            "Aviso", JOptionPane.WARNING_MESSAGE); 
+            return "invalida";
         }
-
-        String dataFinal = ano + mes + dia;
-        return dataFinal;
     }
 
     public boolean validaEmail(String email) {
