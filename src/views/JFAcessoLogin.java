@@ -146,15 +146,14 @@ public class JFAcessoLogin extends javax.swing.JFrame {
 
     private void jTextFieldNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyTyped
         
-        //Na variável "c" armazenamos o que o usuário digitou    
-        char c=evt.getKeyChar();
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
-//        String ca = "eu";
-//        Pattern.compile("[a-zA-Z]").matcher(ca);
-        //Aqui verificamos se o que foi digitado é um número, um backspace ou um delete. Se for, consumimos o evento, ou seja, o jTextField não receberá o valor digitado
-//        if((Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)){
-//                evt.consume();
-//        }                
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+        
+        if((Character.isDigit(c) || (c==KeyEvent.VK_BACK_SPACE) || c==KeyEvent.VK_DELETE)){
+            evt.consume();
+        }                
     }//GEN-LAST:event_jTextFieldNomeKeyTyped
 
     /**

@@ -216,6 +216,11 @@ public class jFrameInserirLogin extends javax.swing.JFrame {
         });
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESCOLHA", "ADM\t", "USR", " " }));
+        jComboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTipoActionPerformed(evt);
+            }
+        });
 
         jLabelTipo.setText("Tipo: *");
 
@@ -477,6 +482,10 @@ public class jFrameInserirLogin extends javax.swing.JFrame {
         char c=evt.getKeyChar();
         if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
     }//GEN-LAST:event_jTextFieldNomeKeyTyped
+
+    private void jComboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTipoActionPerformed
 
     /**
      * @param args the command line arguments
