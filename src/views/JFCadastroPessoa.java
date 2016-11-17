@@ -122,12 +122,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }
     public void visualizaPessoaFisica(){
 
-//        for(Cidade c: cidadeDao.listaCidades()){
-//            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade());
-//            jComboBoxEstadoEnd.addItem(c.getEstado_cidade());
-//        }
-        
-
         jTFnomeFantasia.setEditable(false);
         jFormattedTFinscricaoEstadual.setEditable(false);
         jFormattedTFinscricaoMunicipal.setEditable(false);
@@ -137,12 +131,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }
     
     public void visualizaPessoaJuridica(){
-    
-//        for(Cidade c: cidadeDao.listaCidades()){
-//            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade());
-//            jComboBoxEstadoEnd.addItem(c.getEstado_cidade());
-//        }       
-        
+
         jTFnomePessoa.setEditable(false);
         jFormattedTextFdataNascPessoa.setEditable(false);
         jRadioButtonFeminino.setEnabled(false);
