@@ -883,50 +883,49 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabelBairro" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="292" pref="587" max="32767" attributes="0"/>
-                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTextFieldBairro" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jFormattedTextFieldCep" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                                  <Component id="jLabelCep" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabelTelefoneRes" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jFormattedTextFieldTelefonePessoaRes" min="-2" pref="138" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jFormattedTextFieldCep" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                          <Component id="jLabelCep" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabelFoneComlPessoa" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jFormattedTextFieldTelefonePessoaComl" min="-2" pref="138" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jFormattedTextFieldCelularPessoa" min="-2" pref="128" max="-2" attributes="0"/>
-                                                  <Component id="jLabelCelularPessoa" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="jComboBoxCidadeEndereco" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabelTelefoneRes" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jFormattedTextFieldTelefonePessoaRes" min="-2" pref="138" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelFoneComlPessoa" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jFormattedTextFieldTelefonePessoaComl" min="-2" pref="138" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jFormattedTextFieldCelularPessoa" min="-2" pref="128" max="-2" attributes="0"/>
+                                          <Component id="jLabelCelularPessoa" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jTextFieldBairro" alignment="0" min="-2" pref="310" max="-2" attributes="0"/>
+                                          <Component id="jLabelBairro" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLcodCidade" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCBcodCidade" min="-2" pref="66" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabelCidade" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jComboBoxCidadeEndereco" min="-2" pref="346" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxEstadoEnd" min="-2" pref="218" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxEstadoEnd" min="-2" pref="69" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -953,12 +952,14 @@
                           <Component id="jLabelCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLcodCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextFieldBairro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxEstadoEnd" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jComboBoxCidadeEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCBcodCidade" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1031,7 +1032,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estado: *"/>
+                <Property name="text" type="java.lang.String" value="Estado:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelCidade">
@@ -1120,6 +1121,21 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCidadeEnderecoActionPerformed"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jComboBoxCidadeEnderecoKeyPressed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLcodCidade">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cod Cidade:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jCBcodCidade">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
