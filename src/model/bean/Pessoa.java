@@ -3,27 +3,28 @@ package model.bean;
 
 public class Pessoa {
     
-    private String cidade_cod_cidade;
-    private String nome;
-    private String logradouro;
-    private String num_logradouro;
-    private String tipo_logradouro;
-    private String bairro;
-    private String cep;
-    private String uf;
-    private String telefone_res;
-    private String telefone_com;
-    private String celular;
-    private String tipo_pessoa;
-    private String dt_cadastro;
-    private String dt_desativacao;
-    private String senha;
+    private Integer cod_pessoa;
+    private Integer cidade_cod_cidade;
+    private String  nome;
+    private String  logradouro;
+    private Integer num_logradouro;
+    private String  tipo_logradouro;
+    private String  bairro;
+    private String  cep;
+    private String  uf;
+    private String  telefone_res;
+    private String  telefone_com;
+    private String  celular;
+    private String  tipo_pessoa;
+    private String  dt_cadastro;
+    private String  dt_desativacao;
+    private String  senha;
     
-    public String getCidadeCodCidade(){
+    public Integer getCidadeCodCidade(){
         return cidade_cod_cidade;
     }
 
-    public void setCidadeCodCidade(String cidade_cod_cidade){
+    public void setCidadeCodCidade(Integer cidade_cod_cidade){
         this.cidade_cod_cidade = cidade_cod_cidade;
     }
     
@@ -35,11 +36,11 @@ public class Pessoa {
         this.logradouro = logradouro;
     }
     
-    public String getNumLogradouro(){
+    public Integer getNumLogradouro(){
         return num_logradouro;
     }
 
-    public void setNumLogradouro(String num_logradouro){
+    public void setNumLogradouro(Integer num_logradouro){
         this.num_logradouro = num_logradouro;
     }
         
@@ -141,5 +142,13 @@ public class Pessoa {
      
     public String toString() {
         return this.nome;
+    }
+
+    public Integer getCod_pessoa() {
+        return cod_pessoa;
+    }
+
+    public void setCod_pessoa(Integer cod_pessoa) {
+        this.cod_pessoa = cod_pessoa;
     }
 }
