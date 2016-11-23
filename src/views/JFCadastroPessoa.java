@@ -902,6 +902,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
  
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
         
+        Integer codCidade  = Integer.valueOf(jCBcodCidade.getSelectedItem().toString());
+        String estadoEnd   = jComboBoxEstadoEnd.getSelectedItem().toString();        
+        String cidade      = jComboBoxCidadeEndereco.getSelectedItem().toString();
+        
         String inscEstadual  = jFormattedTFinscricaoEstadual.getText();
         String inscMunicipal = jFormattedTFinscricaoMunicipal.getText();
         String nomeFantasia  = jTFnomeFantasia.getText().toLowerCase();
@@ -954,9 +958,15 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         celular = Pattern.compile("\\)+").matcher(celular).replaceAll("");
         celular = Pattern.compile("\\-+").matcher(celular).replaceAll("");
         
-        Integer codCidade  = Integer.valueOf(jCBcodCidade.getSelectedItem().toString());
-        String estadoEnd   = jComboBoxEstadoEnd.getSelectedItem().toString();        
-        String cidade      = jComboBoxCidadeEndereco.getSelectedItem().toString();
+//        Integer codCidade  = Integer.valueOf(jCBcodCidade.getSelectedItem().toString());
+//        String estadoEnd   = jComboBoxEstadoEnd.getSelectedItem().toString();        
+//        String cidade      = jComboBoxCidadeEndereco.getSelectedItem().toString();
+//        
+//        
+//        System.out.println(codCidade);
+//        System.out.println(estadoEnd);
+//        System.out.println(cidade);
+        
         
         boolean retornoEmail = false;
         String dtCadastro = "";
@@ -1029,6 +1039,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     boolean retornoCadPessoa = pessoas.createPessoa(pessoa) ;
 
                     if(retornoCadPessoa){
+                        
+//                        int codigoPessoa = Integer.valueOf(pessoa.getCod_pessoa().toString());
+//                        pFisica.setPessoa_cod_pessoa(300);
                         pFisica.setPessoa_cod_pessoa(pessoa.getCod_pessoa());
                         pFisica.setCpf(cpf);    
                         pFisica.setRg(identidade);

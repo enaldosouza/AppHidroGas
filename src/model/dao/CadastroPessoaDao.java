@@ -25,6 +25,8 @@ public class CadastroPessoaDao {
     private ResultSet rs         = null;
     private Connection con;
     
+    Integer ret_codPessoa = 0;
+    
     public CadastroPessoaDao(){
     
     }
@@ -132,5 +134,28 @@ public class CadastroPessoaDao {
             ConnectionFactory.closeConnection(con, ps);
         }
         return false;
-    }    
+    } 
+    
+    public Integer retornaCodPessoaDePessoa(Pessoa pessoa){ 
+        sql = "SELECT cod_pessoa FROM pessoa WHERE cod_pessoa = ?";
+        con = ConnectionFactory.getConnetion();
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pessoa.getCod_pessoa());
+            rs = ps.executeQuery(); 
+            if(!rs.next()){
+                JOptionPane.showMessageDialog(null, "Código de pessoa não encontrado!", "Aviso", 
+                JOptionPane.WARNING_MESSAGE);
+            }
+            ret_codPessoa  = rs.getInt("cod_pessoa");
+            return ret_codPessoa;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
+            return "";
+        }finally{
+            ConnectionFactory.closeConnection(con, ps, rs);
+        }
+    }
+    
+    
 }
