@@ -54,22 +54,13 @@ public class CadastroPessoaDao {
             ps.setString(13, pessoa.getDt_cadastro());       
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Pessoa cadastrada com Sucesso!",
-            "Aviso", JOptionPane.WARNING_MESSAGE);
             return true;
             
         }catch (SQLException sqle) {
-            String sqlState = sqle.getSQLState();
-            if(sqlState.equals("23505")){ 
-                JOptionPane.showMessageDialog(null, "Pessoa já cadastrada!", 
-                "Aviso", JOptionPane.WARNING_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "Falha na Conexão:  " + sqle);
-            }
+                return false;
         }finally{
             ConnectionFactory.closeConnection(con, ps);
         }
-        return false;
     }
     
     public boolean createPessoaFisica(PessoaFisica pFisica){
@@ -136,26 +127,43 @@ public class CadastroPessoaDao {
         return false;
     } 
     
-    public Integer retornaCodPessoaDePessoa(Pessoa pessoa){ 
-        sql = "SELECT cod_pessoa FROM pessoa WHERE cod_pessoa = ?";
+    public Integer retornaCodPessoaDePessoa(){ 
+        sql = "SELECT * FROM pessoa ORDER BY cod_pessoa DESC LIMIT 1";
         con = ConnectionFactory.getConnetion();
         try{
             ps = con.prepareStatement(sql);
-            ps.setInt(1, pessoa.getCod_pessoa());
             rs = ps.executeQuery(); 
             if(!rs.next()){
                 JOptionPane.showMessageDialog(null, "Código de pessoa não encontrado!", "Aviso", 
                 JOptionPane.WARNING_MESSAGE);
+                return 0;
             }
             ret_codPessoa  = rs.getInt("cod_pessoa");
-            return ret_codPessoa;
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
-            return "";
         }finally{
             ConnectionFactory.closeConnection(con, ps, rs);
         }
+        return ret_codPessoa;
+        
     }
+    
+    public boolean apagaCadastroPessoa(int cod){
+        sql = "DELETE FROM pessoa where cod_pessoa = cod";
+        con = ConnectionFactory.getConnetion();
+        try{
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+          }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Falha ao apagar código parcial de pessoa! " + e, "Aviso", 
+            JOptionPane.WARNING_MESSAGE);
+            return false;
+        }finally{
+            ConnectionFactory.closeConnection(con, ps);
+        }
+        return true;
+    }
+    
     
     
 }

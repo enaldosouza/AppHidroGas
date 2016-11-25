@@ -146,6 +146,32 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         habilitaInsercao = 2;
     }
 
+    public void limparCamposFormPessoa(){
+    
+        jCBcodCidade.addItem("ESCOLHA");
+        jComboBoxCidadeEndereco.addItem("ESCOLHA'");
+        jComboBoxEstadoEnd.addItem("ESCOLHA");
+        jTFnomePessoa.setText("");
+        jFormattedTextFdataNascPessoa.setText("");
+        jTFidentidade.setText("");  
+        jCBestadoIden.setSelectedItem("ESCOLHA");
+        jComboBoxOrgExpeditor.setSelectedItem("ESCOLHA");
+        jTextfEmailPessoa.setText("");
+        jFormattedTextCpf.setText("");
+        jFormattedTextFcnpj.setText("");
+        jTextFieldNomeMae.setText("");
+        jTextFieldNomePai.setText("");  
+        jTextFieldEnderecoPessoa.setText("");
+        jTextFieldNumero.setText("");
+        jTextFieldComplemento.setText("");
+        jTextFieldBairro.setText("");
+        jComboBoxCidadeEndereco.setSelectedItem("ESCOLHA");
+        jComboBoxEstadoEnd.setSelectedItem("ESCOLHA");
+        jFormattedTextFieldCep.setText("");        
+        jFormattedTextFieldTelefonePessoaRes.setText("");
+        jFormattedTextFieldCelularPessoa.setText("");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -908,7 +934,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         
         String inscEstadual  = jFormattedTFinscricaoEstadual.getText();
         String inscMunicipal = jFormattedTFinscricaoMunicipal.getText();
-        String nomeFantasia  = jTFnomeFantasia.getText().toLowerCase();
+        String nomeFantasia  = jTFnomeFantasia.getText().toUpperCase();
         
         //formata data
         String dataFormatada = "";
@@ -921,8 +947,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         
         String identidade = jTFidentidade.getText();
         String estadoId   = jCBestadoIden.getSelectedItem().toString();
-        String orgExped   = jCBestadoIden.getSelectedItem().toString();
-        String email      = jTextfEmailPessoa.getText();
+        String orgExped   = jComboBoxOrgExpeditor.getSelectedItem().toString();
+        String email      = jTextfEmailPessoa.getText().toUpperCase();
 
         //prepara cpf
         String cpf = jFormattedTextCpf.getText();
@@ -932,13 +958,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         String cnpj = jFormattedTextFcnpj.getText();
         cnpj = cnpj.trim();
 
-        String nomePessoa  = jTFnomePessoa.getText().toLowerCase();        
+        String nomePessoa  = jTFnomePessoa.getText().toUpperCase();        
         String nomeMae     = jTextFieldNomeMae.getText().toUpperCase();
         String nomePai     = jTextFieldNomePai.getText().toUpperCase();
-        String endereco    = jTextFieldEnderecoPessoa.getText().toLowerCase();
+        String endereco    = jTextFieldEnderecoPessoa.getText().toUpperCase();
         Integer numero     = Integer.valueOf(jTextFieldNumero.getText());
-        String complemento = jTextFieldComplemento.getText().toLowerCase();
-        String bairro      = jTextFieldBairro.getText().toLowerCase();
+        String complemento = jTextFieldComplemento.getText().toUpperCase();
+        String bairro      = jTextFieldBairro.getText().toUpperCase();
         String cep         = jFormattedTextFieldCep.getText();
         String foneRes     = jFormattedTextFieldTelefonePessoaRes.getText();
         String foneComl    = jFormattedTextFieldTelefonePessoaComl.getText();
@@ -1036,23 +1062,33 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     pessoa.setCelular(celular);
                     pessoa.setTipo_pessoa(sexo);
 
-                    boolean retornoCadPessoa = pessoas.createPessoa(pessoa) ;
+                    boolean retornoCadPessoa = pessoas.createPessoa(pessoa);
 
                     if(retornoCadPessoa){
                         
-//                        int codigoPessoa = Integer.valueOf(pessoa.getCod_pessoa().toString());
-//                        pFisica.setPessoa_cod_pessoa(300);
-                        pFisica.setPessoa_cod_pessoa(pessoa.getCod_pessoa());
+                        int codigoPessoa = pessoas.retornaCodPessoaDePessoa();
+                        pFisica.setPessoa_cod_pessoa(codigoPessoa);
                         pFisica.setCpf(cpf);    
                         pFisica.setRg(identidade);
                         pFisica.setDt_nascimento(dataFormatada);
                         pFisica.setSexo(sexo);
 
-                        pessoas.createPessoaFisica(pFisica);
-
+                        boolean ret = pessoas.createPessoaFisica(pFisica);
+                        if(!ret){
+                            int retCodPess = pessoas.retornaCodPessoaDePessoa();
+                            if(retCodPess > 0){
+                                boolean retApagaPessoa = pessoas.apagaCadastroPessoa(retCodPess);
+                                if(retApagaPessoa){
+                                    JOptionPane.showMessageDialog(this, "Pessoa não cadastrada!",
+                                    "Aviso", JOptionPane.WARNING_MESSAGE);                                    
+                                }
+                            }
+                        }
+                        this.limparCamposFormPessoa();
                     }else{
                         JOptionPane.showMessageDialog(this, "Recadastre!",
-                        "Aviso", JOptionPane.WARNING_MESSAGE);                            
+                        "Aviso", JOptionPane.WARNING_MESSAGE);
+                        dadosConfirmados = false;
                     }
                 } 
         }else if(habilitaInsercao == 2){ //verifica campos para cadastro pessoa jurídica
