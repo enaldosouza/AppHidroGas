@@ -21,6 +21,7 @@ public class CadastroPessoaDao {
     PessoaJuridica pJur  = new PessoaJuridica();
     
     private String sql           = null;
+    private String sql2          = null;
     private PreparedStatement ps = null;
     private ResultSet rs         = null;
     private Connection con;
@@ -38,7 +39,7 @@ public class CadastroPessoaDao {
               + "tipo_pessoa, dt_cadastro) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
         con = ConnectionFactory.getConnetion();
         try{
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql, ps.RETURN_GENERATED_KEYS);
             ps.setInt   (1,  pessoa.getCidadeCodCidade());
             ps.setString(2,  pessoa.getNome());
             ps.setString(3,  pessoa.getTipo_logradouro());
@@ -53,7 +54,16 @@ public class CadastroPessoaDao {
             ps.setString(12, pessoa.getTipo_pessoa());
             ps.setString(13, pessoa.getDt_cadastro());       
             ps.executeUpdate();
+            
+            // Recupera a id
+            rs = ps.getGeneratedKeys();
+            int id = 0;
+            if(rs.next()){
+                id = rs.getInt(1);
+            }
 
+            System.out.println(id);
+            
             return true;
             
         }catch (SQLException sqle) {
@@ -94,6 +104,73 @@ public class CadastroPessoaDao {
         }
         return false;
     }
+    
+    public boolean createPessoaFisica2(Pessoa pessoa, PessoaFisica pFisica) throws SQLException{
+    
+        sql = "insert into pessoa (cidade_cod_cidade, nome, tipo_logadouro, logradouro, "
+              + "num_logradouro, bairro, cep, uf, telefone_res, telefone_com, celular, "
+              + "tipo_pessoa, dt_cadastro) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        
+        sql2 = "insert into pessoa_fisica (pessoa_cod_pessoa, cpf, rg, dt_nascimento, sexo) values(?,?,?,?,?)";        
+        
+        con = ConnectionFactory.getConnetion();
+        con.setAutoCommit(false);
+
+        try{
+            ps = con.prepareStatement(sql, ps.RETURN_GENERATED_KEYS);
+            ps.setInt   (1,  pessoa.getCidadeCodCidade());
+            ps.setString(2,  pessoa.getNome());
+            ps.setString(3,  pessoa.getTipo_logradouro());
+            ps.setString(4,  pessoa.getLogradouro());
+            ps.setInt   (5,  pessoa.getNumLogradouro());
+            ps.setString(6,  pessoa.getBairro());
+            ps.setString(7,  pessoa.getCep());
+            ps.setString(8,  pessoa.getUf());
+            ps.setString(9,  pessoa.getTelefone_res());
+            ps.setString(10,  pessoa.getTelefone_com());
+            ps.setString(11, pessoa.getCelular());
+            ps.setString(12, pessoa.getTipo_pessoa());
+            ps.setString(13, pessoa.getDt_cadastro());       
+            ps.executeUpdate();
+            
+            // Recupera a id
+            rs = ps.getGeneratedKeys();
+            int id = 0;
+            if(rs.next()){
+                id = rs.getInt(1);
+            }
+
+            ps = con.prepareStatement(sql2);
+            ps.setInt   (1, id);
+            ps.setString(2, pFisica.getCpf());
+            ps.setString(3, pFisica.getRg());
+            ps.setString(4, pFisica.getDt_nascimento());
+            ps.setString(5, pFisica.getSexo());
+            ps.executeUpdate();
+            
+            con.commit();
+            
+            JOptionPane.showMessageDialog(null, "Pessoa Física cadastrada com Sucesso!",
+            "Aviso", JOptionPane.WARNING_MESSAGE);
+            
+            return true;
+            
+        }catch (SQLException sqle) {
+            String sqlState = sqle.getSQLState();
+            if(sqlState.equals("23505")){ 
+                JOptionPane.showMessageDialog(null, "Pessoa Física já cadastrada!", 
+                "Aviso", JOptionPane.WARNING_MESSAGE);
+                con.rollback();
+            }else{
+                JOptionPane.showMessageDialog(null, "Falha na Conexão:  " + sqle);
+                con.rollback();
+            }
+        }finally{
+            ConnectionFactory.closeConnection(con, ps);
+        }
+        return false;
+    }
+    
     
     public boolean createPessoaJuridica(PessoaJuridica pJuridica){
     
