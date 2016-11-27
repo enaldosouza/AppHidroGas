@@ -376,7 +376,7 @@ public class Util {
     private static void validaIEAlagoas(String ie) throws Exception {
         //valida quantidade de digitos
         if (ie.length() != 9) {
-            throw new Exception("Quantidade de d&#65533;gitos inv&#65533;lida.");
+            throw new Exception("Quantidade de dígitos inválidos!");
         }
 
         //valida os dois primeiros d&#digitos;gitos - deve ser iguais a 24
