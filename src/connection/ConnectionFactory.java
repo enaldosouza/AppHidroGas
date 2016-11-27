@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class ConnectionFactory {
     
     private static final String DRIVER = "org.postgresql.Driver";
-    private static final String URL    = "jdbc:postgresql://localhost:5432/projeto-tom";
+    private static final String URL    = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USER   = "postgres";
     private static final String PASS   = "postgres";
     

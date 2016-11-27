@@ -46,8 +46,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     Cidade cidade             = new Cidade();
     int habilitaInsercao = 0;
     
-    private JComboBox testBox = new JComboBox();
-    
     ArrayList<String> arrCidEst = new ArrayList<>();
     
     public JFCadastroPessoa() {
@@ -171,6 +169,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jFormattedTextFieldCep.setText("");        
         jFormattedTextFieldTelefonePessoaRes.setText("");
         jFormattedTextFieldCelularPessoa.setText("");
+        jTFnomeFantasia.setText("");
+        jFormattedTFinscricaoEstadual.setText("");
+        jFormattedTFinscricaoMunicipal.setText("");
     }
     
     /**
@@ -503,6 +504,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jTextFieldNomePai.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextFieldNomePaiKeyTyped(evt);
+            }
+        });
+
+        jTFnomeFantasia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFnomeFantasiaKeyTyped(evt);
             }
         });
 
@@ -992,7 +999,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         boolean dadosConfirmados = false; 
         
         if(habilitaInsercao == 1){//verifica campos para cadastro pessoa física
-            
             if( nomePessoa.isEmpty()           || sexo.isEmpty()             || identidade.isEmpty()
                 || estadoId.equals("ESCOLHA")  || orgExped.equals("ESCOLHA") || email.isEmpty()
                 || cpf.length()< 11            || dtNasc.length()< 10        || celular.isEmpty()
@@ -1052,7 +1058,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 pFisica.setSexo(sexo);
 
                 try {
-                    boolean ret = pessoas.createPessoaFisica2(pessoa, pFisica);
+                    boolean ret = pessoas.createPessoaFisica(pessoa, pFisica);
                     if(ret){
                         this.limparCamposFormPessoa();
                     }
@@ -1061,43 +1067,62 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 }
             } 
         }else if(habilitaInsercao == 2){ //verifica campos para cadastro pessoa jurídica
-            
-                    if( email.isEmpty()                || cnpj.length()< 18     || endereco.isEmpty()
-                        || numero < 0                  || complemento.isEmpty() || bairro.isEmpty()
-                        || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()      || cep.isEmpty()
-                        || foneRes.isEmpty()           || celular.isEmpty()     || inscEstadual.isEmpty()
-                        || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()|| foneComl.isEmpty()) {
+            if( email.isEmpty()                || cnpj.length()< 18     || endereco.isEmpty()
+                || numero < 0                  || complemento.isEmpty() || bairro.isEmpty()
+                || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()      || cep.isEmpty()
+                || foneRes.isEmpty()           || celular.isEmpty()     || inscEstadual.isEmpty()
+                || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()|| foneComl.isEmpty()){
 
-                        JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
-                        "Aviso", JOptionPane.WARNING_MESSAGE);
-                    } else {
-                            retornoEmail  = formEmail.validaEmail(email);
-                            if(retornoEmail){   
-                                //verifica Cnpj
-                                boolean ehCnpj = formCnpj.isCNPJ(cnpj);
-                                if(ehCnpj){
-                                    //retira ponto(.) , traço(-) e barra(/) da string cnpj
-                                    cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
-                                    cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
-                                    cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
-                            
-                                    pJur.setPessoa_cod_pessoa(pessoa.getCod_pessoa());
-                                    pJur.setCnpj(cnpj);
-                                    pJur.setIe(inscEstadual);
-                                    pJur.setIm(inscMunicipal);
-                                    pJur.setNome_fantasia(nomeFantasia);
+                JOptionPane.showMessageDialog(this, "Todos os campos são obrigatórios!",
+                "Aviso", JOptionPane.WARNING_MESSAGE);
+            }else{
+                retornoEmail  = formEmail.validaEmail(email);
+                if(retornoEmail){   
+                    //verifica Cnpj
+                    boolean ehCnpj = formCnpj.isCNPJ(cnpj);
+                    if(ehCnpj){
+                        //retira ponto(.) , traço(-) e barra(/) da string cnpj
+                        cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
+                        cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
+                        cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Cnpj inválido. Redigite!",
+                        "Aviso", JOptionPane.WARNING_MESSAGE);        
+                    }
+                }else{  
+                    JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
+                    "Aviso", JOptionPane.WARNING_MESSAGE);                
+                }
+                if(dadosConfirmados){
+                    pessoa.setDt_cadastro(dtCadastro);
+                    pessoa.setCidadeCodCidade(codCidade);
+                    pessoa.setNome(nomePessoa);
+                    pessoa.setTipo_logradouro(complemento);
+                    pessoa.setLogradouro(endereco);
+                    pessoa.setNumLogradouro(numero);
+                    pessoa.setBairro(bairro);
+                    pessoa.setCep(cep);
+                    pessoa.setUf(estadoId);
+                    pessoa.setTelefone_res(foneRes);
+                    pessoa.setTelefone_com(foneComl);
+                    pessoa.setCelular(celular);
+                    pessoa.setTipo_pessoa(sexo);
 
-                                    pessoas.createPessoaJuridica(pJur);
-                                    
-                                }else{
-                                    JOptionPane.showMessageDialog(this, "Cnpj inválido. Redigite!",
-                                    "Aviso", JOptionPane.WARNING_MESSAGE);        
-                                }
-                            }else{  
-                                JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
-                                "Aviso", JOptionPane.WARNING_MESSAGE);                
-                            }
-                    }       
+                    pJur.setCnpj(cnpj);
+                    pJur.setIe(inscEstadual);
+                    pJur.setIm(inscMunicipal);
+                    pJur.setNome_fantasia(nomeFantasia);
+
+                    try {
+                        boolean ret = pessoas.createPessoaJuridica(pessoa, pJur);
+                        if(ret){
+                            this.limparCamposFormPessoa();
+                        }    
+                    }catch (SQLException ex) {
+                        Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                    }                    
+                } 
+            }    
         }
     }//GEN-LAST:event_jBinserirPessoaActionPerformed
 
@@ -1131,6 +1156,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jFormattedTextFieldTelefonePessoaRes.setText("");
         jFormattedTextFieldCelularPessoa.setText("");
         jFormattedTextFieldTelefonePessoaComl.setText("");
+        jTFnomeFantasia.setText("");
+        jFormattedTFinscricaoEstadual.setText("");
+        jFormattedTFinscricaoMunicipal.setText("");        
     }//GEN-LAST:event_jBlimparPessoaActionPerformed
 
     private void jBcancelarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcancelarPessoaActionPerformed
@@ -1307,6 +1335,14 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private void jComboBoxCidadeEnderecoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBoxCidadeEnderecoKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCidadeEnderecoKeyPressed
+
+    private void jTFnomeFantasiaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFnomeFantasiaKeyTyped
+        
+        char c = evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+          evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_jTFnomeFantasiaKeyTyped
 
     /**
      * @param args the command line arguments
