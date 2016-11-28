@@ -70,33 +70,33 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         
         //estados
         jCBestadoIden.addItem("ESCOLHA");
-        jCBestadoIden.addItem("AC");
-        jCBestadoIden.addItem("AL");
-        jCBestadoIden.addItem("AP");
-        jCBestadoIden.addItem("AM");
-        jCBestadoIden.addItem("BA");
-        jCBestadoIden.addItem("CE");
-        jCBestadoIden.addItem("DF");
-        jCBestadoIden.addItem("ES");
-        jCBestadoIden.addItem("GO");
-        jCBestadoIden.addItem("MA");
-        jCBestadoIden.addItem("MT");
-        jCBestadoIden.addItem("MS");
-        jCBestadoIden.addItem("MG");
-        jCBestadoIden.addItem("PA");
-        jCBestadoIden.addItem("PB");
-        jCBestadoIden.addItem("PR");
-        jCBestadoIden.addItem("PE");
-        jCBestadoIden.addItem("PI");
-        jCBestadoIden.addItem("RJ");
-        jCBestadoIden.addItem("RN");
-        jCBestadoIden.addItem("RS");
-        jCBestadoIden.addItem("RO");
-        jCBestadoIden.addItem("RR");
-        jCBestadoIden.addItem("SC");
-        jCBestadoIden.addItem("SP");
-        jCBestadoIden.addItem("SE");
-        jCBestadoIden.addItem("TO");
+        jCBestadoIden.addItem("AC"); //13
+        jCBestadoIden.addItem("AL"); //9
+        jCBestadoIden.addItem("AP"); //9
+        jCBestadoIden.addItem("AM"); //9
+        jCBestadoIden.addItem("BA"); //9
+        jCBestadoIden.addItem("CE"); //9
+        jCBestadoIden.addItem("DF"); //13
+        jCBestadoIden.addItem("ES"); //9
+        jCBestadoIden.addItem("GO"); //9
+        jCBestadoIden.addItem("MA"); //9
+        jCBestadoIden.addItem("MT"); //11
+        jCBestadoIden.addItem("MS"); //9
+        jCBestadoIden.addItem("MG"); //13
+        jCBestadoIden.addItem("PA"); //9
+        jCBestadoIden.addItem("PB"); //9
+        jCBestadoIden.addItem("PR"); //10
+        jCBestadoIden.addItem("PE"); //14
+        jCBestadoIden.addItem("PI"); //9
+        jCBestadoIden.addItem("RJ"); //8
+        jCBestadoIden.addItem("RN"); //ie.length() != 10 && ie.length() != 9
+        jCBestadoIden.addItem("RS"); //10
+        jCBestadoIden.addItem("RO"); //14
+        jCBestadoIden.addItem("RR"); //9
+        jCBestadoIden.addItem("SC"); //9
+        jCBestadoIden.addItem("SP"); //ie.length() != 12 && ie.length() != 13
+        jCBestadoIden.addItem("SE"); //9
+        jCBestadoIden.addItem("TO"); //ie.length() != 9 && ie.length() != 11
         
         //orgãos expeditores
         jComboBoxOrgExpeditor.addItem("ESCOLHA");
@@ -229,6 +229,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jLInscricaoMunicipal = new javax.swing.JLabel();
         jFormattedTFinscricaoEstadual = new javax.swing.JFormattedTextField();
         jFormattedTFinscricaoMunicipal = new javax.swing.JFormattedTextField();
+        jTextField1 = new javax.swing.JTextField();
+        try{
+            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
+            jTextField1 = new javax.swing.JFormattedTextField(cpf);
+        }
+        catch (Exception e){
+        }
         jPanelDadosComplementares = new javax.swing.JPanel();
         jLabelEnderecoPessoa = new javax.swing.JLabel();
         jTextFieldEnderecoPessoa = new javax.swing.JTextField();
@@ -597,6 +604,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                         .addComponent(jLBemailPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 13, Short.MAX_VALUE)))))))
                 .addContainerGap())
+            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                .addGap(297, 297, 297)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDadosPessoaisLayout.setVerticalGroup(
             jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -653,7 +664,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Pessoais", jPanelDadosPessoais);
@@ -863,7 +876,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextFieldTelefonePessoaRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Complementares", jPanelDadosComplementares);
@@ -896,7 +909,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(907, 715));
+        setSize(new java.awt.Dimension(907, 834));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1455,6 +1468,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPaneCadastroDadosPessoais;
     private javax.swing.JTable jTcadastroPessoa;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldEnderecoPessoa;
