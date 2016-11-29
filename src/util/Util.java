@@ -57,6 +57,15 @@ public class Util {
         }
         return false;
     }
+    
+    public Integer contaStringDeDigitos(String numero){
+        String nroSemMascara = this.removeMascara(numero);
+        int numFinal = 0;
+        for (int i = 0; i < nroSemMascara.length(); i++) {
+            numFinal += 1;
+        }
+        return numFinal;
+    }
 
     public static boolean isCPF(String CPF) {
         //retira . e - da string cpf
@@ -991,7 +1000,7 @@ public class Util {
             throw new Exception("Quantidade de digitos inválidas.");
         }
 
-        //C&#65533;lculo do primeiro d&#65533;gito
+        //Cálculo do primeiro dígito
         int soma = 0;
         int pesoInicio = 3;
         int pesoFim = 7;
