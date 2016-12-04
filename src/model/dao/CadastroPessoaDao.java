@@ -33,7 +33,7 @@ public class CadastroPessoaDao {
     }
 
     public boolean createPessoaFisica(Pessoa pessoa, PessoaFisica pFisica) throws SQLException{
-    
+     
         sql = "insert into pessoa (cidade_cod_cidade, nome, tipo_logadouro, logradouro, "
               + "num_logradouro, bairro, cep, uf, telefone_res, telefone_com, celular, "
               + "tipo_pessoa, dt_cadastro) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -49,14 +49,14 @@ public class CadastroPessoaDao {
             ps.setString(2,  pessoa.getNome());
             ps.setString(3,  pessoa.getTipo_logradouro());
             ps.setString(4,  pessoa.getLogradouro());
-            ps.setInt   (5,  pessoa.getNumLogradouro());
+            ps.setString(5,  pessoa.getNumLogradouro());
             ps.setString(6,  pessoa.getBairro());
             ps.setString(7,  pessoa.getCep());
             ps.setString(8,  pessoa.getUf());
             ps.setString(9,  pessoa.getTelefone_res());
             ps.setString(10, pessoa.getTelefone_com());
             ps.setString(11, pessoa.getCelular());
-            ps.setString(12, pessoa.getTipo_pessoa());
+            ps.setString(12, "F");
             ps.setString(13, pessoa.getDt_cadastro());       
             ps.executeUpdate();
             
@@ -101,8 +101,8 @@ public class CadastroPessoaDao {
     public boolean createPessoaJuridica(Pessoa pessoa, PessoaJuridica pJur) throws SQLException{
     
         sql = "insert into pessoa (cidade_cod_cidade, nome, tipo_logadouro, logradouro, "
-              + "num_logradouro, bairro, cep, uf, telefone_res, telefone_com, celular, "
-              + "tipo_pessoa, dt_cadastro) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+              + "num_logradouro, bairro, cep, uf, telefone_com, celular, "
+              + "tipo_pessoa, dt_cadastro) values(?,?,?,?,?,?,?,?,?,?,?,?)";
         
         sql2 = "insert into pessoa_juridica (pessoa_cod_pessoa, cnpj, ie, im, nome_fantasia) values(?,?,?,?,?)";        
         
@@ -112,18 +112,17 @@ public class CadastroPessoaDao {
         try{
             ps = con.prepareStatement(sql, ps.RETURN_GENERATED_KEYS);
             ps.setInt   (1,  pessoa.getCidadeCodCidade());
-            ps.setString(2,  pessoa.getNome());
+            ps.setString(2,  "PESSOA JURIDICA");
             ps.setString(3,  pessoa.getTipo_logradouro());
             ps.setString(4,  pessoa.getLogradouro());
-            ps.setInt   (5,  pessoa.getNumLogradouro());
+            ps.setString(5,  pessoa.getNumLogradouro());
             ps.setString(6,  pessoa.getBairro());
             ps.setString(7,  pessoa.getCep());
-            ps.setString(8,  pessoa.getUf());
-            ps.setString(9,  pessoa.getTelefone_res());
-            ps.setString(10, pessoa.getTelefone_com());
-            ps.setString(11, pessoa.getCelular());
-            ps.setString(12, pessoa.getTipo_pessoa());
-            ps.setString(13, pessoa.getDt_cadastro());       
+            ps.setString(8,  pessoa.getUf());            
+            ps.setString(9,  pessoa.getTelefone_com());
+            ps.setString(10, pessoa.getCelular());
+            ps.setString(11, "J");
+            ps.setString(12, pessoa.getDt_cadastro());       
             ps.executeUpdate();
             
             // Recupera o id
@@ -156,8 +155,12 @@ public class CadastroPessoaDao {
                 "Aviso", JOptionPane.WARNING_MESSAGE);
                 con.rollback();
             }else{
+                System.out.println("dentro do else e try");
+                
                 JOptionPane.showMessageDialog(null, "Falha na Conexão:  " + sqle);
                 con.rollback();
+                
+                
             }
         }finally{
             ConnectionFactory.closeConnection(con, ps);

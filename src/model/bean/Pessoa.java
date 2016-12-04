@@ -7,7 +7,7 @@ public class Pessoa {
     private Integer cidade_cod_cidade;
     private String  nome;
     private String  logradouro;
-    private Integer num_logradouro;
+    private String  num_logradouro;
     private String  tipo_logradouro;
     private String  bairro;
     private String  cep;
@@ -36,11 +36,11 @@ public class Pessoa {
         this.logradouro = logradouro;
     }
     
-    public Integer getNumLogradouro(){
+    public String getNumLogradouro(){
         return num_logradouro;
     }
 
-    public void setNumLogradouro(Integer num_logradouro){
+    public void setNumLogradouro(String num_logradouro){
         this.num_logradouro = num_logradouro;
     }
         

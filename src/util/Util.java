@@ -32,7 +32,6 @@ public class Util {
             String dia = "";
             String mes = "";
             String ano = "";
-
             for (int i = 0; i <= 3; i++) {
                 dia = dataSplit[0];
                 mes = dataSplit[1];
@@ -40,7 +39,6 @@ public class Util {
             }
             dataFinal = ano + mes + dia;
             return dataFinal;
-            
         } catch (Exception e){
             JOptionPane.showMessageDialog(null, "Data inválida. Redigite!",
             "Aviso", JOptionPane.WARNING_MESSAGE); 
@@ -59,6 +57,7 @@ public class Util {
     }
     
     public Integer contaStringDeDigitos(String numero){
+        
         String nroSemMascara = this.removeMascara(numero);
         int numFinal = 0;
         for (int i = 0; i < nroSemMascara.length(); i++) {
@@ -146,7 +145,7 @@ public class Util {
 
     public static boolean isCNPJ(String CNPJ) {
 
-        //retira . e - da string cpf
+        //retira . e - da string cnpj
         CNPJ = Pattern.compile("\\.+").matcher(CNPJ).replaceAll("");
         CNPJ = Pattern.compile("\\-+").matcher(CNPJ).replaceAll("");
         CNPJ = Pattern.compile("\\/+").matcher(CNPJ).replaceAll("");
@@ -243,70 +242,107 @@ public class Util {
         }
         return strIE;
     }
+    
+    public String removeCaracEspeciais(String carac) {
+        String caracteres = "";
+        for (int i = 0; i < carac.length(); i++) {
+            if (Character.isDigit(carac.charAt(i))) {
+                caracteres += carac.charAt(i);
+            }
+        }
+        return caracteres;
+    }
 
     public static void validaIE(String inscricaoEstadual, String siglaUf) throws Exception {
         String strIE = removeMascara(inscricaoEstadual);
         siglaUf = siglaUf.toUpperCase();
         
-        if (siglaUf.equals("AC")) {
-            validaIEAcre(strIE);
-        } else if (siglaUf.equals("AL")) {
-            validaIEAlagoas(strIE);
-        } else if (siglaUf.equals("AP")) {
-            validaIEAmapa(strIE);
-        } else if (siglaUf.equals("AM")) {
-            validaIEAmazonas(strIE);
-        } else if (siglaUf.equals("BA")) {
-            validaIEBahia(strIE);
-        } else if (siglaUf.equals("CE")) {
-            validaIECeara(strIE);
-        } else if (siglaUf.equals("ES")) {
-            validaIEEspiritoSanto(strIE);
-        } else if (siglaUf.equals("GO")) {
-            validaIEGoias(strIE);
-        } else if (siglaUf.equals("MA")) {
-            validaIEMaranhao(strIE);
-        } else if (siglaUf.equals("MT")) {
-            validaIEMatoGrosso(strIE);
-        } else if (siglaUf.equals("MS")) {
-            validaIEMatoGrossoSul(strIE);
-        } else if (siglaUf.equals("MG")) {
-            validaIEMinasGerais(strIE);
-        } else if (siglaUf.equals("PA")) {
-            validaIEPara(strIE);
-        } else if (siglaUf.equals("PB")) {
-            validaIEParaiba(strIE);
-        } else if (siglaUf.equals("PR")) {
-            validaIEParana(strIE);
-        } else if (siglaUf.equals("PE")) {
-            validaIEPernambuco(strIE);
-        } else if (siglaUf.equals("PI")) {
-            validaIEPiaui(strIE);
-        } else if (siglaUf.equals("RJ")) {
-            validaIERioJaneiro(strIE);
-        } else if (siglaUf.equals("RN")) {
-            validaIERioGrandeNorte(strIE);
-        } else if (siglaUf.equals("RS")) {
-            validaIERioGrandeSul(strIE);
-        } else if (siglaUf.equals("RO")) {
-            validaIERondonia(strIE);
-        } else if (siglaUf.equals("RR")) {
-            validaIERoraima(strIE);
-        } else if (siglaUf.equals("SC")) {
-            validaIESantaCatarina(strIE);
-        } else if (siglaUf.equals("SP")) {
-            if (inscricaoEstadual.charAt(0) == 'P') {
-                strIE = "P" + strIE;
-            }
-            validaIESaoPaulo(strIE);
-        } else if (siglaUf.equals("SE")) {
-            validaIESergipe(strIE);
-        } else if (siglaUf.equals("TO")) {
-            validaIETocantins(strIE);
-        } else if (siglaUf.equals("DF")) {
-            validaIEDistritoFederal(strIE);
-        } else {
-            throw new Exception("Estado não encontrado : " + siglaUf);
+        switch (siglaUf) {
+            case "AC":
+                validaIEAcre(strIE);
+                break;
+            case "AL":
+                validaIEAlagoas(strIE);
+                break;
+            case "AP":
+                validaIEAmapa(strIE);
+                break;
+            case "AM":
+                validaIEAmazonas(strIE);
+                break;
+            case "BA":
+                validaIEBahia(strIE);
+                break;
+            case "CE":
+                validaIECeara(strIE);
+                break;
+            case "ES":
+                validaIEEspiritoSanto(strIE);
+                break;
+            case "GO":
+                validaIEGoias(strIE);
+                break;
+            case "MA":
+                validaIEMaranhao(strIE);
+                break;
+            case "MT":
+                validaIEMatoGrosso(strIE);
+                break;
+            case "MS":
+                validaIEMatoGrossoSul(strIE);
+                break;
+            case "MG":
+                validaIEMinasGerais(strIE);
+                break;
+            case "PA":
+                validaIEPara(strIE);
+                break;
+            case "PB":
+                validaIEParaiba(strIE);
+                break;
+            case "PR":
+                validaIEParana(strIE);
+                break;
+            case "PE":
+                validaIEPernambuco(strIE);
+                break;
+            case "PI":
+                validaIEPiaui(strIE);
+                break;
+            case "RJ":
+                validaIERioJaneiro(strIE);
+                break;
+            case "RN":
+                validaIERioGrandeNorte(strIE);
+                break;
+            case "RS":
+                validaIERioGrandeSul(strIE);
+                break;
+            case "RO":
+                validaIERondonia(strIE);
+                break;
+            case "RR":
+                validaIERoraima(strIE);
+                break;
+            case "SC":
+                validaIESantaCatarina(strIE);
+                break;
+            case "SP":
+                if (inscricaoEstadual.charAt(0) == 'P') {
+                    strIE = "P" + strIE;
+                }   validaIESaoPaulo(strIE);
+                break;
+            case "SE":
+                validaIESergipe(strIE);
+                break;
+            case "TO":
+                validaIETocantins(strIE);
+                break;
+            case "DF":
+                validaIEDistritoFederal(strIE);
+                break;
+            default:
+                throw new Exception("Estado não encontrado : " + siglaUf);
         }
     }
 
@@ -646,16 +682,16 @@ public class Util {
     /**
      * Valida inscri&#65533;&#65533;o estadual do estado do Goi&#65533;s
      *
-     * @param ie (Inscri&#65533;&#65533;o estadual)
+     * @param ie (Inscrição estadual)
      * @throws Exception
      */
     private static void validaIEGoias(String ie) throws Exception {
-        //valida quantida de d&#65533;gitos
+        //valida quantida de dígitos
         if (ie.length() != 9) {
             throw new Exception("Quantidade de digitos inválidas.");
         }
 
-        //v&#65533;lida os dois primeiros d&#65533;gito
+        //válida os dois primeiros dígitos
         if (!"10".equals(ie.substring(0, 2))) {
             if (!"11".equals(ie.substring(0, 2))) {
                 if (!"15".equals(ie.substring(0, 2))) {

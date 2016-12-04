@@ -1,24 +1,12 @@
 
 package views;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.bean.Cidade;
 import model.bean.Pessoa;
@@ -40,6 +28,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     Util getDataAtual         = new Util();
     Util verificaIE           = new Util();
     Util verificaQtdeDigitos  = new Util();
+    Util removeCaracEspeciais = new Util();
     Pessoa pessoa             = new Pessoa();   
     CadastroPessoaDao pessoas = new CadastroPessoaDao();    
     PessoaFisica pFisica      = new PessoaFisica();  
@@ -62,8 +51,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         //agrupa cidade+estado de dois combobox em um array
         int aux = jComboBoxCidadeEndereco.getItemCount();
         for (int i = 0; i < aux; i++) {
-            arrCidEst.add(jCBcodCidade.getItemAt(i).trim() + "-" + jComboBoxCidadeEndereco.getItemAt(i).trim() + "-" 
-                            +jComboBoxEstadoEnd.getItemAt(i).trim());
+            arrCidEst.add(jCBcodCidade.getItemAt(i).trim() + "-" + jComboBoxCidadeEndereco.getItemAt(i).trim()
+                          + "-" +jComboBoxEstadoEnd.getItemAt(i).trim());
         }
         
         jComboBoxEstadoEnd.setEnabled(false);
@@ -119,17 +108,15 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jComboBoxOrgExpeditor.addItem("POM  - Polícia Militar");
         jComboBoxOrgExpeditor.addItem("SES  - Carteira de Estrangeiro");
         jComboBoxOrgExpeditor.addItem("SJS  - Secretaria da Justiça e Segurança");
-        jComboBoxOrgExpeditor.addItem("SJTS  - Secretaria da Justiça do Trabalho e Segurança");
-        jComboBoxOrgExpeditor.addItem("ZZZ   - Outros (inclusive exterior) ");
+        jComboBoxOrgExpeditor.addItem("SJTS - Secretaria da Justiça do Trabalho e Segurança");
+        jComboBoxOrgExpeditor.addItem("ZZZ  - Outros (inclusive exterior) ");
     }
     public void visualizaPessoaFisica(){
 
         jTFnomeFantasia.setEditable(false);
         jTFInscricaoEstadual.setEditable(false);
-//        jFormattedTFinscricaoEstadual.setEditable(false);
         jFormattedTFinscricaoMunicipal.setEditable(false);
         jFormattedTextFcnpj.setEditable(false);
-
         habilitaInsercao = 1;
     }
     
@@ -152,7 +139,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     
         jCBcodCidade.addItem("ESCOLHA");
         jComboBoxCidadeEndereco.addItem("ESCOLHA'");
-        jComboBoxEstadoEnd.addItem("ESCOLHA");
         jTFnomePessoa.setText("");
         jFormattedTextFdataNascPessoa.setText("");
         jTFidentidade.setText("");  
@@ -168,15 +154,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jTextFieldComplemento.setText("");
         jTextFieldBairro.setText("");
         jComboBoxCidadeEndereco.setSelectedItem("ESCOLHA");
-        jComboBoxEstadoEnd.setSelectedItem("ESCOLHA");
         jFormattedTextFieldCep.setText("");        
         jFormattedTextFieldTelefonePessoaRes.setText("");
         jFormattedTextFieldCelularPessoa.setText("");
         jTFnomeFantasia.setText("");
-        
+        jFormattedTextFieldTelefonePessoaComl.setText("");
         jTFInscricaoEstadual.setText("");
-//        jFormattedTFinscricaoEstadual.setText("");
-
         jFormattedTFinscricaoMunicipal.setText("");
     }
     
@@ -233,13 +216,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jLInscricaoEstadual = new javax.swing.JLabel();
         jLInscricaoMunicipal = new javax.swing.JLabel();
         jFormattedTFinscricaoMunicipal = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter cpf= new javax.swing.text.MaskFormatter("###.###.###-##");
-            jTextField1 = new javax.swing.JFormattedTextField(cpf);
-        }
-        catch (Exception e){
-        }
         jTFInscricaoEstadual = new javax.swing.JTextField();
         jPanelDadosComplementares = new javax.swing.JPanel();
         jLabelEnderecoPessoa = new javax.swing.JLabel();
@@ -362,7 +338,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             .addGroup(jPanelInformacoesGeraisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabelNomePessoa.setText("Nome: *");
@@ -562,9 +538,9 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosPessoaisLayout.createSequentialGroup()
-                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextFdataNascPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(jFormattedTextFdataNascPessoa))
                                 .addGap(32, 32, 32)
                                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
@@ -581,8 +557,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                         .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFnomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -590,20 +564,22 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jFormattedTextFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(38, 38, 38)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLInscricaoEstadual)
-                            .addComponent(jTFInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jFormattedTextFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(352, 352, 352))
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                .addComponent(jLInscricaoMunicipal)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jFormattedTFinscricaoMunicipal))))
+                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jTFnomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLInscricaoEstadual)
+                                    .addComponent(jTFInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLInscricaoMunicipal)
+                            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(jFormattedTFinscricaoMunicipal, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelDadosPessoaisLayout.setVerticalGroup(
@@ -651,17 +627,16 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFnomeFantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTFinscricaoMunicipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jTFInscricaoEstadual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTFinscricaoMunicipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jFormattedTextCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -872,7 +847,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         .addGroup(jPanelDadosComplementaresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jFormattedTextFieldCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jFormattedTextFieldTelefonePessoaRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         jTabbedPaneCadastroDadosPessoais.addTab("Dados Complementares", jPanelDadosComplementares);
@@ -881,15 +856,15 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelInformacoesGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanelInformacoesGerais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabelCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jTabbedPaneCadastroDadosPessoais))
+                    .addComponent(jTabbedPaneCadastroDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -899,12 +874,13 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPCadastroPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPaneCadastroDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelInformacoesGerais, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPaneCadastroDadosPessoais)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelInformacoesGerais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
-        setSize(new java.awt.Dimension(907, 574));
+        setSize(new java.awt.Dimension(915, 770));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -938,6 +914,113 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_jTFnomePessoaKeyTyped
 
+    public boolean verificaQuantDigitos() throws Exception{
+    
+        int qtdDigitos = 0;
+        String estadoEnd     = jComboBoxEstadoEnd.getSelectedItem().toString();  
+        String inscEstadual  = jTFInscricaoEstadual.getText();     
+        qtdDigitos           = verificaQtdeDigitos.contaStringDeDigitos(inscEstadual);
+        
+        if(qtdDigitos == 9 && estadoEnd.equals("GO")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("AM")){  
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("AL")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("BA")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("CE")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("ES")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("MA")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("MS")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("PA")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("PB")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("PI")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("RR")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("SC")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("SE")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("AP")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 13 && estadoEnd.equals("AC")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 13 && estadoEnd.equals("DF")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 13 && estadoEnd.equals("MG")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 11 && estadoEnd.equals("MT")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 10 && estadoEnd.equals("RS")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 10 && estadoEnd.equals("PR")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 14 && estadoEnd.equals("PE")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 14 && estadoEnd.equals("RO")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 8 && estadoEnd.equals("RJ")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        }  else if(qtdDigitos == 10 && estadoEnd.equals("RN")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        }  else if(qtdDigitos == 12 && estadoEnd.equals("SP")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 13 && estadoEnd.equals("SP")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("RN")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 10 && estadoEnd.equals("RN")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);            
+            return true;
+        } else if(qtdDigitos == 9 && estadoEnd.equals("TO")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else if(qtdDigitos == 11 && estadoEnd.equals("TO")){
+            verificaIE.validaIE(inscEstadual, estadoEnd);
+            return true;
+        } else{
+                JOptionPane.showMessageDialog(this, "Número de caracteres inválidos para a IE do estado " +
+                estadoEnd + ",  redigite!", "Aviso", JOptionPane.WARNING_MESSAGE);            
+        }    
+        return false;
+    }
+    
  
     private void jBinserirPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinserirPessoaActionPerformed
         
@@ -946,7 +1029,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         String cidade      = jComboBoxCidadeEndereco.getSelectedItem().toString();
         
         String inscEstadual  = jTFInscricaoEstadual.getText();        
-//        String inscEstadual  = jFormattedTFinscricaoEstadual.getText();
         String inscMunicipal = jFormattedTFinscricaoMunicipal.getText();
         String nomeFantasia  = jTFnomeFantasia.getText().toUpperCase();
         
@@ -966,7 +1048,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
         //prepara cpf
         String cpf = jFormattedTextCpf.getText();
-        cpf = cpf.trim();
+        cpf        = removeCaracEspeciais.removeCaracEspeciais(cpf);
 
         //prepara cnpj
         String cnpj = jFormattedTextFcnpj.getText();
@@ -976,7 +1058,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         String nomeMae     = jTextFieldNomeMae.getText().toUpperCase();
         String nomePai     = jTextFieldNomePai.getText().toUpperCase();
         String endereco    = jTextFieldEnderecoPessoa.getText().toUpperCase();
-        int numero         = Integer.valueOf(jTextFieldNumero.getText());
+        String numero      = jTextFieldNumero.getText();
         String complemento = jTextFieldComplemento.getText().toUpperCase();
         String bairro      = jTextFieldBairro.getText().toUpperCase();
         String cep         = jFormattedTextFieldCep.getText();
@@ -984,104 +1066,24 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         String foneComl    = jFormattedTextFieldTelefonePessoaComl.getText();
         String celular     = jFormattedTextFieldCelularPessoa.getText();
         
-        cep = Pattern.compile("\\-+").matcher(cep).replaceAll("");
-        
-        foneRes = Pattern.compile("\\(+").matcher(foneRes).replaceAll("");
-        foneRes = Pattern.compile("\\)+").matcher(foneRes).replaceAll("");
-        foneRes = Pattern.compile("\\-+").matcher(foneRes).replaceAll("");
-        
-        foneComl = Pattern.compile("\\(+").matcher(foneComl).replaceAll("");
-        foneComl = Pattern.compile("\\)+").matcher(foneComl).replaceAll("");
-        foneComl = Pattern.compile("\\-+").matcher(foneComl).replaceAll("");
-        
-        celular = Pattern.compile("\\(+").matcher(celular).replaceAll("");
-        celular = Pattern.compile("\\)+").matcher(celular).replaceAll("");
-        celular = Pattern.compile("\\-+").matcher(celular).replaceAll("");
-        
+        cep      = removeCaracEspeciais.removeCaracEspeciais(cep);
+        foneRes  = removeCaracEspeciais.removeCaracEspeciais(foneRes);
+        foneComl = removeCaracEspeciais.removeCaracEspeciais(foneComl);
+        celular  = removeCaracEspeciais.removeCaracEspeciais(celular);
+//        foneRes = Pattern.compile("\\(+").matcher(foneRes).replaceAll("");
+
         boolean retornoEmail = false;
         String dtCadastro = "";
         
         //se true cadastra no banco após todas as validações
         boolean dadosConfirmados = false; 
-        int qtdDigitos = 0;
-        qtdDigitos = verificaQtdeDigitos.contaStringDeDigitos(inscEstadual);
-        
-        if(qtdDigitos == 9 && estadoEnd.equals("GO")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("AM")){  
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("AL")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("BA")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("CE")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("ES")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("MA")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("MS")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("PA")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("PB")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("PI")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("RR")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("SC")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("SE")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("AP")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-            
-            
-        } else if(qtdDigitos == 13 && estadoEnd.equals("AC")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 13 && estadoEnd.equals("DF")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 13 && estadoEnd.equals("MG")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 11 && estadoEnd.equals("MT")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 10 && estadoEnd.equals("RS")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 10 && estadoEnd.equals("PR")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 14 && estadoEnd.equals("PE")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 14 && estadoEnd.equals("RO")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 8 && estadoEnd.equals("RJ")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        }  else if(qtdDigitos == 10 && estadoEnd.equals("RN")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        }  else if(qtdDigitos == 12 && estadoEnd.equals("SP")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 13 && estadoEnd.equals("SP")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("RN")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 10 && estadoEnd.equals("RN")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 9 && estadoEnd.equals("TO")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else if(qtdDigitos == 11 && estadoEnd.equals("TO")){
-            System.out.println("A IE de " + estadoEnd + " possui: " + qtdDigitos);
-        } else{
-            System.out.println("O IE do estado " + estadoEnd + " não possui a qde de dígitos válidos!");
-        }
-     
-        
         
         if(habilitaInsercao == 1){//verifica campos para cadastro pessoa física
             if( nomePessoa.isEmpty()           || sexo.isEmpty()             || identidade.isEmpty()
                 || estadoId.equals("ESCOLHA")  || orgExped.equals("ESCOLHA") || email.isEmpty()
                 || cpf.length()< 11            || dtNasc.length()< 10        || celular.isEmpty()
                 || nomeMae.isEmpty()           || nomePai.isEmpty()          || endereco.isEmpty()
-                || numero <= 0                 || complemento.isEmpty()      || bairro.isEmpty()
+                || numero.isEmpty()            || complemento.isEmpty()      || bairro.isEmpty()
                 || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()           || foneComl.isEmpty()
                 || foneRes.isEmpty()           || cep.isEmpty()){
 
@@ -1102,9 +1104,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         //verifica cpf
                         boolean ehCpf = formCpf.isCPF(cpf);
                         if(ehCpf){
-                            //retira . e - da string cpf
-                            cpf = Pattern.compile("\\.+").matcher(cpf).replaceAll("");
-                            cpf = Pattern.compile("\\-+").matcher(cpf).replaceAll("");
                             dadosConfirmados = true;
                         }else{
                             JOptionPane.showMessageDialog(this, "Cpf inválido. Redigite!",
@@ -1112,7 +1111,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                         }
                     }else{  
                         JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
-                        "Aviso", JOptionPane.WARNING_MESSAGE);                
+                        "Aviso", JOptionPane.WARNING_MESSAGE);   
+                        dadosConfirmados = false;  
                     }
                 }
             }
@@ -1135,7 +1135,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 pFisica.setRg(identidade);
                 pFisica.setDt_nascimento(dataFormatada);
                 pFisica.setSexo(sexo);
-
+                
                 try {
                     boolean ret = pessoas.createPessoaFisica(pessoa, pFisica);
                     if(ret){
@@ -1147,7 +1147,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             } 
         }else if(habilitaInsercao == 2){ //verifica campos para cadastro pessoa jurídica
             if( email.isEmpty()                || cnpj.length()< 18     || endereco.isEmpty()
-                || numero < 0                  || complemento.isEmpty() || bairro.isEmpty()
+                || numero.isEmpty()            || complemento.isEmpty() || bairro.isEmpty()
                 || estadoEnd.equals("ESCOLHA") || cidade.isEmpty()      || cep.isEmpty()
                 || foneRes.isEmpty()           || celular.isEmpty()     || inscEstadual.isEmpty()
                 || inscMunicipal.isEmpty()     || nomeFantasia.isEmpty()|| foneComl.isEmpty()){
@@ -1166,42 +1166,41 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                     //verifica Cnpj
                     boolean ehCnpj = formCnpj.isCNPJ(cnpj);
                     if(ehCnpj){
-                        //retira ponto(.) , traço(-) e barra(/) da string cnpj
-                        cnpj = Pattern.compile("\\.+").matcher(cnpj).replaceAll("");
-                        cnpj = Pattern.compile("\\-+").matcher(cnpj).replaceAll("");        
-                        cnpj = Pattern.compile("\\/+").matcher(cnpj).replaceAll("");
+                       dadosConfirmados = true;
                     }else{
                         JOptionPane.showMessageDialog(this, "Cnpj inválido. Redigite!",
-                        "Aviso", JOptionPane.WARNING_MESSAGE);        
+                        "Aviso", JOptionPane.WARNING_MESSAGE);  
+                        dadosConfirmados = false;                          
                     }
                     //verifica Ie
                     try {
-                        verificaIE.validaIE(inscEstadual, estadoEnd);
-                        dadosConfirmados = true;
+                        boolean retVerQtdeDigitos = this.verificaQuantDigitos();
+                        if(retVerQtdeDigitos){
+                            dadosConfirmados = true;
+                        }else{
+                            dadosConfirmados = false;                        
+                        }
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(this, "xxxxxxxx ie inválido, redigite!",
+                        JOptionPane.showMessageDialog(this, "Inscrição Estadual inválida, redigite!",
                         "Aviso", JOptionPane.WARNING_MESSAGE);  
-                        
-//                        Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                        dadosConfirmados = false;                        
                     }
                 }else{  
                     JOptionPane.showMessageDialog(this, "Email inválido, redigite!",
-                    "Aviso", JOptionPane.WARNING_MESSAGE);                
+                    "Aviso", JOptionPane.WARNING_MESSAGE);   
+                    dadosConfirmados = false;  
                 }
                 if(dadosConfirmados){
-                    pessoa.setDt_cadastro(dtCadastro);
                     pessoa.setCidadeCodCidade(codCidade);
-                    pessoa.setNome(nomePessoa);
                     pessoa.setTipo_logradouro(complemento);
                     pessoa.setLogradouro(endereco);
                     pessoa.setNumLogradouro(numero);
                     pessoa.setBairro(bairro);
                     pessoa.setCep(cep);
-                    pessoa.setUf(estadoId);
-                    pessoa.setTelefone_res(foneRes);
+                    pessoa.setUf(estadoEnd);
                     pessoa.setTelefone_com(foneComl);
                     pessoa.setCelular(celular);
-                    pessoa.setTipo_pessoa(sexo);
+                    pessoa.setDt_cadastro(dtCadastro);
 
                     pJur.setCnpj(cnpj);
                     pJur.setIe(inscEstadual);
@@ -1214,7 +1213,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                             this.limparCamposFormPessoa();
                         }    
                     }catch (SQLException ex) {
-                        Logger.getLogger(JFCadastroPessoa.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(this, "Erro Exception: JFCadastroPessoa.java - linha: 1286",
+                        "Aviso", JOptionPane.WARNING_MESSAGE);  
                     }                    
                 } 
             }    
@@ -1253,7 +1253,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jFormattedTextFieldTelefonePessoaComl.setText("");
         jTFnomeFantasia.setText("");
         jTFInscricaoEstadual.setText("");
-//        jFormattedTFinscricaoEstadual.setText("");
         jFormattedTFinscricaoMunicipal.setText("");        
     }//GEN-LAST:event_jBlimparPessoaActionPerformed
 
@@ -1312,9 +1311,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private void jTextFieldNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNumeroKeyTyped
 
         char c = evt.getKeyChar();
-        if (Character.isLowerCase(c)) {
-          evt.setKeyChar(Character.toUpperCase(c));
-        }
         if(!Character.isDigit(c)) evt.consume(); 
     }//GEN-LAST:event_jTextFieldNumeroKeyTyped
 
@@ -1373,7 +1369,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }//GEN-LAST:event_jFormattedTextCpfKeyTyped
 
     private void jBalterarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalterarPessoaActionPerformed
-
+        
+        //pode ser usada para marcar alteração ou deleção
         String atual = "";
         try {
             atual = getDataAtual.getDataAtual();
@@ -1537,7 +1534,6 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPaneCadastroDadosPessoais;
     private javax.swing.JTable jTcadastroPessoa;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldBairro;
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldEnderecoPessoa;
