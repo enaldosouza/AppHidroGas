@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.bean.Pessoa;
 import model.bean.PessoaFisica;
@@ -20,10 +22,16 @@ public class CadastroPessoaDao {
     PessoaFisica pFisica = new PessoaFisica();  
     PessoaJuridica pJur  = new PessoaJuridica();
     
-    private String sql           = null;
-    private String sql2          = null;
-    private PreparedStatement ps = null;
-    private ResultSet rs         = null;
+    private String sql            = null;
+    private String sql2           = null;
+    private PreparedStatement ps  = null;
+    private PreparedStatement ps2 = null;
+    private PreparedStatement ps3 = null;
+    
+    private ResultSet rs   = null;
+    private ResultSet rs2  = null;
+    private ResultSet rs3  = null;
+    
     private Connection con;
     
     Integer ret_codPessoa = 0;
@@ -167,6 +175,41 @@ public class CadastroPessoaDao {
         }
         return false;
     }
+    
+    public List<Pessoa> listaPessoas(){
+        con = ConnectionFactory.getConnetion();
+        List<Pessoa> pessoas = new ArrayList<>();
+        try{
+            ps  = con.prepareStatement("SELECT * FROM pessoa");
+//            ps2 = con.prepareStatement("SELECT * FROM pessoa_fisica");
+//            ps3 = con.prepareStatement("SELECT * FROM pessoa_juridica");
+            rs = ps.executeQuery();
+            while(rs.next()){
+                pessoa.setCod_pessoa(rs.getInt("cod_pessoa"));
+                pessoa.setCidadeCodCidade(rs.getInt("cidade_cod_cidade"));
+                pessoa.setNome(rs.getString("nome"));
+                pessoa.setTipo_pessoa(rs.getString("tipo_pessoa"));
+                pessoa.setTelefone_res(rs.getString("telefone_res"));
+                pessoa.setTelefone_com(rs.getString("telefone_com"));
+                pessoa.setCelular(rs.getString("celular"));
+                pessoa.setLogradouro(rs.getString("logradouro"));
+                pessoa.setTipo_logradouro(rs.getString("tipo_logradouro"));
+                pessoa.setNumLogradouro(rs.getString("num_logradouro"));
+                pessoa.setBairro(rs.getString("bairro"));
+                pessoa.setCep(rs.getString("cep"));
+                pessoa.setUf(rs.getString("uf"));
+                pessoa.setDt_cadastro(rs.getString("dt_cadastro"));
+                        
+                pessoas.add(pessoa);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
+        }finally{
+            ConnectionFactory.closeConnection(con, ps, rs);
+        }
+        return pessoas;
+    }    
+    
     
     public Integer retornaCodPessoaDePessoa(){ 
         sql = "SELECT * FROM pessoa ORDER BY cod_pessoa DESC LIMIT 1";
