@@ -116,18 +116,18 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         populajTcadastroPessoa();
         
         //ordenando jtable
-        DefaultTableModel modelo = (DefaultTableModel) jTcadastroPessoa.getModel();
-        jTcadastroPessoa.setRowSorter(new TableRowSorter(modelo));
+//        DefaultTableModel modelo = (DefaultTableModel) jTcadastroPessoa.getModel();
+//        jTcadastroPessoa.setRowSorter(new TableRowSorter(modelo));
         
     }
     
     public void populajTcadastroPessoa(){
         DefaultTableModel modelo = (DefaultTableModel)jTcadastroPessoa.getModel();
         modelo.setNumRows(0);
+        
         for(Pessoa p: pessoas.listaPessoas()){
             modelo.addRow(new Object[]{
                 p.getCod_pessoa(),
-                p.getCidadeCodCidade(),
                 p.getNome(),
                 p.getTipo_pessoa(),
                 p.getTelefone_res(),
@@ -141,6 +141,29 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 p.getUf(),
                 p.getDt_cadastro()
             });
+        }
+        
+        for(PessoaFisica pf: pessoas.listaPessoasFisicas()){
+            modelo.addRow(new Object[]{
+                pf.getCpf(),
+                pf.getRg(),
+                pf.getDt_nascimento()
+         });
+        }
+                
+        for(PessoaJuridica pj: pessoas.listaPessoasJuridicas()){
+            modelo.addRow(new Object[]{
+                pj.getCnpj(),
+                pj.getIe(),
+                pj.getIm(),
+                pj.getNome_fantasia()
+         });
+        } 
+        
+        for(Cidade c: cidadeDao.listaCidades()){
+            jCBcodCidade.addItem(c.getCod_cidade().trim());
+            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
+            jComboBoxEstadoEnd.addItem(c.getEstado_cidade().trim());
         }
     }
     public void visualizaPessoaFisica(){
@@ -351,7 +374,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "COD_PESSOA", "NOME PESSOA", "TIPO_PESSOA", "CPF", "RG", "DATA_NASC", "TELEFONE_RESIDENCIAL", "TELEFONE_COMERCIAL", "TELEFONE_CELULAR", "CNPJ", "IE", "IM", "NOME_FANTASIA", "COD_CIDADE", "NOME_CIDADE", "LOGRADOURO", "TIPO", "NÚMERO", "BAIRRO", "CEP", "ESTADO", "DATA_CADASTRO", "DATA_DESATIVACAO"
+                "COD_PESSOA", "NOME PESSOA", "TIPO_PESSOA", "TELEFONE_RESIDENCIAL", "TELEFONE_COMERCIAL", "TELEFONE_CELULAR", "LOGRADOURO", "TIPO", "NÚMERO", "BAIRRO", "CEP", "ESTADO", "DATA_CADASTRO", "CPF", "RG", "DATA_NASC", "CNPJ", "IE", "IM", "NOME_FANTASIA", "COD_CIDADE", "NOME_CIDADE", "DATA_DESATIVACAO"
             }
         ));
         jTcadastroPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1485,21 +1508,29 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 //            jFormattedTextCpf.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),5).toString()); //(F)
 //            jTFidentidade.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),6).toString()); //(F)
 //            jFormattedTextFdataNascPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),7).toString()); //(F)
-            jFormattedTextFieldTelefonePessoaRes.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),8).toString());
-            jFormattedTextFieldTelefonePessoaComl.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),9).toString());
-            jFormattedTextFieldCelularPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),10).toString());
+
+
+            //não estavam comentados
+//            jFormattedTextFieldTelefonePessoaRes.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),8).toString());
+//            jFormattedTextFieldTelefonePessoaComl.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),9).toString());
+//            jFormattedTextFieldCelularPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),10).toString());
+            
+            
 //            jFormattedTextFcnpj.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),11).toString()); //(J)
 //            jTFInscricaoEstadual.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),12).toString()); //(j)
 //            jFormattedTFinscricaoMunicipal.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),13).toString()); //(j)
 //            jTFnomeFantasia.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),14).toString()); //(J)
-            jCBcodCidade.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),15).toString());
-            jComboBoxCidadeEndereco.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),16).toString());
-            jTextFieldEnderecoPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),17).toString());
-            jTextFieldComplemento.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),18).toString());
-            jTextFieldNumero.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),19).toString());
-            jTextFieldBairro.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),20).toString());
-            jFormattedTextFieldCep.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),21).toString());
-            jComboBoxEstadoEnd.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),22).toString());
+
+
+            //não estavam comentados
+//            jCBcodCidade.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),15).toString());
+//            jComboBoxCidadeEndereco.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),16).toString());
+//            jTextFieldEnderecoPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),17).toString());
+//            jTextFieldComplemento.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),18).toString());
+//            jTextFieldNumero.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),19).toString());
+//            jTextFieldBairro.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),20).toString());
+//            jFormattedTextFieldCep.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),21).toString());
+//            jComboBoxEstadoEnd.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),22).toString());
             
 //            jTextfEmailPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),7).toString()); 
 //            jTextFieldNomeMae.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),8).toString());

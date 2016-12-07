@@ -181,8 +181,6 @@ public class CadastroPessoaDao {
         List<Pessoa> pessoas = new ArrayList<>();
         try{
             ps  = con.prepareStatement("SELECT * FROM pessoa");
-//            ps2 = con.prepareStatement("SELECT * FROM pessoa_fisica");
-//            ps3 = con.prepareStatement("SELECT * FROM pessoa_juridica");
             rs = ps.executeQuery();
             while(rs.next()){
                 pessoa.setCod_pessoa(rs.getInt("cod_pessoa"));
@@ -199,7 +197,6 @@ public class CadastroPessoaDao {
                 pessoa.setCep(rs.getString("cep"));
                 pessoa.setUf(rs.getString("uf"));
                 pessoa.setDt_cadastro(rs.getString("dt_cadastro"));
-                        
                 pessoas.add(pessoa);
             }
         }catch(Exception e){
@@ -209,7 +206,48 @@ public class CadastroPessoaDao {
         }
         return pessoas;
     }    
+
+    public List<PessoaFisica> listaPessoasFisicas(){
+        con = ConnectionFactory.getConnetion();
+        List<PessoaFisica> pessoasFisica = new ArrayList<>();
+        try{
+            ps2 = con.prepareStatement("SELECT * FROM pessoa_fisica");
+            rs2 = ps2.executeQuery();
+            while(rs.next()){
+                pFisica.setCpf(rs2.getString("cpf"));
+                pFisica.setRg(rs2.getString("rg"));
+                pFisica.setSexo(rs2.getString("sexo"));
+                pFisica.setDt_nascimento(rs2.getString("dt_nascimento"));
+                pessoasFisica.add(pFisica);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
+        }finally{
+            ConnectionFactory.closeConnection(con, ps, rs);
+        }
+        return pessoasFisica;
+    }  
     
+    public List<PessoaJuridica> listaPessoasJuridicas(){
+        con = ConnectionFactory.getConnetion();
+        List<PessoaJuridica> pessoasJuridica = new ArrayList<>();
+        try{
+            ps3 = con.prepareStatement("SELECT * FROM pessoa_juridica");
+            rs3 = ps3.executeQuery();
+            while(rs.next()){
+                pJur.setCnpj(rs3.getString("cnpj"));
+                pJur.setIe(rs3.getString("ie"));
+                pJur.setIm(rs3.getString("im"));
+                pJur.setNome_fantasia(rs3.getString("nome_fantasia"));
+                pessoasJuridica.add(pJur);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
+        }finally{
+            ConnectionFactory.closeConnection(con, ps, rs);
+        }
+        return pessoasJuridica;
+    }    
     
     public Integer retornaCodPessoaDePessoa(){ 
         sql = "SELECT * FROM pessoa ORDER BY cod_pessoa DESC LIMIT 1";
