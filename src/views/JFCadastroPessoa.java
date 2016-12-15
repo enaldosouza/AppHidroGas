@@ -124,8 +124,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     public void populajTcadastroPessoa(){
         DefaultTableModel modelo = (DefaultTableModel)jTcadastroPessoa.getModel();
         modelo.setNumRows(0);
-        
-        for(Pessoa p: pessoas.listaPessoas()){
+        CadastroPessoaDao pessoa = new CadastroPessoaDao();
+        for(Pessoa p: pessoa.listaPessoas()){
             modelo.addRow(new Object[]{
                 p.getCod_pessoa(),
                 p.getNome(),
@@ -142,29 +142,29 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 p.getDt_cadastro()
             });
         }
-        
-        for(PessoaFisica pf: pessoas.listaPessoasFisicas()){
-            modelo.addRow(new Object[]{
-                pf.getCpf(),
-                pf.getRg(),
-                pf.getDt_nascimento()
-         });
-        }
-                
-        for(PessoaJuridica pj: pessoas.listaPessoasJuridicas()){
-            modelo.addRow(new Object[]{
-                pj.getCnpj(),
-                pj.getIe(),
-                pj.getIm(),
-                pj.getNome_fantasia()
-         });
-        } 
-        
-        for(Cidade c: cidadeDao.listaCidades()){
-            jCBcodCidade.addItem(c.getCod_cidade().trim());
-            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
-            jComboBoxEstadoEnd.addItem(c.getEstado_cidade().trim());
-        }
+//        
+//        for(PessoaFisica pf: pessoas.listaPessoasFisicas()){
+//            modelo.addRow(new Object[]{
+//                pf.getCpf(),
+//                pf.getRg(),
+//                pf.getDt_nascimento()
+//         });
+//        }
+//                
+//        for(PessoaJuridica pj: pessoas.listaPessoasJuridicas()){
+//            modelo.addRow(new Object[]{
+//                pj.getCnpj(),
+//                pj.getIe(),
+//                pj.getIm(),
+//                pj.getNome_fantasia()
+//         });
+//        } 
+//        
+//        for(Cidade c: cidadeDao.listaCidades()){
+//            jCBcodCidade.addItem(c.getCod_cidade().trim());
+//            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
+//            jComboBoxEstadoEnd.addItem(c.getEstado_cidade().trim());
+//        }
     }
     public void visualizaPessoaFisica(){
 
@@ -1502,8 +1502,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 //        sexo = sexo.equals("feminino") ? "F" : "M";
         if(jTcadastroPessoa.getSelectedRow() != -1)
             //código de pessoa
-            jTFnomePessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),2).toString());
-            buttonGroupSexo.getSelection().setActionCommand(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),3).toString());
+            jTFnomePessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),1).toString());
+            buttonGroupSexo.getSelection().setActionCommand(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),2).toString());
             //tipo pessoa juridica ou Fisica
 //            jFormattedTextCpf.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),5).toString()); //(F)
 //            jTFidentidade.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),6).toString()); //(F)
