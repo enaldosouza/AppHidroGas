@@ -206,30 +206,20 @@
             <Component class="javax.swing.JTable" name="jTcadastroPessoa">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="23" rowCount="0">
-                    <Column editable="true" title="COD_PESSOA" type="java.lang.Object"/>
-                    <Column editable="true" title="NOME PESSOA" type="java.lang.Object"/>
-                    <Column editable="true" title="TIPO_PESSOA" type="java.lang.Object"/>
-                    <Column editable="true" title="TELEFONE_RESIDENCIAL" type="java.lang.Object"/>
-                    <Column editable="true" title="TELEFONE_COMERCIAL" type="java.lang.Object"/>
-                    <Column editable="true" title="TELEFONE_CELULAR" type="java.lang.Object"/>
+                  <Table columnCount="13" rowCount="0">
+                    <Column editable="true" title="COD" type="java.lang.Object"/>
+                    <Column editable="true" title="NOME " type="java.lang.Object"/>
+                    <Column editable="true" title="PESSOA" type="java.lang.Object"/>
+                    <Column editable="true" title="FONE_RES" type="java.lang.Object"/>
+                    <Column editable="true" title="FONE_COML" type="java.lang.Object"/>
+                    <Column editable="true" title="FONE_CEL" type="java.lang.Object"/>
                     <Column editable="true" title="LOGRADOURO" type="java.lang.Object"/>
-                    <Column editable="true" title="TIPO" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#xda;MERO" type="java.lang.Object"/>
+                    <Column editable="true" title="TIPO_LOGR" type="java.lang.Object"/>
+                    <Column editable="true" title="NUM_LOGR" type="java.lang.Object"/>
                     <Column editable="true" title="BAIRRO" type="java.lang.Object"/>
                     <Column editable="true" title="CEP" type="java.lang.Object"/>
-                    <Column editable="true" title="ESTADO" type="java.lang.Object"/>
-                    <Column editable="true" title="DATA_CADASTRO" type="java.lang.Object"/>
-                    <Column editable="true" title="CPF" type="java.lang.Object"/>
-                    <Column editable="true" title="RG" type="java.lang.Object"/>
-                    <Column editable="true" title="DATA_NASC" type="java.lang.Object"/>
-                    <Column editable="true" title="CNPJ" type="java.lang.Object"/>
-                    <Column editable="true" title="IE" type="java.lang.Object"/>
-                    <Column editable="true" title="IM" type="java.lang.Object"/>
-                    <Column editable="true" title="NOME_FANTASIA" type="java.lang.Object"/>
-                    <Column editable="true" title="COD_CIDADE" type="java.lang.Object"/>
-                    <Column editable="true" title="NOME_CIDADE" type="java.lang.Object"/>
-                    <Column editable="true" title="DATA_DESATIVACAO" type="java.lang.Object"/>
+                    <Column editable="true" title="UF" type="java.lang.Object"/>
+                    <Column editable="true" title="DT_CAD" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

@@ -5,11 +5,7 @@
         <group>
             <file>file:/E:/JavaProgramas/AppHidroGas/src/views/JFCadastroPessoa.java</file>
             <file>file:/E:/JavaProgramas/AppHidroGas/src/views/JFCadastroPessoaFisica.java</file>
-            <file>file:/E:/JavaProgramas/AppHidroGas/src/model/bean/Pessoa.java</file>
             <file>file:/E:/JavaProgramas/AppHidroGas/src/model/dao/CadastroPessoaDao.java</file>
-            <file>file:/E:/JavaProgramas/AppHidroGas/src/util/Util.java</file>
-            <file>file:/E:/JavaProgramas/AppHidroGas/src/views/JFCadastroCidade.java</file>
-            <file>file:/E:/JavaProgramas/AppHidroGas/src/model/bean/PessoaJuridica.java</file>
         </group>
     </open-files>
 </project-private>

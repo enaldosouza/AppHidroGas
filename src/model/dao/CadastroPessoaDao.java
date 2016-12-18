@@ -182,7 +182,6 @@ public class CadastroPessoaDao {
         try{
             ps  = con.prepareStatement("SELECT * FROM pessoa");
             rs = ps.executeQuery();
-            System.out.println(rs);
             while(rs.next()){
                 Pessoa pessoa = new Pessoa();
                 pessoa.setCod_pessoa(rs.getInt("cod_pessoa"));
@@ -206,7 +205,6 @@ public class CadastroPessoaDao {
         }finally{
             ConnectionFactory.closeConnection(con, ps, rs);
         }
-        System.out.println(pessoas);
         return pessoas;
     }    
 
