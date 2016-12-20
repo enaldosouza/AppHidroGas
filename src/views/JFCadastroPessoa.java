@@ -38,11 +38,14 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     CidadeDao cidadeDao       = new CidadeDao();
     Cidade cidade             = new Cidade();
     int habilitaInsercao = 0;
+    char tipoPessoa = 'J';
     
     ArrayList<String> arrCidEst = new ArrayList<>();
     
     public JFCadastroPessoa() {
         initComponents();
+        
+            char tipoPessoa = 'F';
         
         for(Cidade c: cidadeDao.listaCidades()){
             jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
@@ -113,7 +116,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jComboBoxOrgExpeditor.addItem("SJTS - Secretaria da Justiça do Trabalho e Segurança");
         jComboBoxOrgExpeditor.addItem("ZZZ  - Outros (inclusive exterior) ");
         
-        populajTcadastroPessoa();
+        populajTcadastroPessoa(tipoPessoa);
         
 //        ordenando jtable
         DefaultTableModel modelo = (DefaultTableModel) jTcadastroPessoa.getModel();
@@ -121,45 +124,67 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         
     }
     
-    public void populajTcadastroPessoa(){
+    public void populajTcadastroPessoa(char tipoPessoa){
+        
         DefaultTableModel modelo = (DefaultTableModel)jTcadastroPessoa.getModel();
         modelo.setNumRows(0);
         CadastroPessoaDao pessoa = new CadastroPessoaDao();
-        for(Pessoa p: pessoa.listaPessoas()){
-            modelo.addRow(new Object[]{
-                p.getCod_pessoa(),
-                p.getNome(), //posição 1
-                p.getTipo_pessoa(),  //posição 2
-                p.getTelefone_res(), //posição 3
-                p.getTelefone_com(), //posição 4
-                p.getCelular(), //posição 5
-                p.getLogradouro(), //posição 6
-                p.getTipo_logradouro(), //posição 7
-                p.getNumLogradouro(), //posição 8
-                p.getBairro(), //posição 9
-                p.getCep(), //posição 10
-                p.getUf(), //posição 11
-                p.getDt_cadastro() //posição 12
-            });
+        if(tipoPessoa == 'F'){
+            for(Pessoa p: pessoa.listaPessoas()){
+                modelo.addRow(new Object[]{
+                    p.getCod_pessoa(),
+                    p.getNome(), //posição 1
+                    p.getTipo_pessoa(),  //posição 2
+                    p.getTelefone_res(), //posição 3
+                    p.getTelefone_com(), //posição 4
+                    p.getCelular(), //posição 5
+                    p.getLogradouro(), //posição 6
+                    p.getTipo_logradouro(), //posição 7
+                    p.getNumLogradouro(), //posição 8
+                    p.getBairro(), //posição 9
+                    p.getCep(), //posição 10
+                    p.getUf(), //posição 11
+                    p.getDt_cadastro() //posição 12
+                });
+            }
+            
+//            for(PessoaFisica pf: pessoas.listaPessoasFisicas()){
+                for(PessoaFisica pf: pessoa.listaPessoasFisicas()){
+                modelo.addRow(new Object[]{
+                    pf.getCpf(), //posição 13
+                    pf.getRg(), //posição 14
+                    pf.getDt_nascimento() //posição 15
+             });
+            }
+        }else {
+            
+            for(Pessoa p: pessoa.listaPessoas()){
+                modelo.addRow(new Object[]{
+                    p.getCod_pessoa(),
+                    p.getNome(), //posição 1
+                    p.getTipo_pessoa(),  //posição 2
+                    p.getTelefone_res(), //posição 3
+                    p.getTelefone_com(), //posição 4
+                    p.getCelular(), //posição 5
+                    p.getLogradouro(), //posição 6
+                    p.getTipo_logradouro(), //posição 7
+                    p.getNumLogradouro(), //posição 8
+                    p.getBairro(), //posição 9
+                    p.getCep(), //posição 10
+                    p.getUf(), //posição 11
+                    p.getDt_cadastro() //posição 12
+                });
+            }            
+            
+//            for(PessoaJuridica pj: pessoas.listaPessoasJuridicas()){
+//                modelo.addRow(new Object[]{
+//                    pj.getCnpj(),
+//                    pj.getIe(),
+//                    pj.getIm(),
+//                    pj.getNome_fantasia()
+//             });
+//            }
         }
-//        
-//        for(PessoaFisica pf: pessoas.listaPessoasFisicas()){
-//            modelo.addRow(new Object[]{
-//                pf.getCpf(),
-//                pf.getRg(),
-//                pf.getDt_nascimento()
-//         });
-//        }
-//                
-//        for(PessoaJuridica pj: pessoas.listaPessoasJuridicas()){
-//            modelo.addRow(new Object[]{
-//                pj.getCnpj(),
-//                pj.getIe(),
-//                pj.getIm(),
-//                pj.getNome_fantasia()
-//         });
-//        } 
-//        
 //        for(Cidade c: cidadeDao.listaCidades()){
 //            jCBcodCidade.addItem(c.getCod_cidade().trim());
 //            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
@@ -168,6 +193,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     }
     public void visualizaPessoaFisica(){
 
+        tipoPessoa = 'F';
         jTFnomeFantasia.setEditable(false);
         jTFInscricaoEstadual.setEditable(false);
         jFormattedTFinscricaoMunicipal.setEditable(false);
@@ -177,6 +203,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     
     public void visualizaPessoaJuridica(){
 
+        tipoPessoa = 'J';
         jTFnomePessoa.setEditable(false);
         jFormattedTextFdataNascPessoa.setEditable(false);
         jRadioButtonFeminino.setEnabled(false);
@@ -374,7 +401,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "COD", "NOME ", "PESSOA", "FONE_RES", "FONE_COML", "FONE_CEL", "LOGRADOURO", "TIPO_LOGR", "NUM_LOGR", "BAIRRO", "CEP", "UF", "DT_CAD"
+                "COD", "NOME ", "PESSOA", "FONE_RES", "FONE_COML", "FONE_CEL", "LOGRADOURO", "TIPO_LOGR", "NUM_LOGR", "BAIRRO", "CEP", "UF", "DT_CAD", "CPF", "RG", "DT_NASC"
             }
         ));
         jTcadastroPessoa.addMouseListener(new java.awt.event.MouseAdapter() {

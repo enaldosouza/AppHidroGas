@@ -214,7 +214,8 @@ public class CadastroPessoaDao {
         try{
             ps2 = con.prepareStatement("SELECT * FROM pessoa_fisica");
             rs2 = ps2.executeQuery();
-            while(rs.next()){
+            while(rs2.next()){
+                PessoaFisica pFisica = new PessoaFisica();
                 pFisica.setCpf(rs2.getString("cpf"));
                 pFisica.setRg(rs2.getString("rg"));
                 pFisica.setSexo(rs2.getString("sexo"));
@@ -222,9 +223,9 @@ public class CadastroPessoaDao {
                 pessoasFisica.add(pFisica);
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
+            JOptionPane.showMessageDialog(null, "Falha na Conexão fisica! " + e);
         }finally{
-            ConnectionFactory.closeConnection(con, ps, rs);
+            ConnectionFactory.closeConnection(con, ps2, rs2);
         }
         return pessoasFisica;
     }  
@@ -235,7 +236,8 @@ public class CadastroPessoaDao {
         try{
             ps3 = con.prepareStatement("SELECT * FROM pessoa_juridica");
             rs3 = ps3.executeQuery();
-            while(rs.next()){
+            while(rs3.next()){
+                PessoaJuridica pJur = new PessoaJuridica();
                 pJur.setCnpj(rs3.getString("cnpj"));
                 pJur.setIe(rs3.getString("ie"));
                 pJur.setIm(rs3.getString("im"));
@@ -243,9 +245,9 @@ public class CadastroPessoaDao {
                 pessoasJuridica.add(pJur);
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Falha na Conexão! " + e);
+            JOptionPane.showMessageDialog(null, "Falha na Conexão! juridica " + e);
         }finally{
-            ConnectionFactory.closeConnection(con, ps, rs);
+            ConnectionFactory.closeConnection(con, ps3, rs3);
         }
         return pessoasJuridica;
     }    
