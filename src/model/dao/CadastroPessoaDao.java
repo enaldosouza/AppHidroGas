@@ -230,6 +230,46 @@ public class CadastroPessoaDao {
         return pessoasFisica;
     }  
     
+    public PessoaFisica listaPessoasFisicaPorCodigo(Integer cod_pessoa){
+        con = ConnectionFactory.getConnetion();
+        PessoaFisica pessoasFisica = new PessoaFisica();
+        try{
+            ps2 = con.prepareStatement("SELECT * FROM pessoa_fisica where pessoa_cod_pessoa = " + cod_pessoa);
+            rs2 = ps2.executeQuery();
+            while(rs2.next()){
+                pessoasFisica.setCpf(rs2.getString("cpf"));
+                pessoasFisica.setRg(rs2.getString("rg"));
+                pessoasFisica.setSexo(rs2.getString("sexo"));
+                pessoasFisica.setDt_nascimento(rs2.getString("dt_nascimento"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Falha na Conexão: " + e);
+        }finally{
+            ConnectionFactory.closeConnection(con, ps2, rs2);
+        }
+        return pessoasFisica;
+    }  
+    
+    public PessoaJuridica listaPessoasJuridicaPorCodigo(Integer cod_pessoa){
+        con = ConnectionFactory.getConnetion();
+        PessoaJuridica pessoasJuridica = new PessoaJuridica();
+        try{
+            ps2 = con.prepareStatement("SELECT * FROM pessoa_juridica where pessoa_cod_pessoa = " + cod_pessoa);
+            rs2 = ps2.executeQuery();
+            while(rs2.next()){
+                pessoasJuridica.setCnpj(rs2.getString("cnpj"));
+                pessoasJuridica.setIe(rs2.getString("ie"));
+                pessoasJuridica.setIm(rs2.getString("im"));
+                pessoasJuridica.setNome_fantasia(rs2.getString("nome_fantasia"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Falha na Conexão: " + e);
+        }finally{
+            ConnectionFactory.closeConnection(con, ps2, rs2);
+        }
+        return pessoasJuridica;
+    }  
+    
     public List<PessoaJuridica> listaPessoasJuridicas(){
         con = ConnectionFactory.getConnetion();
         List<PessoaJuridica> pessoasJuridica = new ArrayList<>();

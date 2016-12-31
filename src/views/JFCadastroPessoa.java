@@ -38,14 +38,12 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     CidadeDao cidadeDao       = new CidadeDao();
     Cidade cidade             = new Cidade();
     int habilitaInsercao = 0;
-    char tipoPessoa = 'J';
+    String tipoPessoa = "";
     
     ArrayList<String> arrCidEst = new ArrayList<>();
     
     public JFCadastroPessoa() {
         initComponents();
-        
-            char tipoPessoa = 'F';
         
         for(Cidade c: cidadeDao.listaCidades()){
             jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
@@ -116,84 +114,105 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         jComboBoxOrgExpeditor.addItem("SJTS - Secretaria da Justiça do Trabalho e Segurança");
         jComboBoxOrgExpeditor.addItem("ZZZ  - Outros (inclusive exterior) ");
         
-        populajTcadastroPessoa(tipoPessoa);
-        
 //        ordenando jtable
         DefaultTableModel modelo = (DefaultTableModel) jTcadastroPessoa.getModel();
         jTcadastroPessoa.setRowSorter(new TableRowSorter(modelo));
         
     }
     
-    public void populajTcadastroPessoa(char tipoPessoa){
+    public void populajTcadastroPessoa(String tipoPessoa){
+        
+        jTcadastroPessoa.getColumnModel().getColumn(0).setPreferredWidth(35);
+        jTcadastroPessoa.getColumnModel().getColumn(1).setPreferredWidth(200);
+        jTcadastroPessoa.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTcadastroPessoa.getColumnModel().getColumn(3).setPreferredWidth(90);
+        jTcadastroPessoa.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jTcadastroPessoa.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jTcadastroPessoa.getColumnModel().getColumn(6).setPreferredWidth(100);
+        jTcadastroPessoa.getColumnModel().getColumn(7).setPreferredWidth(80);
+        jTcadastroPessoa.getColumnModel().getColumn(8).setPreferredWidth(80);
+        
+        jTcadastroPessoa.getColumnModel().getColumn(2).setHeaderValue("ENDEREÇO"); 
+        jTcadastroPessoa.getColumnModel().getColumn(3).setHeaderValue("NÚMERO"); 
         
         DefaultTableModel modelo = (DefaultTableModel)jTcadastroPessoa.getModel();
         modelo.setNumRows(0);
         CadastroPessoaDao pessoa = new CadastroPessoaDao();
-        if(tipoPessoa == 'F'){
+        PessoaFisica   pf = new PessoaFisica();
+        PessoaJuridica pj = new PessoaJuridica();
+        
+        if(tipoPessoa.equals("F")){
             for(Pessoa p: pessoa.listaPessoas()){
-                modelo.addRow(new Object[]{
-                    p.getCod_pessoa(),
-                    p.getNome(), //posição 1
-                    p.getTipo_pessoa(),  //posição 2
-                    p.getTelefone_res(), //posição 3
-                    p.getTelefone_com(), //posição 4
-                    p.getCelular(), //posição 5
-                    p.getLogradouro(), //posição 6
-                    p.getTipo_logradouro(), //posição 7
-                    p.getNumLogradouro(), //posição 8
-                    p.getBairro(), //posição 9
-                    p.getCep(), //posição 10
-                    p.getUf(), //posição 11
-                    p.getDt_cadastro() //posição 12
-                });
+                
+                Integer cod_pessoa = p.getCod_pessoa();
+                String tipo_pessoa = p.getTipo_pessoa();
+                if(tipo_pessoa.equals("F")){
+                    pf = pessoa.listaPessoasFisicaPorCodigo(cod_pessoa);
+                    modelo.addRow(new Object[]{
+                        cod_pessoa,
+                        p.getNome(), //posição 1
+//                        tipo_pessoa,  //posição 2
+//                        p.getTelefone_res(), //posição 3
+//                        p.getTelefone_com(), //posição 4
+//                        p.getCelular(), //posição 5
+                        p.getLogradouro(), //posição 6
+//                        p.getTipo_logradouro(), //posição 7
+                        p.getNumLogradouro(), //posição 8
+                        p.getBairro(), //posição 9
+                        p.getCep(), //posição 10
+//                        p.getUf(), //posição 11
+//                        p.getDt_cadastro(), //posição 12
+                        pf.getCpf(),
+                        pf.getRg(),
+                        pf.getDt_nascimento()
+                    });
+                }
             }
+        }else if(tipoPessoa.equals("J")){
             
-//            for(PessoaFisica pf: pessoas.listaPessoasFisicas()){
-                for(PessoaFisica pf: pessoa.listaPessoasFisicas()){
-                modelo.addRow(new Object[]{
-                    pf.getCpf(), //posição 13
-                    pf.getRg(), //posição 14
-                    pf.getDt_nascimento() //posição 15
-             });
-            }
-        }else {
+            jTcadastroPessoa.getColumnModel().getColumn(5).setPreferredWidth(200);
+            jTcadastroPessoa.getColumnModel().getColumn(6).setPreferredWidth(200);
+            jTcadastroPessoa.getColumnModel().getColumn(7).setPreferredWidth(200);
+            jTcadastroPessoa.getColumnModel().getColumn(8).setPreferredWidth(200);            
+            
+            jTcadastroPessoa.getColumnModel().getColumn(5).setHeaderValue("CNPJ"); 
+            jTcadastroPessoa.getColumnModel().getColumn(6).setHeaderValue("IE"); 
+            jTcadastroPessoa.getColumnModel().getColumn(7).setHeaderValue("IM"); 
+            jTcadastroPessoa.getColumnModel().getColumn(8).setHeaderValue("NOME FANTASIA"); 
             
             for(Pessoa p: pessoa.listaPessoas()){
-                modelo.addRow(new Object[]{
-                    p.getCod_pessoa(),
-                    p.getNome(), //posição 1
-                    p.getTipo_pessoa(),  //posição 2
-                    p.getTelefone_res(), //posição 3
-                    p.getTelefone_com(), //posição 4
-                    p.getCelular(), //posição 5
-                    p.getLogradouro(), //posição 6
-                    p.getTipo_logradouro(), //posição 7
-                    p.getNumLogradouro(), //posição 8
-                    p.getBairro(), //posição 9
-                    p.getCep(), //posição 10
-                    p.getUf(), //posição 11
-                    p.getDt_cadastro() //posição 12
-                });
-            }            
-            
-//            for(PessoaJuridica pj: pessoas.listaPessoasJuridicas()){
-//                modelo.addRow(new Object[]{
-//                    pj.getCnpj(),
-//                    pj.getIe(),
-//                    pj.getIm(),
-//                    pj.getNome_fantasia()
-//             });
-//            }
+                
+                Integer cod_pessoa = p.getCod_pessoa();
+                String tipo_pessoa = p.getTipo_pessoa();
+                if(tipo_pessoa.equals("J")){
+                    pj = pessoa.listaPessoasJuridicaPorCodigo(cod_pessoa);
+                    modelo.addRow(new Object[]{
+                        cod_pessoa,
+                        p.getNome(), //posição 1
+//                        tipo_pessoa,  //posição 2
+//                        p.getTelefone_res(), //posição 3
+//                        p.getTelefone_com(), //posição 4
+//                        p.getCelular(), //posição 5
+                        p.getLogradouro(), //posição 6
+//                        p.getTipo_logradouro(), //posição 7
+                        p.getNumLogradouro(), //posição 8
+//                        p.getBairro(), //posição 9
+                        p.getCep(), //posição 10
+//                        p.getUf(), //posição 11
+//                        p.getDt_cadastro(), //posição 12
+                        pj.getCnpj(),
+                        pj.getIe(),
+                        pj.getIm(),
+                        pj.getNome_fantasia()
+                    });
+                }
+            }
         }
-//        for(Cidade c: cidadeDao.listaCidades()){
-//            jCBcodCidade.addItem(c.getCod_cidade().trim());
-//            jComboBoxCidadeEndereco.addItem(c.getDesc_cidade().trim());
-//            jComboBoxEstadoEnd.addItem(c.getEstado_cidade().trim());
-//        }
     }
+    
     public void visualizaPessoaFisica(){
-
-        tipoPessoa = 'F';
+        tipoPessoa = "F";
+        populajTcadastroPessoa(tipoPessoa);        
         jTFnomeFantasia.setEditable(false);
         jTFInscricaoEstadual.setEditable(false);
         jFormattedTFinscricaoMunicipal.setEditable(false);
@@ -203,7 +222,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     
     public void visualizaPessoaJuridica(){
 
-        tipoPessoa = 'J';
+        tipoPessoa = "J";
+        populajTcadastroPessoa(tipoPessoa);        
         jTFnomePessoa.setEditable(false);
         jFormattedTextFdataNascPessoa.setEditable(false);
         jRadioButtonFeminino.setEnabled(false);
@@ -401,9 +421,10 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "COD", "NOME ", "PESSOA", "FONE_RES", "FONE_COML", "FONE_CEL", "LOGRADOURO", "TIPO_LOGR", "NUM_LOGR", "BAIRRO", "CEP", "UF", "DT_CAD", "CPF", "RG", "DT_NASC"
+                "COD", "NOME ", "LOGRADOURO", "NUM_LOGR", "BAIRRO", "CEP", "CPF", "RG", "DT_NASC"
             }
         ));
+        jTcadastroPessoa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jTcadastroPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTcadastroPessoaMouseClicked(evt);
@@ -424,8 +445,8 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             jPanelInformacoesGeraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInformacoesGeraisLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
 
         jLabelNomePessoa.setText("Nome: *");

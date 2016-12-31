@@ -170,7 +170,6 @@ public class JFTelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuICidadeActionPerformed
 
     private void jMenuItemPessoaFisicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPessoaFisicaActionPerformed
-        
         JFCadastroPessoa cadPessoa = new JFCadastroPessoa();
         cadPessoa.setVisible(true);
         cadPessoa.visualizaPessoaFisica();
