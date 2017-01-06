@@ -122,18 +122,23 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
     
     public void populajTcadastroPessoa(String tipoPessoa){
         
-        jTcadastroPessoa.getColumnModel().getColumn(0).setPreferredWidth(35);
+        jTcadastroPessoa.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTcadastroPessoa.getColumnModel().getColumn(1).setPreferredWidth(200);
         jTcadastroPessoa.getColumnModel().getColumn(2).setPreferredWidth(200);
-        jTcadastroPessoa.getColumnModel().getColumn(3).setPreferredWidth(90);
-        jTcadastroPessoa.getColumnModel().getColumn(4).setPreferredWidth(100);
-        jTcadastroPessoa.getColumnModel().getColumn(5).setPreferredWidth(100);
+        jTcadastroPessoa.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jTcadastroPessoa.getColumnModel().getColumn(4).setPreferredWidth(150);
+        jTcadastroPessoa.getColumnModel().getColumn(5).setPreferredWidth(70);
         jTcadastroPessoa.getColumnModel().getColumn(6).setPreferredWidth(100);
-        jTcadastroPessoa.getColumnModel().getColumn(7).setPreferredWidth(80);
-        jTcadastroPessoa.getColumnModel().getColumn(8).setPreferredWidth(80);
+        jTcadastroPessoa.getColumnModel().getColumn(7).setPreferredWidth(100);
         
+        jTcadastroPessoa.getColumnModel().getColumn(0).setHeaderValue("COD"); 
+        jTcadastroPessoa.getColumnModel().getColumn(1).setHeaderValue("NOME"); 
         jTcadastroPessoa.getColumnModel().getColumn(2).setHeaderValue("ENDEREÇO"); 
         jTcadastroPessoa.getColumnModel().getColumn(3).setHeaderValue("NÚMERO"); 
+        jTcadastroPessoa.getColumnModel().getColumn(4).setHeaderValue("BAIRRO"); 
+        jTcadastroPessoa.getColumnModel().getColumn(5).setHeaderValue("CEP"); 
+        jTcadastroPessoa.getColumnModel().getColumn(6).setHeaderValue("CPF");         
+        jTcadastroPessoa.getColumnModel().getColumn(7).setHeaderValue("RG");         
         
         DefaultTableModel modelo = (DefaultTableModel)jTcadastroPessoa.getModel();
         modelo.setNumRows(0);
@@ -142,6 +147,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         PessoaJuridica pj = new PessoaJuridica();
         
         if(tipoPessoa.equals("F")){
+            
             for(Pessoa p: pessoa.listaPessoas()){
                 
                 Integer cod_pessoa = p.getCod_pessoa();
@@ -149,36 +155,32 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 if(tipo_pessoa.equals("F")){
                     pf = pessoa.listaPessoasFisicaPorCodigo(cod_pessoa);
                     modelo.addRow(new Object[]{
-                        cod_pessoa,
+                        cod_pessoa, //posição 0
                         p.getNome(), //posição 1
-//                        tipo_pessoa,  //posição 2
-//                        p.getTelefone_res(), //posição 3
-//                        p.getTelefone_com(), //posição 4
-//                        p.getCelular(), //posição 5
-                        p.getLogradouro(), //posição 6
-//                        p.getTipo_logradouro(), //posição 7
-                        p.getNumLogradouro(), //posição 8
-                        p.getBairro(), //posição 9
-                        p.getCep(), //posição 10
-//                        p.getUf(), //posição 11
-//                        p.getDt_cadastro(), //posição 12
-                        pf.getCpf(),
-                        pf.getRg(),
-                        pf.getDt_nascimento()
+                        p.getLogradouro(), //posição 2
+                        p.getNumLogradouro(), //posição 3
+                        p.getBairro(), //posição 4
+                        p.getCep(),  //posição 5
+                        pf.getCpf(), //posição 6
+                        pf.getRg(), //posição 7
                     });
                 }
             }
         }else if(tipoPessoa.equals("J")){
             
-            jTcadastroPessoa.getColumnModel().getColumn(5).setPreferredWidth(200);
-            jTcadastroPessoa.getColumnModel().getColumn(6).setPreferredWidth(200);
-            jTcadastroPessoa.getColumnModel().getColumn(7).setPreferredWidth(200);
-            jTcadastroPessoa.getColumnModel().getColumn(8).setPreferredWidth(200);            
+            jTcadastroPessoa.getColumnModel().getColumn(0).setPreferredWidth(40);
+            jTcadastroPessoa.getColumnModel().getColumn(1).setPreferredWidth(200);
+            jTcadastroPessoa.getColumnModel().getColumn(2).setPreferredWidth(300);
+            jTcadastroPessoa.getColumnModel().getColumn(3).setPreferredWidth(80);
+            jTcadastroPessoa.getColumnModel().getColumn(4).setPreferredWidth(100);
+            jTcadastroPessoa.getColumnModel().getColumn(5).setPreferredWidth(130);
+            jTcadastroPessoa.getColumnModel().getColumn(6).setPreferredWidth(110);
             
+            jTcadastroPessoa.getColumnModel().getColumn(1).setHeaderValue("NOME FANTASIA");  
+            jTcadastroPessoa.getColumnModel().getColumn(4).setHeaderValue("CEP");            
             jTcadastroPessoa.getColumnModel().getColumn(5).setHeaderValue("CNPJ"); 
             jTcadastroPessoa.getColumnModel().getColumn(6).setHeaderValue("IE"); 
             jTcadastroPessoa.getColumnModel().getColumn(7).setHeaderValue("IM"); 
-            jTcadastroPessoa.getColumnModel().getColumn(8).setHeaderValue("NOME FANTASIA"); 
             
             for(Pessoa p: pessoa.listaPessoas()){
                 
@@ -187,23 +189,14 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
                 if(tipo_pessoa.equals("J")){
                     pj = pessoa.listaPessoasJuridicaPorCodigo(cod_pessoa);
                     modelo.addRow(new Object[]{
-                        cod_pessoa,
-                        p.getNome(), //posição 1
-//                        tipo_pessoa,  //posição 2
-//                        p.getTelefone_res(), //posição 3
-//                        p.getTelefone_com(), //posição 4
-//                        p.getCelular(), //posição 5
-                        p.getLogradouro(), //posição 6
-//                        p.getTipo_logradouro(), //posição 7
-                        p.getNumLogradouro(), //posição 8
-//                        p.getBairro(), //posição 9
-                        p.getCep(), //posição 10
-//                        p.getUf(), //posição 11
-//                        p.getDt_cadastro(), //posição 12
-                        pj.getCnpj(),
-                        pj.getIe(),
-                        pj.getIm(),
-                        pj.getNome_fantasia()
+                        cod_pessoa,  //posição 0
+                        pj.getNome_fantasia(), //posição 1
+                        p.getLogradouro(), //posição 2
+                        p.getNumLogradouro(), //posição 3
+                        p.getCep(), //posição 4
+                        pj.getCnpj(), //posição 5
+                        pj.getIe(), //posição 6
+                        pj.getIm() //posição 7
                     });
                 }
             }
@@ -421,7 +414,7 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
 
             },
             new String [] {
-                "COD", "NOME ", "LOGRADOURO", "NUM_LOGR", "BAIRRO", "CEP", "CPF", "RG", "DT_NASC"
+                "COD", "NOME ", "LOGRADOURO", "NUM_LOGR", "BAIRRO", "CEP", "CPF", "RG"
             }
         ));
         jTcadastroPessoa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -580,6 +573,11 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         buttonGroupSexo.add(jRadioButtonFeminino);
         jRadioButtonFeminino.setText("FEMININO");
         jRadioButtonFeminino.setActionCommand("feminino");
+        jRadioButtonFeminino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonFemininoActionPerformed(evt);
+            }
+        });
 
         buttonGroupSexo.add(jRadioButtonMasculino);
         jRadioButtonMasculino.setSelected(true);
@@ -1548,35 +1546,45 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
         //captura botão
 //        String sexo = buttonGroupSexo.getSelection().getActionCommand();
 //        sexo = sexo.equals("feminino") ? "F" : "M";
-        if(jTcadastroPessoa.getSelectedRow() != -1){
-            //código de pessoa
-            jTFnomePessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),1).toString());
+//        System.out.println(sexo);
+        
+        CadastroPessoaDao pessoa = new CadastroPessoaDao();
+        PessoaFisica   pf = new PessoaFisica();
+        PessoaJuridica pj = new PessoaJuridica();
+
+        //código de pessoa
+        Integer codigoPessoaTabela = 0;
+        Integer codPessoaLista = 0;
+        codigoPessoaTabela = (Integer)jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),0);
+
+        for(Pessoa p: pessoa.listaPessoas()){
+            codPessoaLista = p.getCod_pessoa();
+            if(codigoPessoaTabela == codPessoaLista){
+                pf = pessoa.listaPessoasFisicaPorCodigo(codigoPessoaTabela );
+                jTFnomePessoa.setText(p.getNome());
+                jTextFieldBairro.setText(p.getBairro());
+                jFormattedTextFieldCelularPessoa.setText(p.getCelular());
+                jFormattedTextFieldTelefonePessoaComl.setText(p.getTelefone_com());
+                jTextFieldEnderecoPessoa.setText(p.getLogradouro());
+                jTextFieldNumero.setText(p.getNumLogradouro());
+                jTextFieldBairro.setText(p.getBairro());
+                jFormattedTextFieldCep.setText(p.getCep());
+//                pf.getCpf()
+//                pf.getRg()
+            }                    
+        }                    
+            
+//            jTFnomePessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),1).toString());
 //            buttonGroupSexo.getSelection().setActionCommand(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),2).toString());
 //            //tipo pessoa juridica ou Fisica
 //            jFormattedTextCpf.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),2).toString()); //(F)
 //            jTFidentidade.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),4).toString()); //(F)
 //            jFormattedTextFdataNascPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),5).toString()); //(F)
 
-//                p.getCod_pessoa(),
-//                p.getNome(), //posição 1
-//                p.getTipo_pessoa(),  //posição 2
-//                p.getTelefone_res(), //posição 3
-//                p.getTelefone_com(), //posição 4
-//                p.getCelular(), //posição 5
-//                p.getLogradouro(), //posição 6
-//                p.getTipo_logradouro(), //posição 7
-//                p.getNumLogradouro(), //posição 8
-//                p.getBairro(), //posição 9
-//                p.getCep(), //posição 10
-//                p.getUf(), //posição 11
-//                p.getDt_cadastro() //posição 12
-
-
-
             //não estavam comentados
-            jFormattedTextFieldTelefonePessoaRes.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),3).toString());
-            jFormattedTextFieldTelefonePessoaComl.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),4).toString());
-            jFormattedTextFieldCelularPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),5).toString());
+//            jFormattedTextFieldTelefonePessoaRes.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),3).toString());
+//            jFormattedTextFieldTelefonePessoaComl.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),4).toString());
+//            jFormattedTextFieldCelularPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),5).toString());
             
             
 //            jFormattedTextFcnpj.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),11).toString()); //(J)
@@ -1588,19 +1596,21 @@ public class JFCadastroPessoa extends javax.swing.JFrame {
             //não estavam comentados
 //            jCBcodCidade.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),15).toString());
 //            jComboBoxCidadeEndereco.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),16).toString());
-            jTextFieldEnderecoPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),6).toString());
-            jTextFieldComplemento.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),7).toString());
-            jTextFieldNumero.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),8).toString());
-            jTextFieldBairro.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),9).toString());
-            jFormattedTextFieldCep.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),10).toString());
-            jComboBoxEstadoEnd.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),11).toString());
+//            jTextFieldEnderecoPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),6).toString());
+//            jTextFieldComplemento.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),7).toString());
+//            jTextFieldNumero.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),8).toString());
+//            jTextFieldBairro.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),9).toString());
+//            jFormattedTextFieldCep.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),10).toString());
+//            jComboBoxEstadoEnd.setSelectedItem(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),11).toString());
             
 //            jTextfEmailPessoa.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),7).toString()); 
 //            jTextFieldNomeMae.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),8).toString());
 //            jTextFieldNomePai.setText(jTcadastroPessoa.getValueAt(jTcadastroPessoa.getSelectedRow(),9).toString());
-
-        }
     }//GEN-LAST:event_jTcadastroPessoaMouseClicked
+
+    private void jRadioButtonFemininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonFemininoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonFemininoActionPerformed
 
     /**
      * @param args the command line arguments
